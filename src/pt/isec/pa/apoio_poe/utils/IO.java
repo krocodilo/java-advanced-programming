@@ -1,51 +1,41 @@
 package pt.isec.pa.apoio_poe.utils;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class IO {
 
-    public static ArrayList<ArrayList<String>> readCSV(String filename) throws Exception {
+    private static final Scanner sin = new Scanner( System.in );
+    private static final String menuSeparator = "//////////////////////////////////////////////////";
+    private static final String stdPrompt = ">  ";
 
-        ArrayList<ArrayList<String>> content = new ArrayList<>();
+    public static void printMenu(String title, String... options){
+        StringBuilder str = new StringBuilder();
+        str.append("\n" + menuSeparator + "\n\n");
+        str.append("\t\t").append( title ).append("\n\n");
 
-        ArrayList<String> lines = readFileLines( filename );
+        for(String option : options)
+            str.append("\t").append(option).append("\n");
 
-        StringBuilder errors = new StringBuilder();
-        int lineNum = 1;
-
-        for(String line : lines){
-            ArrayList<String> lineContent = new ArrayList<>( List.of( line.split(",") ) );
-            if( lineContent.size() <= 1 )
-                errors.append("\n").append( String.format("[%d] - %s", lineNum, line) );
-            else
-                content.add( lineContent );
-            lineNum++;
-        }
-        if( ! errors.isEmpty() )
-            throw new Exception("Found errors in the following lines:" + errors);
-
-        return content;
+        str.append("\n" + menuSeparator + "\n");
+        System.out.println(str);
     }
 
-    private static ArrayList<String> readFileLines(String filename) throws Exception {
 
-        ArrayList<String> lines = new ArrayList<>();
+    //print the prompt to the  screen and read a number between lowest and highest
+    public static int readNumber(String prompt, int lowest, int highest){
+        // read a number between the lowest and highest possible (inclusive)
 
-        try ( BufferedReader in = openFile(filename) ) {
-            String line;
-            while ((line = in.readLine()) != null)
-                lines.add(line);
-        } catch (FileNotFoundException e) {
-            throw new Exception("Unable to open file'" + filename + "'.");
+        int option;
+        if(prompt == null)  prompt = stdPrompt;
+        while( true ){
+            try{
+                System.out.print(prompt);
+                option = Integer.parseInt( sin.nextLine() );
+                if( option >= lowest && option <= highest )
+                    break;  // If option is valid
+            } catch (NumberFormatException ignored) { }
+            System.out.println("\nYou have not entered a valid option!");
         }
-        return lines;
-    }
-
-    private static BufferedReader openFile(String filename) throws FileNotFoundException {
-        return new BufferedReader( new FileReader( filename ) );
+        return option;
     }
 }
