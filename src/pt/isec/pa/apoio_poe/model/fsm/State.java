@@ -6,6 +6,7 @@ public enum State {
     PHASE_TWO,
     PHASE_THREE,
     PHASE_FOUR,
+    PHASE_FIVE,
 
     // Fase 1
     GESTAO_ALUNOS,
