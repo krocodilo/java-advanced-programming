@@ -4,6 +4,8 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
+import java.util.ArrayList;
+
 public class StateAdapter implements IState {
 
     @Override
@@ -17,12 +19,12 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void addAluno() {
+    public void addAluno(Aluno newAluno) {
 
     }
 
     @Override
-    public Aluno getAluno() {
+    public ArrayList<Aluno> getAlunos() {
         return null;
     }
 
@@ -32,12 +34,12 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void removeAluno() {
+    public void removeAluno(Aluno toRemove) {
 
     }
 
     @Override
-    public void addDocente() {
+    public void addDocente(Docente newDocente) {
 
     }
 
@@ -57,7 +59,7 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void addProposta() {
+    public void addProposta(Proposta newProposta) {
 
     }
 

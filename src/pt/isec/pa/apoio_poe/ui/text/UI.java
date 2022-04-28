@@ -3,7 +3,7 @@ package pt.isec.pa.apoio_poe.ui.text;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 
 import static pt.isec.pa.apoio_poe.utils.IO.printMenu;
-import static pt.isec.pa.apoio_poe.utils.IO.readNumber;
+import static pt.isec.pa.apoio_poe.utils.IO.readOption;
 
 public class UI {
 
@@ -41,7 +41,7 @@ public class UI {
                 "2 - Gestao de Docentes",
                 "3 - Gestao de propostas",
                 "\n0 - Voltar");
-        switch (readNumber(null, 0, 3)){
+        switch (readOption(null, 0, 3)){
             case 1: System.out.println(1);
             case 2:
                 System.out.println(2);
