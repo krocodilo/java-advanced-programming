@@ -20,6 +20,7 @@ public class UI {
             case PHASE_TWO -> phaseTwo();
             case PHASE_THREE -> phaseThree();
             case PHASE_FOUR -> false;
+            case PHASE_FIVE -> false;
             case GESTAO_ALUNOS -> false;
             case GESTAO_DOCENTES -> false;
             case GESTAO_PROPOSTAS -> false;
@@ -33,11 +34,14 @@ public class UI {
 
     private boolean phaseOne() {
 
+        PhaseOneUI ui = new PhaseOneUI(fsm);
+
         printMenu("Configuracao",
                 "1 - Gestao de Alunos",
                 "2 - Gestao de Docentes",
+                "3 - Gestao de propostas",
                 "\n0 - Voltar");
-        switch (readNumber(null, 0, 2)){
+        switch (readNumber(null, 0, 3)){
             case 1: System.out.println(1);
             case 2:
                 System.out.println(2);
