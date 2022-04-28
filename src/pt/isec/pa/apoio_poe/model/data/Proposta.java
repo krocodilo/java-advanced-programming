@@ -6,5 +6,10 @@ public class Proposta {
     private String ramoDestino;
     private String titulo;
 
-    private long idAluno;
+
+    public Proposta(String id, String ramoDestino, String titulo) {
+        this.id = id;
+        this.ramoDestino = ramoDestino;
+        this.titulo = titulo;
+    }
 }

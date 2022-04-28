@@ -7,6 +7,16 @@ import pt.isec.pa.apoio_poe.model.data.Proposta;
 public class StateAdapter implements IState {
 
     @Override
+    public IState avancar() {
+        return this;
+    }
+
+    @Override
+    public IState faseAnterior() {
+        return this;
+    }
+
+    @Override
     public void addAluno() {
 
     }
