@@ -1,13 +1,9 @@
-package pt.isec.pa.apoio_poe.model.fsm.states;
+package pt.isec.pa.apoio_poe.model.fsm.states.phaseOne;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
-import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
-
-import java.util.ArrayList;
 
 public class PhaseOne extends StateAdapter {
 
@@ -20,7 +16,7 @@ public class PhaseOne extends StateAdapter {
     @Override
     public IState goGestaoAlunos() {
         if(!isLocked)
-            return new PhaseGestaoAlunos(data);
+            return new GestaoAlunos(data);
         return this;
     }
 
