@@ -9,7 +9,7 @@ import static pt.isec.pa.apoio_poe.utils.IO.*;
 
 public class PhaseOneUI {
 
-    private final Context fsm;
+    final private Context fsm;
 
     public PhaseOneUI(Context fsm) {
         this.fsm = fsm;
@@ -26,7 +26,7 @@ public class PhaseOneUI {
                     "0 - Voltar");
             switch (readOption(null, 0, 4)) {
                 case 1: {
-                    Aluno tmp = new Aluno(
+                    /*Aluno tmp = new Aluno(
                             readLong("Numero de Aluno"),
                             prompt("Nome"),
                             prompt("E-mail"),
@@ -35,19 +35,29 @@ public class PhaseOneUI {
                             readDouble("Classificacao"),
                             readBoolean("Pode estagiar")
                     );
+                    fsm.addAluno(tmp);*/
+
+                    Aluno tmp = new Aluno(2022987654,"Carlos Picoto","a2022987654@isec.pt","LEI-PL","SI",0.123,true);
                     fsm.addAluno(tmp);
+                    break;
                 }
                 case 2:
                     showList(fsm.getAlunos());
+                    break;
                 case 3: {
                     Aluno selected = selectOneFrom( fsm.getAlunos() );
+                    break;
                 }
                 case 4: {
                     Aluno selected = selectOneFrom( fsm.getAlunos() );
                     if( readBoolean("Are you sure you want to delete?") )
                         fsm.removeAluno( selected );
+                    break;
                 }
-                case 0: return;
+                case 0: {
+                    fsm.previousState();
+                    return;
+                }
             }
         }
     }
@@ -63,7 +73,7 @@ public class PhaseOneUI {
                     "\n0 - Voltar");
             switch (readOption(null, 0, 4)) {
                 case 1: {
-                    Aluno tmp = new Aluno(
+                    /*Aluno tmp = new Aluno(
                             readLong("Numero de Aluno"),
                             prompt("Nome"),
                             prompt("E-mail"),
@@ -72,7 +82,7 @@ public class PhaseOneUI {
                             readDouble("Classificacao"),
                             readBoolean("Pode estagiar")
                     );
-                    fsm.addAluno(tmp);
+                    fsm.addAluno(tmp);*/
                 }
                 case 2:
                     showList(fsm.getAlunos());

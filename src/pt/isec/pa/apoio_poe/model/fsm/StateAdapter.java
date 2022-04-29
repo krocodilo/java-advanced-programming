@@ -9,11 +9,9 @@ import java.util.ArrayList;
 
 public class StateAdapter implements IState {
 
-    protected Context context;
     protected DataCapsule data;
 
-    protected StateAdapter(Context context, DataCapsule data) {
-        this.context = context;
+    public StateAdapter(DataCapsule data) {
         this.data = data;
     }
 
@@ -27,26 +25,29 @@ public class StateAdapter implements IState {
         return this;
     }
 
-    @Override
-    public void addAluno(Aluno newAluno) {
+    //======PHASE 1===========================
+    public IState goGestaoAlunos() {
+        return this;
+    }
 
+    //======GESTAO ALUNOS===========================
+    @Override
+    public IState addAluno(Aluno newAluno) {
+        return this;
     }
 
     @Override
-    public ArrayList<Aluno> getAlunos() {
-        return null;
+    public IState editAluno(Aluno newVersionAluno) {
+        return this;
     }
 
     @Override
-    public void editAluno(Aluno newVersionAluno) {
-
+    public IState removeAluno(Aluno toRemove) {
+        return this;
     }
 
-    @Override
-    public void removeAluno(Aluno toRemove) {
 
-    }
-
+    //======GESTAO DOCENTES===========================
     @Override
     public void addDocente(Docente newDocente) {
 

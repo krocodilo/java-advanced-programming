@@ -13,28 +13,15 @@ public class PhaseOne extends StateAdapter {
 
     private boolean isLocked = false;
 
-    public PhaseOne(Context context, DataCapsule data) {
-        super(context, data);
+    public PhaseOne(DataCapsule data) {
+        super(data);
     }
 
     @Override
-    public void addAluno(Aluno newAluno) {
-        data.getAlunos().add( newAluno );
-    }
-
-    @Override
-    public ArrayList<Aluno> getAlunos() {
-        return null;
-    }
-
-    @Override
-    public void editAluno(Aluno newVersionAluno) {
-
-    }
-
-    @Override
-    public void removeAluno(Aluno toRemove) {
-
+    public IState goGestaoAlunos() {
+        if(!isLocked)
+            return new PhaseGestaoAlunos(data);
+        return this;
     }
 
     @Override
@@ -44,12 +31,8 @@ public class PhaseOne extends StateAdapter {
 
     @Override
     public IState getNextState() {
+        //TODO : return PHASE2
         return this;
-    }
-
-    @Override
-    public IState getPreviousState() {
-        return null;
     }
 
     @Override

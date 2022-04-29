@@ -13,10 +13,12 @@ public interface IState {
     IState getPreviousState();
 
     // Fase 1
-    void addAluno(Aluno newAluno);
-    ArrayList<Aluno> getAlunos();
-    void editAluno(Aluno newVersionAluno); //meta2
-    void removeAluno(Aluno toRemove); //meta2
+    IState goGestaoAlunos();
+
+    // GESTAO ALUNOS
+    IState addAluno(Aluno newAluno);
+    IState editAluno(Aluno newVersionAluno); //meta2
+    IState removeAluno(Aluno toRemove); //meta2
 
     // Fase 2
     void addDocente(Docente newDocente);

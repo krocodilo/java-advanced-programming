@@ -15,26 +15,36 @@ public class Context {
 
     public Context() {
         data = new DataCapsule();
-        state = new PhaseOne(this, data);
+        state = new PhaseOne(data);
     }
 
+    // PHASE1
+    public void goGestaoAlunos(){
+        state = state.goGestaoAlunos();
+    }
 
+    //======GESTAO ALUNOS===========================
     public void addAluno(Aluno newAluno) {
-
+        state = state.addAluno(newAluno);
     }
 
     public ArrayList<Aluno> getAlunos() {
-        return state.getAlunos();
+        return data.getAlunos();
+    }
+
+    public String mostraAlunos(){
+        return data.mostraAlunos();
     }
 
     public void editAluno(Aluno newVersionAluno) {
-
+        state = state.editAluno(newVersionAluno);
     }
 
     public void removeAluno(Aluno toRemove) {
-        state.removeAluno(toRemove);
+        state = state.removeAluno(toRemove);
     }
-    
+
+    //======GESTAO DOCENTES===========================
     public void addDocente() {
 
     }
@@ -69,19 +79,15 @@ public class Context {
     }
 
     public void nextState() {
-        changeState( state.getNextState() );
+        state = state.getNextState();
     }
 
     public void previousState() {
-        changeState( state.getPreviousState() );
+        state = state.getPreviousState();
     }
 
     public State getState(){
         return state.getState();
-    }
-
-    private void changeState(IState newState) {
-        state = newState;
     }
 
     public boolean isLocked() {
