@@ -14,9 +14,15 @@ public class DataCapsule {
         propostas = new ArrayList<>();
     }
 
-    public DataCapsule(ArrayList<Aluno> alunos, ArrayList<Docente> docentes, ArrayList<Proposta> propostas) {
-        this.alunos = alunos;
-        this.docentes = docentes;
-        this.propostas = propostas;
+    public ArrayList<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public ArrayList<Docente> getDocentes() {
+        return docentes;
+    }
+
+    public ArrayList<Proposta> getPropostas() {
+        return propostas;
     }
 }

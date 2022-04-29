@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public interface IState {
 
     //Common
-    IState avancar();
-    IState faseAnterior();
+    IState getNextState();
+    IState getPreviousState();
 
     // Fase 1
     void addAluno(Aluno newAluno);
@@ -32,4 +32,6 @@ public interface IState {
 
 
     State getState();
+    boolean isLocked();
+    void lock();
 }

@@ -36,18 +36,24 @@ public class UI {
 
         PhaseOneUI ui = new PhaseOneUI(fsm);
 
-        printMenu("Configuracao",
-                "1 - Gestao de Alunos",
-                "2 - Gestao de Docentes",
-                "3 - Gestao de propostas",
-                "\n0 - Voltar");
-        switch (readOption(null, 0, 3)){
-            case 1: System.out.println(1);
-            case 2:
-                System.out.println(2);
-        }
+        while (true) {
+            printMenu("Configuracao",
+                    "1 - Gestao de Alunos",
+                    "2 - Gestao de Docentes",
+                    "3 - Gestao de propostas\n",
+                    "4 - Fechar Fase",
+                    "5 - Fase Seguinte\n",
+                    "0 - Sair");
+            switch (readOption(null, 0, 4)) {
+                case 1: ui.gestaoAlunos();
+                case 2: ui.gestaoDocentes();
+                case 4: fsm.lockCurrentState();
+                case 5: {
 
-        return false;
+                }
+                case 0: return false;
+            }
+        }
     }
 
     private boolean phaseTwo() {

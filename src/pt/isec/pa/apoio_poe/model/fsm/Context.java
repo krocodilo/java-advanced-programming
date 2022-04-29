@@ -1,14 +1,22 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.fsm.states.PhaseOne;
 
 import java.util.ArrayList;
 
 public class Context {
 
     private IState state;
+    private DataCapsule data;
+
+    public Context() {
+        data = new DataCapsule();
+        state = new PhaseOne(this, data);
+    }
 
 
     public void addAluno(Aluno newAluno) {
@@ -60,11 +68,27 @@ public class Context {
 
     }
 
+    public void nextState() {
+        changeState( state.getNextState() );
+    }
+
+    public void previousState() {
+        changeState( state.getPreviousState() );
+    }
+
     public State getState(){
         return state.getState();
     }
 
     private void changeState(IState newState) {
+        state = newState;
+    }
 
+    public boolean isLocked() {
+        return state.isLocked();
+    }
+
+    public void lockCurrentState() {
+        state.lock();
     }
 }

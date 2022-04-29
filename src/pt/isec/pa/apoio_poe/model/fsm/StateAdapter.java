@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
@@ -8,13 +9,21 @@ import java.util.ArrayList;
 
 public class StateAdapter implements IState {
 
+    protected Context context;
+    protected DataCapsule data;
+
+    protected StateAdapter(Context context, DataCapsule data) {
+        this.context = context;
+        this.data = data;
+    }
+
     @Override
-    public IState avancar() {
+    public IState getNextState() {
         return this;
     }
 
     @Override
-    public IState faseAnterior() {
+    public IState getPreviousState() {
         return this;
     }
 
@@ -82,4 +91,12 @@ public class StateAdapter implements IState {
     public State getState() {
         return null;
     }
+
+    @Override
+    public boolean isLocked() {
+        return false;
+    }
+
+    @Override
+    public void lock() { }
 }
