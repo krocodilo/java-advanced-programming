@@ -96,7 +96,7 @@ public class IO {
         }
     }
 
-    public static String readCertainString(String prompt, String... possibilities){
+    /*public static String readCertainString(String prompt, String... possibilities){
 
         if(Arrays.stream(possibilities).toList().isEmpty())
             return prompt( prompt );
@@ -107,7 +107,7 @@ public class IO {
                 if( resp.equalsIgnoreCase(option) )
                     return resp;
         }
-    }
+    }*/
 
     public static <E> void showList(List<E> list){
 

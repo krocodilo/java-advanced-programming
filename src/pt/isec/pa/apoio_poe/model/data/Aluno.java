@@ -19,4 +19,32 @@ public class Aluno {
         this.classificacao = classificacao;
         this.podeEstagiar = podeEstagiar;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public String getRamo() {
+        return ramo;
+    }
+
+    public double getClassificacao() {
+        return classificacao;
+    }
+
+    public boolean isPodeEstagiar() {
+        return podeEstagiar;
+    }
 }
