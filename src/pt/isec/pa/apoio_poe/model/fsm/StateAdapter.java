@@ -1,10 +1,10 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.DataCapsule;
-import pt.isec.pa.apoio_poe.model.data.Docente;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.*;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.GestaoCandidaturas;
+
+import java.util.ArrayList;
 
 public class StateAdapter implements IState {
 
@@ -29,6 +29,7 @@ public class StateAdapter implements IState {
             case GESTAO_ALUNOS -> new GestaoAlunos(data);
             case GESTAO_DOCENTES -> new GestaoDocentes(data);
             case GESTAO_PROPOSTAS -> new GestaoPropostas(data);
+            case GESTAO_CANDIDATURAS -> new GestaoCandidaturas(data);
             default -> this;
         };
     }
@@ -85,6 +86,11 @@ public class StateAdapter implements IState {
     public void removeProposta(Proposta toRemove) {
 
     }
+
+    //======GESTAO CANDIDATURAS===========================
+    @Override
+    public void addCandidatura(Candidaturas newCandidatura){}
+
 
     @Override
     public State getState() {

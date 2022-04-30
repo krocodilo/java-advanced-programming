@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.utils;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
@@ -88,6 +89,27 @@ public class FileUtils {
             throw new Exception("Found errors in the following lines:" + errors);
 
         return docentes;
+    }
+
+    public static ArrayList<Candidaturas> readCandidaturasFromCSV(String filename) throws Exception {
+
+        StringBuilder errors = new StringBuilder();
+        ArrayList<Candidaturas> candidaturas = new ArrayList<>();
+
+        ArrayList<String> lines = readFileLines(filename);
+        int lineNum = 1;
+
+        for (String line : lines){
+            try{
+                candidaturas.add( Candidaturas.parseCandidaturaCSV(line) );
+            } catch (Exception e){
+                errors.append("\n").append(String.format("[%d] - %s - %s", lineNum, line, e.getMessage()));
+            }
+        }
+        if( ! errors.isEmpty() )
+            throw new Exception("Found errors in the following lines:" + errors);
+
+        return candidaturas;
     }
 
     public static ArrayList<String> splitLineCSV(String str) {

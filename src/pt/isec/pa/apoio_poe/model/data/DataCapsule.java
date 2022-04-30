@@ -10,11 +10,13 @@ public class DataCapsule implements Serializable {
     ArrayList<Aluno> alunos;
     ArrayList<Docente> docentes;
     ArrayList<Proposta> propostas;
+    ArrayList<Candidaturas> candidaturas;
 
     public DataCapsule() {
         alunos = new ArrayList<>();
         docentes = new ArrayList<>();
         propostas = new ArrayList<>();
+        candidaturas = new ArrayList<>();
     }
 
     public ArrayList<Aluno> getAlunos() {
@@ -29,4 +31,7 @@ public class DataCapsule implements Serializable {
         return propostas;
     }
 
+    public ArrayList<Candidaturas> getCandidaturas() {
+        return candidaturas;
+    }
 }

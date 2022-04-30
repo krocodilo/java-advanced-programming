@@ -1,8 +1,11 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
+
+import java.util.ArrayList;
 
 public interface IState {
 
@@ -32,6 +35,7 @@ public interface IState {
     // Fase 2
 
     // GESTAO CANDIDATURAS
+    void addCandidatura(Candidaturas newCandidatura);
 
 
 

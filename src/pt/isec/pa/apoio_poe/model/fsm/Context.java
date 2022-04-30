@@ -1,9 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.DataCapsule;
-import pt.isec.pa.apoio_poe.model.data.Docente;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
 
 import java.util.ArrayList;
@@ -88,6 +85,24 @@ public class Context {
     public void editProposta(Proposta newVersionProposta) {
 
     }
+
+    //=====GESTAO CANDIDATURAS==========================
+
+    public void addCandidatura(Candidaturas newCandidatura){
+        state.addCandidatura(newCandidatura);
+    }
+
+    public void addCandidaturas(ArrayList<Candidaturas> candidaturas){
+        for(Candidaturas c : candidaturas)
+            addCandidatura(c);
+    }
+
+    public ArrayList<Candidaturas> getCandidaturas() {
+        return data.getCandidaturas();
+    }
+
+
+
     
     public void removeProposta(Proposta toRemove) {
 
