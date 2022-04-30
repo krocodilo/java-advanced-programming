@@ -42,6 +42,7 @@ public class FileUtils {
             } catch (Exception e){
                 errors.append("\n").append(String.format("[%d] - %s - %s", lineNum, line, e.getMessage()));
             }
+            lineNum++;
         }
         if( ! errors.isEmpty() )
             throw new Exception("Found errors in the following lines:" + errors);
@@ -63,6 +64,7 @@ public class FileUtils {
             } catch (Exception e){
                 errors.append("\n").append(String.format("[%d] - %s - %s", lineNum, line, e.getMessage()));
             }
+            lineNum++;
         }
         if( ! errors.isEmpty() )
             throw new Exception("Found errors in the following lines:" + errors);
@@ -84,6 +86,7 @@ public class FileUtils {
             } catch (Exception e){
                 errors.append("\n").append(String.format("[%d] - %s - %s", lineNum, line, e.getMessage()));
             }
+            lineNum++;
         }
         if( ! errors.isEmpty() )
             throw new Exception("Found errors in the following lines:" + errors);

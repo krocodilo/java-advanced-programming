@@ -60,6 +60,6 @@ public class GestaoPropostas extends StateAdapter {
 
     @Override
     public State getState() {
-        return State.GESTAO_ALUNOS;
+        return State.GESTAO_PROPOSTAS;
     }
 }
