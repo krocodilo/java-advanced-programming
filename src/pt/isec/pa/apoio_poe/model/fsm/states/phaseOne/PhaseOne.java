@@ -35,8 +35,9 @@ public class PhaseOne extends StateAdapter {
 
     @Override
     public void lock() {
-        //TODO verificacoes
 
+
+        //TODO verificacoes
 
 
         isLocked = true;

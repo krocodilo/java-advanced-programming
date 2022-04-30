@@ -31,6 +31,10 @@ public class Aluno implements Serializable {
         return id;
     }
 
+    public String getRamo() {
+        return ramo;
+    }
+
     public static Aluno parseAlunoCSV(String str) throws Exception {
 
         ArrayList<String> values = FileUtils.splitLineCSV( str );
