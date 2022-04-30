@@ -1,6 +1,9 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import pt.isec.pa.apoio_poe.utils.FileUtils;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Docente implements Serializable {
 
@@ -18,12 +21,20 @@ public class Docente implements Serializable {
         this.proponenteProjeto = false;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    public static Docente parseDocenteCSV(String str) throws Exception {
 
-    public String getName() {
-        return name;
+        ArrayList<String> values = FileUtils.splitLineCSV( str );
+        if( values.size() != 2)
+            throw new Exception("Must have 2 values!");
+
+        try {
+            return new Docente(
+                    values.get(0),
+                    values.get(1)
+            );
+        } catch (NumberFormatException e){
+            throw new Exception("Error in values");
+        }
     }
 
     @Override

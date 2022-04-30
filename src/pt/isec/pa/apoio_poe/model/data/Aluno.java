@@ -27,34 +27,6 @@ public class Aluno implements Serializable {
         this.podeEstagiar = podeEstagiar;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public String getRamo() {
-        return ramo;
-    }
-
-    public double getClassificacao() {
-        return classificacao;
-    }
-
-    public boolean isPodeEstagiar() {
-        return podeEstagiar;
-    }
-
     public static Aluno parseAlunoCSV(String str) throws Exception {
 
         ArrayList<String> values = FileUtils.splitLineCSV( str );
@@ -75,6 +47,7 @@ public class Aluno implements Serializable {
             throw new Exception("Error in values");
         }
     }
+
     @Override
     public boolean equals(Object obj) {
         if(getClass() != obj.getClass())

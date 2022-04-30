@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.utils;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Docente;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -29,6 +30,27 @@ public class FileUtils {
             throw new Exception("Found errors in the following lines:" + errors);
 
         return alunos;
+    }
+
+    public static ArrayList<Docente> readDocentesFromCSV(String filename) throws Exception {
+
+        StringBuilder errors = new StringBuilder();
+        ArrayList<Docente> docentes = new ArrayList<>();
+
+        ArrayList<String> lines = readFileLines(filename);
+        int lineNum = 1;
+
+        for (String line : lines){
+            try{
+                docentes.add( Docente.parseDocenteCSV(line) );
+            } catch (Exception e){
+                errors.append("\n").append(String.format("[%d] - %s - %s", lineNum, line, e.getMessage()));
+            }
+        }
+        if( ! errors.isEmpty() )
+            throw new Exception("Found errors in the following lines:" + errors);
+
+        return docentes;
     }
 
     public static ArrayList<String> splitLineCSV(String str) {

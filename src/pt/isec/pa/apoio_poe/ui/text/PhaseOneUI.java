@@ -5,6 +5,7 @@ import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.utils.FileUtils;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,9 +48,6 @@ public class PhaseOneUI {
                     } catch (Exception e) {
                         System.out.println( e.getMessage() );
                     }
-
-                    Aluno tmp = new Aluno(2022987654,"Carlos Picoto","a2022987654@isec.pt","LEI-PL","SI",0.123,true);
-                    fsm.addAluno(tmp);
                 }
                 case 2 ->
                     showList( fsm.getAlunos() );
@@ -80,23 +78,34 @@ public class PhaseOneUI {
                     "\n0 - Voltar");
             switch (readOption(null, 0, 4)) {
                 case 1 -> {
-                    Docente tmp = new Docente(
+                    /*Docente tmp = new Docente(
                             prompt("Nome"),
                             prompt("E-mail")
                     );
-                    fsm.addDocente( tmp );
+                    fsm.addDocente( tmp );*/
+                    try{
+                        ArrayList<Docente> docentes = FileUtils.readDocentesFromCSV(
+                                prompt("Ficheiro de docentes")
+                        );
+                        fsm.addDocentes( docentes );
+                    } catch (Exception e) {
+                        System.out.println( e.getMessage() );
+                    }
                 }
                 case 2 ->
-                    showList(fsm.getAlunos());
+                    showList(fsm.getDocentes());
                 case 3 -> {
-                    Aluno selected = selectOneFrom( fsm.getAlunos() );
+                    Docente selected = selectOneFrom( fsm.getDocentes() );
                 }
                 case 4 -> {
-                    Aluno selected = selectOneFrom( fsm.getAlunos() );
+                    Docente selected = selectOneFrom( fsm.getDocentes() );
                     if( readBoolean("Are you sure you want to delete it?") )
-                        fsm.removeAluno( selected );
+                        fsm.removeDocente( selected );
                 }
-                case 0 -> { return; }
+                case 0 -> {
+                    fsm.previousState();
+                    return;
+                }
             }
         }
     }

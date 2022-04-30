@@ -23,6 +23,7 @@ public class Context {
         state = state.goToState( s );
     }
 
+
     //======GESTAO ALUNOS===========================
     public void addAluno(Aluno newAluno) {
         state.addAluno(newAluno);
@@ -37,10 +38,6 @@ public class Context {
         return data.getAlunos();
     }
 
-    public String mostraAlunos(){
-        return data.mostraAlunos();
-    }
-
     public void editAluno(Aluno newVersionAluno) {
         state.editAluno(newVersionAluno);
     }
@@ -49,9 +46,15 @@ public class Context {
         state.removeAluno(toRemove);
     }
 
+
     //======GESTAO DOCENTES===========================
     public void addDocente(Docente newDocente) {
         state.addDocente(newDocente);
+    }
+
+    public void addDocentes(List<Docente> docentes) {
+        for(Docente d : docentes)
+            addDocente( d );
     }
     
     public ArrayList<Docente> getDocentes() {
@@ -65,6 +68,7 @@ public class Context {
     public void removeDocente(Docente toRemove) {
         state.removeDocente(toRemove);
     }
+
 
     //======GESTAO PROPOSTAS===========================
     public void addProposta() {

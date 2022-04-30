@@ -52,10 +52,6 @@ public class StateAdapter implements IState {
 
     }
 
-    @Override
-    public Docente getDocentes() {
-        return null;
-    }
 
     @Override
     public void editDocente(Docente newVersionDocente) {
@@ -67,6 +63,8 @@ public class StateAdapter implements IState {
 
     }
 
+
+    //======GESTAO PROPOSTAS===========================
     @Override
     public void addProposta(Proposta newProposta) {
 
