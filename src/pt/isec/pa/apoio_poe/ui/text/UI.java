@@ -19,6 +19,7 @@ public class UI {
     public void start() {
 
         PhaseOneUI ui = new PhaseOneUI(fsm);
+        PhaseTwoUI ui2 = new PhaseTwoUI(fsm);
 
         while ( !exit ) {
 
@@ -33,7 +34,7 @@ public class UI {
                 case GESTAO_ALUNOS -> ui.gestaoAlunos();
                 case GESTAO_DOCENTES -> ui.gestaoDocentes();
                 case GESTAO_PROPOSTAS -> ui.gestaoPropostas();
-                //case GESTAO_CANDIDATURAS -> false;
+                case GESTAO_CANDIDATURAS -> ui2.gestaoCandidaturas();
                 //case ATRIBUICAO_PROPOSTAS -> false;
                 //case GESTAO_ORIENTADORES -> false;
             }
@@ -49,7 +50,7 @@ public class UI {
                 "4 - Fechar Fase",
                 "5 - Fase Seguinte\n",
                 "0 - Sair");
-        switch (readOption(null, 0, 4)) {
+        switch (readOption(null, 0, 5)) {
             case 1 -> fsm.goToState( GESTAO_ALUNOS );
             case 2 -> fsm.goToState( GESTAO_DOCENTES );
             case 3 -> fsm.goToState( GESTAO_PROPOSTAS );
@@ -60,6 +61,17 @@ public class UI {
     }
 
     private void phaseTwo() {
+        printMenu("Configuracao",
+                "1 - Gestao de Candidaturas\n",
+                "2 - Fechar Fase",
+                "3 - Fase Seguinte\n",
+                "0 - Sair");
+        switch (readOption(null, 0, 3)) {
+            case 1 -> fsm.goToState( GESTAO_CANDIDATURAS );
+            case 2 -> fsm.lockCurrentState();
+            case 3 -> fsm.nextState();
+            case 0 -> exit = true;
+        }
 
     }
 
