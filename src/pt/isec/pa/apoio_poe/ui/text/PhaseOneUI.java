@@ -150,7 +150,6 @@ public class PhaseOneUI {
         }
     }
 
-
     private <E> E selectOneFrom(List<E> list) {
         showList( list );
         return list.get(

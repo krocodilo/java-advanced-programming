@@ -7,9 +7,13 @@ public class DataCapsule implements Serializable {
 
     private static final long SerialVersionUID = 1L;
 
-    ArrayList<Aluno> alunos;
-    ArrayList<Docente> docentes;
-    ArrayList<Proposta> propostas;
+    private ArrayList<Aluno> alunos;
+    private ArrayList<Docente> docentes;
+    private ArrayList<Proposta> propostas;
+
+    public int numAlunosDA = 0;
+    public int numAlunosRAS = 0;
+    public int numAlunosSI = 0;
     ArrayList<Candidaturas> candidaturas;
 
     public DataCapsule() {

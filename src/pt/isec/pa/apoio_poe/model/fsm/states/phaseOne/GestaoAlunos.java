@@ -17,7 +17,15 @@ public class GestaoAlunos extends StateAdapter {
         //TODO : restrições - no construtor ?
         if( data.getAlunos().contains( newAluno ) )
             return;
+
         data.getAlunos().add( newAluno );
+
+        if( newAluno.getRamo().equalsIgnoreCase("DA") )
+            data.numAlunosDA++;
+        else if( newAluno.getRamo().equalsIgnoreCase("RAS") )
+            data.numAlunosRAS++;
+        else if( newAluno.getRamo().equalsIgnoreCase("SI") )
+            data.numAlunosSI++;
     }
 
     @Override

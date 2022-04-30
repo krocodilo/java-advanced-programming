@@ -25,6 +25,10 @@ public class Proposta implements Serializable {
         return null;
     }
 
+    public String getRamo(){
+        return "";
+    }
+
     @Override
     public int hashCode() {
         return id.hashCode();
