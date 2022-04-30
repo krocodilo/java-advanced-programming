@@ -1,10 +1,13 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.*;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Context {
 
@@ -101,6 +104,65 @@ public class Context {
         return data.getCandidaturas();
     }
 
+    public ArrayList<Aluno> getAlunosAutoproposta(){
+        ArrayList<Aluno> autopropostos = new ArrayList<>();
+        for(Proposta p : data.getPropostas()){
+            if(p.getType() == TipoProposta.AUTOPROPOSTO){
+                for(Aluno a : data.getAlunos()){
+                    if(p.getIdAluno() == a.getId())
+                        autopropostos.add(a);
+                }
+            }
+        }
+        return autopropostos;
+    }
+
+    public ArrayList<Aluno> getAlunosComCandidatura(){
+        ArrayList<Aluno> comCandidatura = new ArrayList<>();
+        for(Candidaturas c : data.getCandidaturas()){
+            for(Aluno a : data.getAlunos()){
+                if(c.getIdAluno() == a.getId())
+                    comCandidatura.add(a);
+            }
+        }
+        return comCandidatura;
+    }
+
+
+    /*public ArrayList<Aluno> getAlunosSemCandidatura(){
+
+    }*/
+
+    public ArrayList<Proposta> getAutopropostasAlunos(){
+        ArrayList<Proposta> autopropostas = new ArrayList<>();
+        for(Proposta p : data.getPropostas())
+            if(p.getType() == TipoProposta.AUTOPROPOSTO)
+                autopropostas.add(p);
+        return autopropostas;
+    }
+
+    public ArrayList<Proposta> getPropostasDocentes(){
+        ArrayList<Proposta> pdocentes = new ArrayList<>();
+        for(Proposta p : data.getPropostas())
+            if(p.getType() == TipoProposta.PROJETO)
+                pdocentes.add(p);
+        return pdocentes;
+    }
+
+    public Set<Proposta> getPropostasComCandidaturas(){
+        Set<Proposta> pcandidatura = new HashSet<>();
+        for (Candidaturas c : data.getCandidaturas()){
+            for(Proposta p : data.getPropostas()){
+                if(c.getIdsPropostas().contains(p))
+                    pcandidatura.add(p);
+            }
+        }
+        return pcandidatura;
+    }
+
+    /*public ArrayList<Proposta> getPropostasSemCandidaturas(){
+
+    }*/
 
 
     
