@@ -25,7 +25,7 @@ public class AutoProposto extends Proposta {
     }
 
     public static AutoProposto parseProjetoCSV(List<String> values) throws Exception {
-        if( values.size() != 5 )
+        if( values.size() != 4 )
             throw new Exception("Must have 4 values!");
 
         try {

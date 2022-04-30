@@ -18,8 +18,8 @@ public class UI {
 
     public void start() {
 
-        PhaseOneUI ui = new PhaseOneUI(fsm);
-        PhaseTwoUI ui2 = new PhaseTwoUI(fsm);
+        PhaseOneUI one = new PhaseOneUI(fsm);
+        PhaseTwoUI two = new PhaseTwoUI(fsm);
 
         while ( !exit ) {
 
@@ -31,10 +31,10 @@ public class UI {
                 case PHASE_THREE -> phaseThree();
                 //case PHASE_FOUR -> false;
                 //case PHASE_FIVE -> false;
-                case GESTAO_ALUNOS -> ui.gestaoAlunos();
-                case GESTAO_DOCENTES -> ui.gestaoDocentes();
-                case GESTAO_PROPOSTAS -> ui.gestaoPropostas();
-                case GESTAO_CANDIDATURAS -> ui2.gestaoCandidaturas();
+                case GESTAO_ALUNOS -> one.gestaoAlunos();
+                case GESTAO_DOCENTES -> one.gestaoDocentes();
+                case GESTAO_PROPOSTAS -> one.gestaoPropostas();
+                case GESTAO_CANDIDATURAS -> two.gestaoCandidaturas();
                 //case ATRIBUICAO_PROPOSTAS -> false;
                 //case GESTAO_ORIENTADORES -> false;
             }
