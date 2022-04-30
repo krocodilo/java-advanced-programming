@@ -8,9 +8,7 @@ import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,6 +106,7 @@ public class FileUtils {
             } catch (Exception e){
                 errors.append("\n").append(String.format("[%d] - %s - %s", lineNum, line, e.getMessage()));
             }
+            lineNum++;
         }
         if( ! errors.isEmpty() )
             throw new Exception("Found errors in the following lines:" + errors);
@@ -146,17 +145,31 @@ public class FileUtils {
 
         ArrayList<String> lines = new ArrayList<>();
 
-        try ( BufferedReader in = openFile(filename) ) {
+        try ( BufferedReader in = openFileReading(filename) ) {
             String line;
             while ((line = in.readLine()) != null)
                 lines.add(line);
         } catch (FileNotFoundException e) {
-            throw new Exception("File '" + filename + "' was not found.");
+            throw new Exception("Unable to open file '" + filename + "'.");
         }
         return lines;
     }
 
-    private static BufferedReader openFile(String filename) throws FileNotFoundException {
+    private static BufferedReader openFileReading(String filename) throws FileNotFoundException {
         return new BufferedReader( new FileReader( filename ) );
+    }
+
+    public static void writeLinesFile(String filename, List<String> lines) throws Exception {
+
+        try ( BufferedWriter out = openFileWriting(filename) ) {
+            for(String line : lines)
+                out.write(line + "\n");
+        } catch (FileNotFoundException e) {
+            throw new Exception("Unable to open file '" + filename + "'.");
+        }
+    }
+
+    private static BufferedWriter openFileWriting(String filename) throws IOException {
+        return new BufferedWriter( new FileWriter( filename ) );
     }
 }

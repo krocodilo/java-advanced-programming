@@ -40,7 +40,7 @@ public class PhaseTwoUI {
                     }
                 }
                 case 2 ->{
-                    showList(fsm.getCandidaturas());
+                    showList( fsm.getCandidaturas() );
                 }
                 case 3 -> {
                     System.out.println("Not implemented yet!");
