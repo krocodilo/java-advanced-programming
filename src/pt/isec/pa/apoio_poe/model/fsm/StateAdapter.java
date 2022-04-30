@@ -28,6 +28,7 @@ public class StateAdapter implements IState {
         return switch (state) {
             case GESTAO_ALUNOS -> new GestaoAlunos(data);
             case GESTAO_DOCENTES -> new GestaoDocentes(data);
+            case GESTAO_PROPOSTAS -> new GestaoPropostas(data);
             default -> this;
         };
     }

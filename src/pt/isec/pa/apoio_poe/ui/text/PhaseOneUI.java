@@ -102,6 +102,45 @@ public class PhaseOneUI {
     }
 
 
+    public void gestaoPropostas() {
+
+        while (true) {
+            printMenu("Gestao de Propostas",
+                    "1 - Adicionar",
+                    "2 - Consultar",
+                    "3 - Editar",
+                    "4 - Eliminar\n",
+                    "0 - Voltar");
+            switch (readOption(null, 0, 4)) {
+                case 1 -> {
+                    try{
+                        ArrayList<Aluno> alunos = FileUtils.readAlunosFromCSV(
+                                prompt("Ficheiro de alunos")
+                        );
+                        fsm.addAlunos( alunos );
+                    } catch (Exception e) {
+                        System.out.println( e.getMessage() );
+                    }
+                }
+                case 2 ->
+                        showList( fsm.getAlunos() );
+                case 3 -> {
+                    Aluno selected = selectOneFrom( fsm.getAlunos() );
+                }
+                case 4 -> {
+                    Aluno selected = selectOneFrom( fsm.getAlunos() );
+                    if( readBoolean("Are you sure you want to delete it?") )
+                        fsm.removeAluno( selected );
+                }
+                case 0 -> {
+                    fsm.previousState();
+                    return;
+                }
+            }
+        }
+    }
+
+
     private <E> E selectOneFrom(List<E> list) {
         showList( list );
         return list.get(

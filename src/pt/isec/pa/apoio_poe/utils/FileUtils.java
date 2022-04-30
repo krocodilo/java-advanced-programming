@@ -1,6 +1,10 @@
 package pt.isec.pa.apoio_poe.utils;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.PoE_autoproposto;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,6 +13,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
+
+    public static ArrayList<Proposta> readPropostasFromCSV(String filename) throws Exception {
+
+        StringBuilder errors = new StringBuilder();
+        ArrayList<Proposta> propostas = new ArrayList<>();
+
+        ArrayList<String> lines = readFileLines(filename);
+        int lineNum = 1;
+
+        for (String line : lines){
+            try{
+                ArrayList<String> values = FileUtils.splitLineCSV( line );
+                Proposta tmp;
+                if( values.get(0).equalsIgnoreCase("T1") )
+                    tmp = Estagio.parseEstagioCSV( values );
+                else if( values.get(0).equalsIgnoreCase("T2") )
+                    tmp = Projeto.parseProjetoCSV( values );
+                else if( values.get(0).equalsIgnoreCase("T3") )
+                    tmp = PoE_autoproposto.parseProjetoCSV( values );
+                else
+                    throw new Exception("Unknown type. Must be T1, T2 or T3");
+
+                propostas.add( tmp );
+
+            } catch (Exception e){
+                errors.append("\n").append(String.format("[%d] - %s - %s", lineNum, line, e.getMessage()));
+            }
+        }
+        if( ! errors.isEmpty() )
+            throw new Exception("Found errors in the following lines:" + errors);
+
+        return propostas;
+    }
 
     public static ArrayList<Aluno> readAlunosFromCSV(String filename) throws Exception {
 

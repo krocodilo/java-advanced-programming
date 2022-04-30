@@ -32,7 +32,7 @@ public class UI {
                 //case PHASE_FIVE -> false;
                 case GESTAO_ALUNOS -> ui.gestaoAlunos();
                 case GESTAO_DOCENTES -> ui.gestaoDocentes();
-                //case GESTAO_PROPOSTAS -> false;
+                case GESTAO_PROPOSTAS -> ui.gestaoPropostas();
                 //case GESTAO_CANDIDATURAS -> false;
                 //case ATRIBUICAO_PROPOSTAS -> false;
                 //case GESTAO_ORIENTADORES -> false;
