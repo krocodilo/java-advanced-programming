@@ -14,10 +14,12 @@ public class AutoProposto extends Proposta {
         this.idAluno = idAluno;
     }
 
+    @Override
     public long getIdAluno() {
         return idAluno;
     }
 
+    @Override
     public TipoProposta getType() {
         return TipoProposta.AUTOPROPOSTO;
     }

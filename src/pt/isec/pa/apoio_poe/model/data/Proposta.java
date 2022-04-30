@@ -21,6 +21,10 @@ public class Proposta implements Serializable {
         this.titulo = titulo;
     }
 
+    public long getIdAluno() {
+        return -1;
+    }
+
     public TipoProposta getType() {
         return null;
     }

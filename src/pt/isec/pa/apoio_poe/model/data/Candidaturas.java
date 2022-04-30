@@ -20,6 +20,14 @@ public class Candidaturas implements Serializable {
         this.idsPropostas = idsPropostas;
     }
 
+    public long getIdAluno() {
+        return idAluno;
+    }
+
+    public List<String> getIdsPropostas() {
+        return idsPropostas;
+    }
+
     public static Candidaturas parseCandidaturaCSV(String str) throws Exception {
 
         ArrayList<String> values = FileUtils.splitLineCSV( str );
