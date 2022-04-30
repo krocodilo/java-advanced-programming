@@ -14,6 +14,14 @@ public class AutoProposto extends Proposta {
         this.idAluno = idAluno;
     }
 
+    public long getIdAluno() {
+        return idAluno;
+    }
+
+    public TipoProposta getType() {
+        return TipoProposta.AUTOPROPOSTO;
+    }
+
     public static AutoProposto parseProjetoCSV(List<String> values) throws Exception {
         if( values.size() != 5 )
             throw new Exception("Must have 4 values!");

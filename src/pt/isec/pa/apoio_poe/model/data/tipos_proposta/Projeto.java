@@ -1,9 +1,7 @@
 package pt.isec.pa.apoio_poe.model.data.tipos_proposta;
 
 import pt.isec.pa.apoio_poe.model.data.Proposta;
-import pt.isec.pa.apoio_poe.utils.FileUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Projeto extends Proposta {
@@ -25,6 +23,11 @@ public class Projeto extends Proposta {
         this.emailDocente = emailDocente;
         this.ramosDestino = ramosDestino;
         this.idAluno = idAluno;
+    }
+
+    @Override
+    public TipoProposta getType() {
+        return TipoProposta.PROJETO;
     }
 
     public static Projeto parseProjetoCSV(List<String> values) throws Exception {

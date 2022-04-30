@@ -1,7 +1,10 @@
 package pt.isec.pa.apoio_poe.model.fsm.states.phaseOne;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
@@ -13,10 +16,29 @@ public class GestaoPropostas extends StateAdapter {
     }
 
     @Override
-    public void addProposta(Proposta newProposta) {
-        //TODO : restrições - no construtor ?
+    public void addProposta(Proposta newProposta) throws Exception {
+        //TODO : restrições
         if( data.getPropostas().contains(newProposta) ) // compares with .equals()
-            return;
+            throw new Exception("Proposal already exists: " + newProposta.toString());
+        if( newProposta.getType() == TipoProposta.AUTOPROPOSTO ) {
+            boolean studentFound = false;
+            AutoProposto tmp = (AutoProposto) newProposta;
+
+            // Verify if student exists
+            for (Aluno a : data.getAlunos())
+                if (a.getId() == tmp.getIdAluno()){
+                    studentFound = true;
+                    break;
+                }
+            if( ! studentFound )
+                throw new Exception("Student does not exist: " + tmp);
+
+            // Verify if student has already been assigned a proposition
+            for(Proposta p : data.getPropostas())
+                if(p.getType() == TipoProposta.AUTOPROPOSTO)
+                    if( ((AutoProposto) p).getIdAluno() == tmp.getIdAluno() )
+                        throw new Exception("Student has already submitted a Proposal: " + tmp);
+        }
         data.getPropostas().add( newProposta );
     }
 

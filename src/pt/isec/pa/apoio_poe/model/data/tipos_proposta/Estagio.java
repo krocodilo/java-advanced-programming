@@ -26,6 +26,10 @@ public class Estagio extends Proposta {
         this.idAluno = idAluno;
     }
 
+    public TipoProposta getType() {
+        return TipoProposta.ESTAGIO;
+    }
+
     public static Estagio parseEstagioCSV(List<String> values) throws Exception {
         if( values.size() == 5 )
             return new Estagio(

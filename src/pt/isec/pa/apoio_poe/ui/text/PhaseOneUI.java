@@ -2,6 +2,7 @@ package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Docente;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.utils.FileUtils;
 
@@ -123,23 +124,23 @@ public class PhaseOneUI {
             switch (readOption(null, 0, 4)) {
                 case 1 -> {
                     try{
-                        ArrayList<Aluno> alunos = FileUtils.readAlunosFromCSV(
-                                prompt("Ficheiro de alunos")
+                        ArrayList<Proposta> propostas = FileUtils.readPropostasFromCSV(
+                                prompt("Ficheiro de propostas")
                         );
-                        fsm.addAlunos( alunos );
+                        fsm.addPropostas( propostas );
                     } catch (Exception e) {
                         System.out.println( e.getMessage() );
                     }
                 }
                 case 2 ->
-                        showList( fsm.getAlunos() );
+                        showList( fsm.getPropostas() );
                 case 3 -> {
-                    Aluno selected = selectOneFrom( fsm.getAlunos() );
+                    Proposta selected = selectOneFrom( fsm.getPropostas() );
                 }
                 case 4 -> {
-                    Aluno selected = selectOneFrom( fsm.getAlunos() );
+                    Proposta selected = selectOneFrom( fsm.getPropostas() );
                     if( readBoolean("Are you sure you want to delete it?") )
-                        fsm.removeAluno( selected );
+                        fsm.removeProposta( selected );
                 }
                 case 0 -> {
                     fsm.previousState();

@@ -27,6 +27,10 @@ public class Aluno implements Serializable {
         this.podeEstagiar = podeEstagiar;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public static Aluno parseAlunoCSV(String str) throws Exception {
 
         ArrayList<String> values = FileUtils.splitLineCSV( str );
@@ -57,7 +61,7 @@ public class Aluno implements Serializable {
 
     @Override
     public int hashCode() {
-        return Long.valueOf(id).intValue();
+        return Long.valueOf(id).hashCode();
     }
 
     @Override

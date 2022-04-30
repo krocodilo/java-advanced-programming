@@ -71,8 +71,13 @@ public class Context {
 
 
     //======GESTAO PROPOSTAS===========================
-    public void addProposta() {
+    public void addProposta(Proposta p) throws Exception {
+        state.addProposta( p );
+    }
 
+    public void addPropostas(ArrayList<Proposta> propostas) throws Exception {
+        for(Proposta p : propostas)
+            addProposta( p );
     }
 
     public ArrayList<Proposta> getPropostas() {
@@ -84,7 +89,7 @@ public class Context {
 
     }
     
-    public void removeProposta() {
+    public void removeProposta(Proposta toRemove) {
 
     }
 

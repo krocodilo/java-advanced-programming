@@ -67,7 +67,7 @@ public class StateAdapter implements IState {
 
     //======GESTAO PROPOSTAS===========================
     @Override
-    public void addProposta(Proposta newProposta) {
+    public void addProposta(Proposta newProposta) throws Exception {
 
     }
 

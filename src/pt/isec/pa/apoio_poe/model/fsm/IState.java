@@ -24,7 +24,7 @@ public interface IState {
     void removeDocente(Docente toRemove); //meta2
 
     // Fase 3
-    void addProposta(Proposta newProposta);
+    void addProposta(Proposta newProposta) throws Exception;
     Proposta getPropostas();
     void editProposta(Proposta newVersionProposta); //meta2
     void removeProposta(Proposta toRemove); //meta2

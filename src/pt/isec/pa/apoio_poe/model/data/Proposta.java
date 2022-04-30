@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.data;
 
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.utils.FileUtils;
 
 import java.io.Serializable;
@@ -18,6 +19,10 @@ public class Proposta implements Serializable {
     public Proposta(String id, String titulo) {
         this.id = id;
         this.titulo = titulo;
+    }
+
+    public TipoProposta getType() {
+        return null;
     }
 
     @Override
