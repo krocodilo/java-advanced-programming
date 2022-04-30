@@ -22,6 +22,7 @@ public class PhaseOne extends StateAdapter {
     @Override
     public IState getNextState() {
         //TODO : PHASE2 só se nº alunos > propostas
+            //TODO -> isto acho que é so quando se fecha a fase
         if(data.getAlunos().size() > data.getPropostas().size())
             return new PhaseTwo(data);
         return this;
@@ -38,6 +39,6 @@ public class PhaseOne extends StateAdapter {
 
 
 
-        isLocked = //true;
+        isLocked = true;
     }
 }
