@@ -1,8 +1,11 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DataCapsule {
+public class DataCapsule implements Serializable {
+
+    private static final long SerialVersionUID = 1L;
 
     ArrayList<Aluno> alunos;
     ArrayList<Docente> docentes;

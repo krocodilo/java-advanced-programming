@@ -7,6 +7,7 @@ import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Context {
 
@@ -18,17 +19,18 @@ public class Context {
         state = new PhaseOne(data);
     }
 
-    // PHASE1
-    public void goGestaoAlunos(){
-        state = state.goGestaoAlunos();
-    }
     public void goToState(State s){
-        state.goToState( s );
+        state = state.goToState( s );
     }
 
     //======GESTAO ALUNOS===========================
     public void addAluno(Aluno newAluno) {
         state.addAluno(newAluno);
+    }
+
+    public void addAlunos(List<Aluno> alunos) {
+        for(Aluno a : alunos)
+            addAluno( a );
     }
 
     public ArrayList<Aluno> getAlunos() {

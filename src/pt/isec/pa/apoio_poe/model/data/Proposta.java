@@ -1,6 +1,10 @@
 package pt.isec.pa.apoio_poe.model.data;
 
-public class Proposta {
+import java.io.Serializable;
+
+public class Proposta implements Serializable {
+
+    private static final long SerialVersionUID = 1L;
 
     private String id;
     private String ramoDestino;

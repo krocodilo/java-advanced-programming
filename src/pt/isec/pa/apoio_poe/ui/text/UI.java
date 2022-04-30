@@ -50,12 +50,12 @@ public class UI {
                 "5 - Fase Seguinte\n",
                 "0 - Sair");
         switch (readOption(null, 0, 4)) {
-            case 1: fsm.goGestaoAlunos();
-            case 2: fsm.goToState( GESTAO_DOCENTES );   // TODO: is this good ?
-            case 3: fsm.goToState( GESTAO_PROPOSTAS );  // good ?
-            case 4: fsm.lockCurrentState();
-            case 5: fsm.nextState();
-            case 0: exit = true;
+            case 1 -> fsm.goToState( GESTAO_ALUNOS );
+            case 2 -> fsm.goToState( GESTAO_DOCENTES );
+            case 3 -> fsm.goToState( GESTAO_PROPOSTAS );
+            case 4 -> fsm.lockCurrentState();
+            case 5 -> fsm.nextState();
+            case 0 -> exit = true;
         }
     }
 

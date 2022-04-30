@@ -14,13 +14,6 @@ public class PhaseOne extends StateAdapter {
     }
 
     @Override
-    public IState goGestaoAlunos() {
-        if(!isLocked)
-            return new GestaoAlunos(data);
-        return this;
-    }
-
-    @Override
     public State getState() {
         return State.PHASE_ONE;
     }

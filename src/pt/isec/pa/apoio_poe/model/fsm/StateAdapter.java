@@ -10,7 +10,7 @@ public class StateAdapter implements IState {
 
     protected DataCapsule data;
 
-    public StateAdapter(DataCapsule data) {
+    protected StateAdapter(DataCapsule data) {
         this.data = data;
     }
 
@@ -30,11 +30,6 @@ public class StateAdapter implements IState {
             case GESTAO_DOCENTES -> new GestaoDocentes(data);
             default -> this;
         };
-    }
-
-    //======PHASE 1===========================
-    public IState goGestaoAlunos() {
-        return this;
     }
 
     //======GESTAO ALUNOS===========================

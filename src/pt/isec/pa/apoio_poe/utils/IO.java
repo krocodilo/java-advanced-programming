@@ -115,6 +115,7 @@ public class IO {
 
         for(int i = 0; i < list.size(); i++)
             System.out.printf( template, i, list.get(i).toString() );
-        System.out.println();
+        System.out.println("\nPress ENTER to continue...");
+        sin.nextLine();
     }
 }

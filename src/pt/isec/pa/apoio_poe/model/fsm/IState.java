@@ -4,8 +4,6 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
-import java.util.ArrayList;
-
 public interface IState {
 
     //Common
@@ -14,7 +12,6 @@ public interface IState {
 
     // Fase 1
     IState goToState(State state);
-    IState goGestaoAlunos();
 
     // GESTAO ALUNOS
     void addAluno(Aluno newAluno);
