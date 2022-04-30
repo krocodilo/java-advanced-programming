@@ -23,11 +23,16 @@ public interface IState {
     void editDocente(Docente newVersionDocente); //meta2
     void removeDocente(Docente toRemove); //meta2
 
-    // Fase 3
+    // GESTAO PROPOSTAS
     void addProposta(Proposta newProposta);
     Proposta getPropostas();
     void editProposta(Proposta newVersionProposta); //meta2
     void removeProposta(Proposta toRemove); //meta2
+
+    // Fase 2
+
+    // GESTAO CANDIDATURAS
+
 
 
     State getState();

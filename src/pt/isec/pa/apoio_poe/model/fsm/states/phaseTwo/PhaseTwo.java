@@ -1,30 +1,33 @@
-package pt.isec.pa.apoio_poe.model.fsm.states.phaseOne;
+package pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo;
 
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
-import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.PhaseTwo;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
 
-public class PhaseOne extends StateAdapter {
+public class PhaseTwo extends StateAdapter {
 
     private boolean isLocked = false;
 
-    public PhaseOne(DataCapsule data) {
+    public PhaseTwo(DataCapsule data) {
         super(data);
     }
 
     @Override
     public State getState() {
-        return State.PHASE_ONE;
+        return State.PHASE_TWO;
     }
 
     @Override
     public IState getNextState() {
-        //TODO : PHASE2 só se nº alunos > propostas
-        if(data.getAlunos().size() > data.getPropostas().size())
-            return new PhaseTwo(data);
+        //TODO : return PHASE3
         return this;
+    }
+
+    @Override
+    public IState getPreviousState() {
+        return new PhaseOne(data);
     }
 
     @Override
