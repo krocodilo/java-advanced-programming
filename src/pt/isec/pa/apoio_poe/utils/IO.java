@@ -113,8 +113,8 @@ public class IO {
 
         String template = " [%d] - %s\n";
 
-        ListIterator<E> it = list.listIterator();
-        for(int i = 0; it.hasNext(); i++)
+        for(int i = 0; i < list.size(); i++)
             System.out.printf( template, i, list.get(i).toString() );
+        System.out.println();
     }
 }

@@ -13,6 +13,7 @@ public interface IState {
     IState getPreviousState();
 
     // Fase 1
+    IState goToState(State state);
     IState goGestaoAlunos();
 
     // GESTAO ALUNOS
@@ -22,15 +23,15 @@ public interface IState {
 
     // Fase 2
     void addDocente(Docente newDocente);
-    Docente getDocente();
+    Docente getDocentes();
     void editDocente(Docente newVersionDocente); //meta2
-    void removeDocente(); //meta2
+    void removeDocente(Docente toRemove); //meta2
 
     // Fase 3
     void addProposta(Proposta newProposta);
-    Proposta getProposta();
+    Proposta getPropostas();
     void editProposta(Proposta newVersionProposta); //meta2
-    void removeProposta(); //meta2
+    void removeProposta(Proposta toRemove); //meta2
 
 
     State getState();

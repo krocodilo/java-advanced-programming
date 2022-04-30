@@ -1,5 +1,7 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.util.List;
+
 public class Aluno {
 
     private long id;
@@ -46,5 +48,22 @@ public class Aluno {
 
     public boolean isPodeEstagiar() {
         return podeEstagiar;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(getClass() != obj.getClass())
+            return false;
+        return this.hashCode() == obj.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.valueOf(id).intValue();
+    }
+
+    @Override
+    public String toString() {
+        return String.join("    ", String.valueOf(id), name, email, curso, ramo, String.valueOf(classificacao) );
     }
 }

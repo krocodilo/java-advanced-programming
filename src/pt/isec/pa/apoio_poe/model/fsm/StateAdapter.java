@@ -4,8 +4,7 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
-
-import java.util.ArrayList;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.*;
 
 public class StateAdapter implements IState {
 
@@ -23,6 +22,14 @@ public class StateAdapter implements IState {
     @Override
     public IState getPreviousState() {
         return this;
+    }
+
+    public IState goToState(State state) {
+        return switch (state) {
+            case GESTAO_ALUNOS -> new GestaoAlunos(data);
+            case GESTAO_DOCENTES -> new GestaoDocentes(data);
+            default -> this;
+        };
     }
 
     //======PHASE 1===========================
@@ -54,7 +61,7 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public Docente getDocente() {
+    public Docente getDocentes() {
         return null;
     }
 
@@ -64,7 +71,7 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void removeDocente() {
+    public void removeDocente(Docente toRemove) {
 
     }
 
@@ -74,7 +81,7 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public Proposta getProposta() {
+    public Proposta getPropostas() {
         return null;
     }
 
@@ -84,7 +91,7 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void removeProposta() {
+    public void removeProposta(Proposta toRemove) {
 
     }
 

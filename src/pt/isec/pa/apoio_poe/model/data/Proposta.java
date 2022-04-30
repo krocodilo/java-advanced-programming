@@ -12,4 +12,9 @@ public class Proposta {
         this.ramoDestino = ramoDestino;
         this.titulo = titulo;
     }
+
+    @Override
+    public String toString() {
+        return String.join("    ",  id, ramoDestino, titulo );
+    }
 }

@@ -14,7 +14,7 @@ public class GestaoAlunos extends StateAdapter {
 
     @Override
     public IState addAluno(Aluno newAluno) {
-        //TODO : restrições
+        //TODO : restrições - no construtor ?
         data.getAlunos().add( newAluno );
         return new GestaoAlunos(data);
     }
@@ -22,12 +22,15 @@ public class GestaoAlunos extends StateAdapter {
     @Override
     public IState editAluno(Aluno newVersionAluno) {
         //TODO : meta2
+        int index = data.getAlunos().indexOf( newVersionAluno );
+        data.getAlunos().set( index, newVersionAluno );
         return new GestaoAlunos(data);
     }
 
     @Override
     public IState removeAluno(Aluno toRemove) {
         //TODO : meta2
+        data.getAlunos().remove( toRemove );
         return new GestaoAlunos(data);
     }
 

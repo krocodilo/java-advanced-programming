@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 
 import java.util.List;
@@ -39,20 +40,16 @@ public class PhaseOneUI {
 
                     Aluno tmp = new Aluno(2022987654,"Carlos Picoto","a2022987654@isec.pt","LEI-PL","SI",0.123,true);
                     fsm.addAluno(tmp);
-                    break;
                 }
                 case 2:
-                    showList(fsm.getAlunos());
-                    break;
+                    showList( fsm.getAlunos() );
                 case 3: {
                     Aluno selected = selectOneFrom( fsm.getAlunos() );
-                    break;
                 }
                 case 4: {
                     Aluno selected = selectOneFrom( fsm.getAlunos() );
-                    if( readBoolean("Are you sure you want to delete?") )
+                    if( readBoolean("Are you sure you want to delete it?") )
                         fsm.removeAluno( selected );
-                    break;
                 }
                 case 0: {
                     fsm.previousState();
@@ -73,16 +70,11 @@ public class PhaseOneUI {
                     "\n0 - Voltar");
             switch (readOption(null, 0, 4)) {
                 case 1: {
-                    /*Aluno tmp = new Aluno(
-                            readLong("Numero de Aluno"),
+                    Docente tmp = new Docente(
                             prompt("Nome"),
-                            prompt("E-mail"),
-                            readCertainString("Curso", "LEI", "LEI-PL"),
-                            readCertainString("Ramo", "DA", "RAS", "SI"),
-                            readDouble("Classificacao"),
-                            readBoolean("Pode estagiar")
+                            prompt("E-mail")
                     );
-                    fsm.addAluno(tmp);*/
+                    fsm.addDocente( tmp );
                 }
                 case 2:
                     showList(fsm.getAlunos());
@@ -91,7 +83,7 @@ public class PhaseOneUI {
                 }
                 case 4: {
                     Aluno selected = selectOneFrom( fsm.getAlunos() );
-                    if( readBoolean("Are you sure you want to delete?") )
+                    if( readBoolean("Are you sure you want to delete it?") )
                         fsm.removeAluno( selected );
                 }
                 case 0: return;

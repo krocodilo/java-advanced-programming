@@ -4,7 +4,7 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
-import pt.isec.pa.apoio_poe.model.fsm.states.PhaseOne;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
 
 import java.util.ArrayList;
 
@@ -21,6 +21,9 @@ public class Context {
     // PHASE1
     public void goGestaoAlunos(){
         state = state.goGestaoAlunos();
+    }
+    public void goToState(State s){
+        state = state.goToState( s );
     }
 
     //======GESTAO ALUNOS===========================
@@ -45,28 +48,29 @@ public class Context {
     }
 
     //======GESTAO DOCENTES===========================
-    public void addDocente() {
-
+    public void addDocente(Docente newDocente) {
+        state.addDocente(newDocente);
     }
     
-    public Docente getDocente() {
-        return null;
+    public ArrayList<Docente> getDocentes() {
+        return data.getDocentes();
     }
 
     public void editDocente(Docente newVersionDocente) {
-
+        state.editDocente(newVersionDocente);
     }
     
-    public void removeDocente() {
-
+    public void removeDocente(Docente toRemove) {
+        state.removeDocente(toRemove);
     }
-    
+
+    //======GESTAO PROPOSTAS===========================
     public void addProposta() {
 
     }
 
-    public Proposta getProposta() {
-        return null;
+    public ArrayList<Proposta> getPropostas() {
+        return data.getPropostas();
     }
 
     
