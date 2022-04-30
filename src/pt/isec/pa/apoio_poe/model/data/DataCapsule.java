@@ -29,11 +29,4 @@ public class DataCapsule implements Serializable {
         return propostas;
     }
 
-    public String mostraAlunos(){
-        StringBuilder sb = new StringBuilder("Alunos inscritos na cadeira PoE :");
-        for(Aluno a : alunos){
-            sb.append("INFO:"+a.getId()+";"+a.getName()+";"+a.getEmail()+";"+a.getCurso()+";"+a.getRamo()+";"+a.getClassificacao()+";Pode estagiar?:"+a.isPodeEstagiar()+"\n");
-        }
-        return sb.toString();
-    }
 }

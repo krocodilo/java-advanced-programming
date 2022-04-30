@@ -15,6 +15,8 @@ public class GestaoAlunos extends StateAdapter {
     @Override
     public void addAluno(Aluno newAluno) {
         //TODO : restrições - no construtor ?
+        if( data.getAlunos().contains( newAluno ) )
+            return;
         data.getAlunos().add( newAluno );
     }
 

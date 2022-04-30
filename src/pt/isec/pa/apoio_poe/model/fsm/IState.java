@@ -18,9 +18,8 @@ public interface IState {
     void editAluno(Aluno newVersionAluno); //meta2
     void removeAluno(Aluno toRemove); //meta2
 
-    // Fase 2
+    // GESTAO DOCENTES
     void addDocente(Docente newDocente);
-    Docente getDocentes();
     void editDocente(Docente newVersionDocente); //meta2
     void removeDocente(Docente toRemove); //meta2
 
