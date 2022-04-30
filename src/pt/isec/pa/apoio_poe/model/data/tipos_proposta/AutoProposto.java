@@ -4,22 +4,22 @@ import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 import java.util.List;
 
-public class PoE_autoproposto extends Proposta {
+public class AutoProposto extends Proposta {
     // T3
 
     private long idAluno;
 
-    public PoE_autoproposto(String id, String titulo, long idAluno) {
+    public AutoProposto(String id, String titulo, long idAluno) {
         super(id, titulo);
         this.idAluno = idAluno;
     }
 
-    public static PoE_autoproposto parseProjetoCSV(List<String> values) throws Exception {
+    public static AutoProposto parseProjetoCSV(List<String> values) throws Exception {
         if( values.size() != 5 )
             throw new Exception("Must have 4 values!");
 
         try {
-            return new PoE_autoproposto(
+            return new AutoProposto(
                     values.get(1),
                     values.get(2),
                     Long.parseLong(values.get(3))

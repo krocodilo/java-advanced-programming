@@ -3,7 +3,7 @@ package pt.isec.pa.apoio_poe.utils;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.PoE_autoproposto;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 
@@ -32,7 +32,7 @@ public class FileUtils {
                 else if( values.get(0).equalsIgnoreCase("T2") )
                     tmp = Projeto.parseProjetoCSV( values );
                 else if( values.get(0).equalsIgnoreCase("T3") )
-                    tmp = PoE_autoproposto.parseProjetoCSV( values );
+                    tmp = AutoProposto.parseProjetoCSV( values );
                 else
                     throw new Exception("Unknown type. Must be T1, T2 or T3");
 
