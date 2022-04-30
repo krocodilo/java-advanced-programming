@@ -17,9 +17,9 @@ public interface IState {
     IState goGestaoAlunos();
 
     // GESTAO ALUNOS
-    IState addAluno(Aluno newAluno);
-    IState editAluno(Aluno newVersionAluno); //meta2
-    IState removeAluno(Aluno toRemove); //meta2
+    void addAluno(Aluno newAluno);
+    void editAluno(Aluno newVersionAluno); //meta2
+    void removeAluno(Aluno toRemove); //meta2
 
     // Fase 2
     void addDocente(Docente newDocente);

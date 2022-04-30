@@ -39,18 +39,15 @@ public class StateAdapter implements IState {
 
     //======GESTAO ALUNOS===========================
     @Override
-    public IState addAluno(Aluno newAluno) {
-        return this;
+    public void addAluno(Aluno newAluno) {
     }
 
     @Override
-    public IState editAluno(Aluno newVersionAluno) {
-        return this;
+    public void editAluno(Aluno newVersionAluno) {
     }
 
     @Override
-    public IState removeAluno(Aluno toRemove) {
-        return this;
+    public void removeAluno(Aluno toRemove) {
     }
 
 

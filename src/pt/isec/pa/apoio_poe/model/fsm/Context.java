@@ -23,12 +23,12 @@ public class Context {
         state = state.goGestaoAlunos();
     }
     public void goToState(State s){
-        state = state.goToState( s );
+        state.goToState( s );
     }
 
     //======GESTAO ALUNOS===========================
     public void addAluno(Aluno newAluno) {
-        state = state.addAluno(newAluno);
+        state.addAluno(newAluno);
     }
 
     public ArrayList<Aluno> getAlunos() {
@@ -40,11 +40,11 @@ public class Context {
     }
 
     public void editAluno(Aluno newVersionAluno) {
-        state = state.editAluno(newVersionAluno);
+        state.editAluno(newVersionAluno);
     }
 
     public void removeAluno(Aluno toRemove) {
-        state = state.removeAluno(toRemove);
+        state.removeAluno(toRemove);
     }
 
     //======GESTAO DOCENTES===========================

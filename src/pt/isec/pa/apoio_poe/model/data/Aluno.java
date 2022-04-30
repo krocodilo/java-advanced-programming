@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno {
@@ -50,6 +51,17 @@ public class Aluno {
         return podeEstagiar;
     }
 
+    public static Aluno parseAluno(ArrayList<String> params) throws NumberFormatException{
+        return new Aluno(
+            Long.parseLong( params.get(0) ),
+            params.get(1),
+            params.get(2),
+            params.get(3),
+            params.get(4),
+            Double.parseDouble( params.get(5) ),
+            Boolean.parseBoolean( params.get(6) )
+        );
+    }
     @Override
     public boolean equals(Object obj) {
         if(getClass() != obj.getClass())
