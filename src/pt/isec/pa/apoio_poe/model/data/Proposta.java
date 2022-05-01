@@ -39,8 +39,8 @@ public class Proposta implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(getClass() != obj.getClass())
-            return false;
+//        if(getClass() != obj.getClass())
+//            return false;
         return this.hashCode() == obj.hashCode();
     }
 

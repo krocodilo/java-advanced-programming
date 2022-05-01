@@ -126,20 +126,6 @@ public class Context {
         return state.getAlunosSemCandidatura( comCandidatura );
     }
 
-//    public ArrayList<Aluno> getAlunosAutoproposta(){
-//        ArrayList<Aluno> autopropostos = new ArrayList<>();
-//        for(Proposta p : data.getPropostas()){
-//            if(p.getType() == TipoProposta.AUTOPROPOSTO){
-//                for(Aluno a : data.getAlunos()){
-//                    if(p.getIdAluno() == a.getId())
-//                        autopropostos.add(a);
-//                }
-//            }
-//        }
-//        return autopropostos;
-//    }
-
-
     public ArrayList<Proposta> getAutopropostasAlunos(){
         ArrayList<Proposta> autopropostas = new ArrayList<>();
         for(Proposta p : data.getPropostas())
@@ -158,18 +144,20 @@ public class Context {
 
     public Set<Proposta> getPropostasComCandidaturas(){
         Set<Proposta> pcandidatura = new HashSet<>();
-        for (Candidaturas c : data.getCandidaturas()){
-            for(Proposta p : data.getPropostas()){
-                if(c.getIdsPropostas().contains(p))
+        for (Candidaturas c : data.getCandidaturas())
+            for(Proposta p : data.getPropostas())
+                if( c.getHashCodePropostas().contains(p.hashCode()) )
                     pcandidatura.add(p);
-            }
-        }
         return pcandidatura;
     }
 
-    /*public ArrayList<Proposta> getPropostasSemCandidaturas(){
-
-    }*/
+    public ArrayList<Proposta> getPropostasSemCandidaturas(){
+        ArrayList<Proposta> props = new ArrayList<>();
+        for (Proposta p : getPropostasComCandidaturas())
+            if( ! data.getPropostas().contains(p) )
+                props.add( p );
+        return props;
+    }
 
 
     

@@ -28,6 +28,13 @@ public class Candidaturas implements Serializable {
         return idsPropostas;
     }
 
+    public List<Integer> getHashCodePropostas(){
+        ArrayList<Integer> hashcodes = new ArrayList<>();
+        for(String id : idsPropostas)
+            hashcodes.add( id.hashCode() );
+        return hashcodes;
+    }
+
     public static Candidaturas parseCandidaturaCSV(String str) throws Exception {
 
         ArrayList<String> values = FileUtils.splitLineCSV( str );
