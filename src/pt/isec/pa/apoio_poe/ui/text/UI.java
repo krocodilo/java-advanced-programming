@@ -3,8 +3,6 @@ package pt.isec.pa.apoio_poe.ui.text;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 
-import java.util.List;
-
 import static pt.isec.pa.apoio_poe.model.fsm.State.*;
 import static pt.isec.pa.apoio_poe.utils.IO.*;
 
@@ -91,10 +89,40 @@ public class UI {
             case 6 -> fsm.nextState();
             case 0 -> exit = true;
         }
-
     }
 
     private void phaseThree() {
 
+        System.out.println("\n-> Atribuicao automatica de autopropostas ou propostas de " +
+                "docentes com aluno associado...");
+        //TODO
+        System.out.println("\n-> Atribuicao automatica de propostas...");
+        //TODO
+
+        printMenu("Fase 3: Atribuicao de Propostas",
+                "1 - Atribuicao de propostas",
+                "2 - Remocao de atribuicoes",
+                "3 - Consultar listas de alunos",
+                "4 - Consultar listas de propostas\n",
+                "5 - Fechar Fase",
+                "6 - Fase Anterior",
+                "7 - Fase Seguinte\n",
+                "0 - Sair");
+        switch (readOption(null, 0, 7)) {
+            case 1 -> System.out.println("not implemented ");
+            case 2 -> System.out.println("not implemented");
+            case 3 -> System.out.println("not implemented  ");
+            case 4 -> System.out.println("not implemented   ");
+            case 5 -> {
+                try {
+                    fsm.lockCurrentState();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            case 6 -> fsm.previousState();
+            case 7 -> fsm.nextState();
+            case 0 -> exit = true;
+        }
     }
 }

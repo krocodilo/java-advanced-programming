@@ -40,7 +40,7 @@ public class StateAdapter implements IState {
 
     //======GESTAO ALUNOS===========================
     @Override
-    public void addAluno(Aluno newAluno) {
+    public void addAluno(Aluno newAluno) throws Exception {
     }
 
     @Override
@@ -54,7 +54,7 @@ public class StateAdapter implements IState {
 
     //======GESTAO DOCENTES===========================
     @Override
-    public void addDocente(Docente newDocente) {
+    public void addDocente(Docente newDocente) throws Exception {
 
     }
 

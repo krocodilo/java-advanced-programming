@@ -26,13 +26,20 @@ public class Context {
 
 
     //======GESTAO ALUNOS===========================
-    public void addAluno(Aluno newAluno) {
+    public void addAluno(Aluno newAluno) throws Exception {
         state.addAluno(newAluno);
     }
 
-    public void addAlunos(List<Aluno> alunos) {
-        for(Aluno a : alunos)
-            addAluno( a );
+    public String addAlunos(List<Aluno> alunos) {
+        StringBuilder sb = new StringBuilder("");
+        for(Aluno a : alunos) {
+            try {
+                addAluno( a );
+            } catch (Exception e) {
+                sb.append(e.getMessage()).append("\n");
+            }
+        }
+        return sb.toString();
     }
 
     public ArrayList<Aluno> getAlunos() {
@@ -49,13 +56,20 @@ public class Context {
 
 
     //======GESTAO DOCENTES===========================
-    public void addDocente(Docente newDocente) {
+    public void addDocente(Docente newDocente) throws Exception {
         state.addDocente(newDocente);
     }
 
-    public void addDocentes(List<Docente> docentes) {
-        for(Docente d : docentes)
-            addDocente( d );
+    public String addDocentes(List<Docente> docentes) {
+        StringBuilder sb = new StringBuilder();
+        for(Docente d : docentes) {
+            try {
+                addDocente( d );
+            } catch (Exception e) {
+                sb.append(e.getMessage()).append("\n");
+            }
+        }
+        return sb.toString();
     }
     
     public ArrayList<Docente> getDocentes() {

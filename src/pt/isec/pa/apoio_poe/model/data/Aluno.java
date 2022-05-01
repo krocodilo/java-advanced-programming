@@ -9,9 +9,9 @@ public class Aluno implements Serializable {
 
     private static final long SerialVersionUID = 1L;
 
-    private long id;
+    private final long id;
     private String name;
-    private String email;
+    private final String email;
     private String curso;
     private String ramo;
     private double classificacao;
@@ -33,6 +33,10 @@ public class Aluno implements Serializable {
 
     public String getRamo() {
         return ramo;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public static Aluno parseAlunoCSV(String str) throws Exception {

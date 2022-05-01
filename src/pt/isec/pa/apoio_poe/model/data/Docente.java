@@ -9,7 +9,7 @@ public class Docente implements Serializable {
 
     private static final long SerialVersionUID = 1L;
 
-    private String email;
+    private final String email;
     private String name;
     private boolean orientador;
     private boolean proponenteProjeto;
@@ -35,6 +35,10 @@ public class Docente implements Serializable {
         } catch (NumberFormatException e){
             throw new Exception("Error in values");
         }
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override

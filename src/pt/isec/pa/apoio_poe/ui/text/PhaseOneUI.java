@@ -45,7 +45,7 @@ public class PhaseOneUI {
                         ArrayList<Aluno> alunos = FileUtils.readAlunosFromCSV(
                                 prompt("Ficheiro de alunos")
                         );
-                        fsm.addAlunos( alunos );
+                        System.out.println( fsm.addAlunos( alunos )  );
                     } catch (Exception e) {
                         System.out.println( e.getMessage() );
                     }
@@ -88,7 +88,7 @@ public class PhaseOneUI {
                         ArrayList<Docente> docentes = FileUtils.readDocentesFromCSV(
                                 prompt("Ficheiro de docentes")
                         );
-                        fsm.addDocentes( docentes );
+                        System.out.println( fsm.addDocentes( docentes ) );
                     } catch (Exception e) {
                         System.out.println( e.getMessage() );
                     }

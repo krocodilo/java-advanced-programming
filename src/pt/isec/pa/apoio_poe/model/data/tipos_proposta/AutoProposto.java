@@ -9,16 +9,9 @@ public class AutoProposto extends Proposta {
     // T3
 
     private Aluno aluno;
-    private final long idAluno;
 
     public AutoProposto(String id, String titulo, long idAluno) {
-        super(id, titulo);
-        this.idAluno = idAluno;
-    }
-
-    @Override
-    public long getIdAluno() {
-        return idAluno;
+        super(id, titulo, idAluno);
     }
 
     @Override

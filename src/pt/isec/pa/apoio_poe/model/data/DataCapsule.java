@@ -64,6 +64,18 @@ public class DataCapsule implements Serializable {
         return candidaturas;
     }
 
+    public boolean emailExists(String email) {
+        // verifica se existe aluno ou docente com este endereço de email
+
+        for(Aluno a : alunos)
+            if(email.equalsIgnoreCase( a.getEmail() ))
+                return true;
+        for(Docente d : docentes)
+            if(email.equalsIgnoreCase( d.getEmail() ))
+                return true;
+        return false;
+    }
+
     public ArrayList<Aluno> getAlunosComAutoproposta() {
         ArrayList<Aluno> autopropostos = new ArrayList<>();
 

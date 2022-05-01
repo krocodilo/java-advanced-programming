@@ -22,7 +22,13 @@ public class GestaoPropostas extends StateAdapter {
     public void addProposta(Proposta newProposta) throws Exception {
         //TODO : restrições
         if( data.getPropostas().contains(newProposta) ) // compares with .equals()
-            throw new Exception("Proposal already exists: " + newProposta.toString());
+            throw new Exception("Proposta ja existe: " + newProposta.toString());
+
+        for(Proposta p : data.getPropostas())
+            if(p.getIdAluno() == newProposta.getIdAluno())
+                throw new Exception("Ja existe uma proposta associada ao mesmo aluno: " +
+                        newProposta.toString());
+
         if( newProposta.getType() == TipoProposta.AUTOPROPOSTO ) {
             boolean studentFound = false;
             AutoProposto tmp = (AutoProposto) newProposta;

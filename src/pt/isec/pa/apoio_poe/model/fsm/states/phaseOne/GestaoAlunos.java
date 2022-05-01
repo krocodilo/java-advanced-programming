@@ -14,10 +14,14 @@ public class GestaoAlunos extends StateAdapter {
     }
 
     @Override
-    public void addAluno(Aluno newAluno) {
+    public void addAluno(Aluno newAluno) throws Exception {
         //TODO : restrições - no construtor ?
         if( data.getAlunos().contains( newAluno ) )
-            return;
+            throw new Exception("Aluno ja existe: " + newAluno.toString());
+
+        if( data.emailExists( newAluno.getEmail() ) )
+            throw new Exception("Ja existe um aluno/docente com o mesmo email: " +
+                    newAluno.toString());
 
         data.getAlunos().add( newAluno );
 

@@ -12,18 +12,16 @@ public class Estagio extends Proposta {
     private long idAluno;
 
     public Estagio(String id, List<String> ramosDestino, String titulo, String entidade) {
-        super(id, titulo);
+        super(id, titulo, -1);   //não tem aluno atribuido
         this.entidade = entidade;
         this.ramosDestino = ramosDestino;
-        this.idAluno = -1; //não tem aluno atribuido
     }
 
 
     public Estagio(String id, List<String> ramosDestino, String titulo, String entidade, long idAluno) {
-        super(id, titulo);
+        super(id, titulo, idAluno);
         this.entidade = entidade;
         this.ramosDestino = ramosDestino;
-        this.idAluno = idAluno;
     }
 
     public TipoProposta getType() {

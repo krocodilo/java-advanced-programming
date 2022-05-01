@@ -12,16 +12,18 @@ public class Proposta implements Serializable {
 
     private static final long SerialVersionUID = 1L;
 
-    private String id;
+    private final String id;
     private String titulo;
+    private long idAluno;
 
-    public Proposta(String id, String titulo) {
+    public Proposta(String id, String titulo, long idAluno) {
         this.id = id;
         this.titulo = titulo;
+        this.idAluno = idAluno;
     }
 
     public long getIdAluno() {
-        return -1;
+        return idAluno;
     }
 
     public TipoProposta getType() {

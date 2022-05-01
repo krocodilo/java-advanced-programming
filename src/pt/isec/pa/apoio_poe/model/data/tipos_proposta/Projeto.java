@@ -9,20 +9,17 @@ public class Projeto extends Proposta {
 
     private String emailDocente;
     private List<String> ramosDestino;
-    private long idAluno;
 
     public Projeto(String id, List<String> ramosDestino, String titulo, String emailDocente) {
-        super(id, titulo);
+        super(id, titulo, -1); // não tem aluno atribuido
         this.emailDocente = emailDocente;
         this.ramosDestino = ramosDestino;
-        this.idAluno = -1; // não tem aluno atribuido
     }
 
     public Projeto(String id, List<String> ramosDestino, String titulo, String emailDocente, long idAluno) {
-        super(id,  titulo);
+        super(id, titulo, idAluno);
         this.emailDocente = emailDocente;
         this.ramosDestino = ramosDestino;
-        this.idAluno = idAluno;
     }
 
     @Override

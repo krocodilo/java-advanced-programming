@@ -18,12 +18,12 @@ public interface IState {
     IState goToState(State state);
 
     // GESTAO ALUNOS
-    void addAluno(Aluno newAluno);
+    void addAluno(Aluno newAluno) throws Exception;
     void editAluno(Aluno newVersionAluno); //meta2
     void removeAluno(Aluno toRemove); //meta2
 
     // GESTAO DOCENTES
-    void addDocente(Docente newDocente);
+    void addDocente(Docente newDocente) throws Exception;
     void editDocente(Docente newVersionDocente); //meta2
     void removeDocente(Docente toRemove); //meta2
 
