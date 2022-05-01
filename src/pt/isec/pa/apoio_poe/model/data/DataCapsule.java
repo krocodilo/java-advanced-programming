@@ -150,9 +150,8 @@ public class DataCapsule implements Serializable {
 
     public ArrayList<Aluno> getAtribuicoesAlunosLista(){
         ArrayList<Aluno> alunos = new ArrayList<>();
-        for( Aluno a : alunos ){
-            if( atribuicoesAlunos.containsKey(a))
-                alunos.add(a);
+        for( Aluno a : atribuicoesAlunos.keySet() ){
+            alunos.add(a);
         }
         return alunos;
     }
@@ -164,6 +163,23 @@ public class DataCapsule implements Serializable {
                 alunos.add(a);
         }
         return alunos;
+    }
+
+    public ArrayList<Proposta> getPropostasDisponiveis(){
+        ArrayList<Proposta> propostasDisponiveis = new ArrayList<>();
+        for ( Proposta p : propostas){
+            if(!atribuicoesAlunos.containsValue(p))
+                propostasDisponiveis.add(p);
+        }
+        return propostasDisponiveis;
+    }
+
+    public ArrayList<Proposta> getPropostasAtribuidas(){
+        ArrayList<Proposta> propostasAtribuidas = new ArrayList<>();
+        for ( Proposta p : atribuicoesAlunos.values()){
+            propostasAtribuidas.add(p);
+        }
+        return propostasAtribuidas;
     }
 
     public Aluno findAluno(long idAluno) {

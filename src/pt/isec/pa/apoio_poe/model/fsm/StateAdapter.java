@@ -159,6 +159,15 @@ public class StateAdapter implements IState {
     public void AtribuicaoAutomaticaPropostas(){}
 
     @Override
+    public void AtribuicaoManual(Aluno aluno, Proposta proposta){}
+
+    @Override
+    public void RemoverAtribuicao(Aluno aluno){}
+
+    @Override
+    public void RemoverTodasAtribuicoes(){}
+
+    @Override
     public State getState() {
         return null;
     }

@@ -52,6 +52,9 @@ public interface IState {
     ArrayList<Proposta> getPropostasAtribuidas();
     void AtribuicaoAutomaticaAutoPropostas();
     void AtribuicaoAutomaticaPropostas();
+    void AtribuicaoManual(Aluno aluno, Proposta proposta);
+    void RemoverAtribuicao(Aluno aluno);
+    void RemoverTodasAtribuicoes();
 
 
     State getState();

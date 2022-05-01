@@ -184,6 +184,18 @@ public class Context {
         state.AtribuicaoAutomaticaPropostas();
     }
 
+    public void AtribuicaoManual(Aluno aluno, Proposta proposta){
+        state.AtribuicaoManual(aluno,proposta);
+    }
+
+    public void RemoverAtribuicao(Aluno aluno){
+        state.RemoverAtribuicao(aluno);
+    }
+
+    public void RemoverTodasAtribuicoes(){
+        state.RemoverTodasAtribuicoes();
+    }
+
 
     public void nextState() {
         state = state.getNextState();
