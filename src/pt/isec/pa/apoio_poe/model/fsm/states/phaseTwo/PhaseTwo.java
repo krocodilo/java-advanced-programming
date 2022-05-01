@@ -11,6 +11,7 @@ import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseThree.PhaseThree;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -105,8 +106,7 @@ public class PhaseTwo extends StateAdapter {
 
     @Override
     public IState getNextState() {
-        //TODO : return PHASE3
-        return this;
+        return new PhaseThree(context,data);
     }
 
     @Override
