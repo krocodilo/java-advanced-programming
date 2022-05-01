@@ -20,33 +20,6 @@ public class AtribuicaoPropostas extends StateAdapter {
     }
 
     @Override
-    public void AtribuicaoAutomaticaAutoPropostas(){
-        for(AutoProposto p : data.getAutoPropostos()){
-            data.getAtribuicoesAlunos().put(data.findAluno(p.getIdAluno()),p);
-        }
-    }
-
-    @Override
-    public void AtribuicaoAutomaticaPropostas(){
-
-        // adiciona os alunos candidatos ao array nas propostas
-        for(Candidaturas c : data.getCandidaturas()){
-            for(String s : c.getIdsPropostas()){
-                if( data.findAluno(c.getIdAluno())==null  || data.findProposta(s)==null )
-                    return;
-                data.findProposta(s).getAlunosCandidatos().add(data.findAluno(c.getIdAluno()));
-            }
-        }
-
-        // adiciona ao Map das Atribuicoes - só está a considerar a melhor classificação , mas falta a parte das preferências
-        for(Proposta p : data.getPropostas()){
-            data.getAtribuicoesAlunos().put(p.getMelhorCandidato(),p);
-        }
-
-    }
-
-
-    @Override
     public IState getPreviousState() {
         return new PhaseThree(context,data);
     }

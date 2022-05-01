@@ -5,7 +5,6 @@ import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
-import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.PhaseTwo;
 
 public class PhaseFour extends StateAdapter{
 
