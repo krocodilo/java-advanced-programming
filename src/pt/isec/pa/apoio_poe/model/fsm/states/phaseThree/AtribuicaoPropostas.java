@@ -55,4 +55,8 @@ public class AtribuicaoPropostas extends StateAdapter {
     public State getState() {
         return State.ATRIBUICAO_PROPOSTAS;
     }
+
+    public void checkIfLocked() throws Exception {
+        super.checkIfLocked( data.phaseThreeLocked );
+    }
 }

@@ -24,23 +24,27 @@ public class UI {
 
             State state = fsm.getState();
 
-            switch (state){
-                case PHASE_ONE -> phaseOne();
-                case PHASE_TWO -> phaseTwo( two );
-                case PHASE_THREE -> phaseThree();
-                //case PHASE_FOUR -> false;
-                //case PHASE_FIVE -> false;
-                case GESTAO_ALUNOS -> one.gestaoAlunos();
-                case GESTAO_DOCENTES -> one.gestaoDocentes();
-                case GESTAO_PROPOSTAS -> one.gestaoPropostas();
-                case GESTAO_CANDIDATURAS -> two.gestaoCandidaturas();
-                //case ATRIBUICAO_PROPOSTAS -> false;
-                //case GESTAO_ORIENTADORES -> false;
+            try {
+                switch (state) {
+                    case PHASE_ONE -> phaseOne();
+                    case PHASE_TWO -> phaseTwo(two);
+                    case PHASE_THREE -> phaseThree();
+                    //case PHASE_FOUR -> false;
+                    //case PHASE_FIVE -> false;
+                    case GESTAO_ALUNOS -> one.gestaoAlunos();
+                    case GESTAO_DOCENTES -> one.gestaoDocentes();
+                    case GESTAO_PROPOSTAS -> one.gestaoPropostas();
+                    case GESTAO_CANDIDATURAS -> two.gestaoCandidaturas();
+                    //case ATRIBUICAO_PROPOSTAS -> false;
+                    //case GESTAO_ORIENTADORES -> false;
+                }
+            } catch (Exception e){
+                System.err.println("\n" + e.getMessage() + "\n");
             }
         }
     }
 
-    private void phaseOne() {
+    private void phaseOne() throws Exception {
 
         printMenu("Fase 1: Configuracao",
                 "1 - Gestao de Alunos",
@@ -55,7 +59,7 @@ public class UI {
             case 1 -> fsm.goToState( GESTAO_ALUNOS );
             case 2 -> fsm.goToState( GESTAO_DOCENTES );
             case 3 -> fsm.goToState( GESTAO_PROPOSTAS );
-            case 4 -> lockCurrentState();
+            case 4 -> fsm.lockCurrentState();
             case 5 -> fsm.nextState();
             case 6 -> saveStateToDisk();
             case 7 -> loadStateFromDisk();
@@ -63,7 +67,7 @@ public class UI {
         }
     }
 
-    private void phaseTwo( PhaseTwoUI ui ) {
+    private void phaseTwo( PhaseTwoUI ui ) throws Exception {
         printMenu("Fase 2: Opcoes de Candidatura",
                 "1 - Gestao de Candidaturas",
                 "2 - Consultar listas de alunos",
@@ -78,7 +82,7 @@ public class UI {
             case 1 -> fsm.goToState( GESTAO_CANDIDATURAS );
             case 2 -> ui.showAlunosFiltered();
             case 3 -> ui.showPropostasFiltered();
-            case 4 -> lockCurrentState();
+            case 4 -> fsm.lockCurrentState();
             case 5 -> fsm.previousState();
             case 6 -> fsm.nextState();
             case 7 -> saveStateToDisk();
@@ -87,7 +91,7 @@ public class UI {
         }
     }
 
-    private void phaseThree() {
+    private void phaseThree() throws Exception {
 
         System.out.println("\n-> Atribuicao automatica de autopropostas ou propostas de " +
                 "docentes com aluno associado...");
@@ -111,7 +115,7 @@ public class UI {
             case 2 -> System.out.println("not implemented ");
             case 3 -> System.out.println("not implemented  ");
             case 4 -> System.out.println("not implemented   ");
-            case 5 -> lockCurrentState();
+            case 5 -> fsm.lockCurrentState();
             case 6 -> fsm.previousState();
             case 7 -> fsm.nextState();
             case 8 -> saveStateToDisk();
@@ -120,29 +124,13 @@ public class UI {
         }
     }
 
-    private void lockCurrentState() {
-        try {
-            fsm.lockCurrentState();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+    private void saveStateToDisk() throws Exception {
+        fsm.saveStateToDisk( prompt("Nome do ficheiro onde gravar o estado atual da aplicacao") );
+        System.out.println("\nDados gravados com sucesso.\n");
     }
 
-    private void saveStateToDisk() {
-        try {
-            fsm.saveStateToDisk( prompt("Nome do ficheiro onde gravar o estado atual da aplicacao") );
-            System.out.println("\nDados gravados com sucesso.\n");
-        } catch (Exception e) {
-            System.err.println(e.getMessage()+"\n");
-        }
-    }
-
-    public void loadStateFromDisk() {
-        try {
-            fsm.loadStateFromDisk( prompt("Nome do ficheiro onde os dados foram guardados") );
-            System.out.println("\nDados carregados com sucesso.\n");
-        } catch (Exception e) {
-            System.err.println(e.getMessage()+"\n");
-        }
+    private void loadStateFromDisk() throws Exception {
+        fsm.loadStateFromDisk( prompt("Nome do ficheiro onde os dados foram guardados") );
+        System.out.println("\nDados carregados com sucesso.\n");
     }
 }

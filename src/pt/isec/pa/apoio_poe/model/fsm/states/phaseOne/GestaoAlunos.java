@@ -15,7 +15,9 @@ public class GestaoAlunos extends StateAdapter {
 
     @Override
     public void addAluno(Aluno newAluno) throws Exception {
-        //TODO : restrições - no construtor ?
+
+        checkIfLocked();
+
         if( data.getAlunos().contains( newAluno ) )
             throw new Exception("Aluno ja existe: " + newAluno.toString());
 
@@ -34,15 +36,19 @@ public class GestaoAlunos extends StateAdapter {
     }
 
     @Override
-    public void editAluno(Aluno newVersionAluno) {
+    public void editAluno(Aluno newVersionAluno) throws Exception {
         //TODO : meta2
+        checkIfLocked();
+
         int index = data.getAlunos().indexOf( newVersionAluno );
         data.getAlunos().set( index, newVersionAluno );
     }
 
     @Override
-    public void removeAluno(Aluno toRemove) {
+    public void removeAluno(Aluno toRemove) throws Exception {
         //TODO : meta2
+        checkIfLocked();
+
         data.getAlunos().remove( toRemove );
     }
 
@@ -54,5 +60,9 @@ public class GestaoAlunos extends StateAdapter {
     @Override
     public State getState() {
         return State.GESTAO_ALUNOS;
+    }
+
+    public void checkIfLocked() throws Exception {
+        super.checkIfLocked( data.phaseOneLocked );
     }
 }

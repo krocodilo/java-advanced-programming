@@ -79,7 +79,7 @@ public class PhaseThree extends StateAdapter {
 
     @Override
     public boolean isLocked() {
-        return data.phaseThreeClosed;
+        return data.phaseThreeLocked;
     }
 
     @Override
@@ -87,9 +87,9 @@ public class PhaseThree extends StateAdapter {
 
         //TODO: verify se todos os alunos têm projeto atribuido
 
-        if( ! data.phaseTwoClosed )
+        if( ! data.phaseTwoLocked )
             throw new Exception("A fase anterior tem de ser fechada primeiro!");
 
-        data.phaseThreeClosed = true;
+        data.phaseThreeLocked = true;
     }
 }

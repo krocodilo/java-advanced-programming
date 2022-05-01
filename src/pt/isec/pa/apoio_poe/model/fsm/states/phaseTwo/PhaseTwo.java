@@ -1,11 +1,8 @@
 package pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
@@ -14,7 +11,6 @@ import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseThree.PhaseThree;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 public class PhaseTwo extends StateAdapter {
@@ -81,7 +77,7 @@ public class PhaseTwo extends StateAdapter {
 
     @Override
     public boolean isLocked() {
-        return data.phaseTwoClosed;
+        return data.phaseTwoLocked;
     }
 
     @Override
@@ -89,9 +85,9 @@ public class PhaseTwo extends StateAdapter {
 
         //TODO: verify
 
-        if( ! data.phaseOneClosed )
+        if( ! data.phaseOneLocked )
             throw new Exception("A fase anterior tem de ser fechada primeiro!");
 
-        data.phaseTwoClosed = true;
+        data.phaseTwoLocked = true;
     }
 }

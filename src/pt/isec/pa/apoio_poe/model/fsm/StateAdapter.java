@@ -50,11 +50,11 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void editAluno(Aluno newVersionAluno) {
+    public void editAluno(Aluno newVersionAluno) throws Exception {
     }
 
     @Override
-    public void removeAluno(Aluno toRemove) {
+    public void removeAluno(Aluno toRemove) throws Exception {
     }
 
 
@@ -66,12 +66,12 @@ public class StateAdapter implements IState {
 
 
     @Override
-    public void editDocente(Docente newVersionDocente) {
+    public void editDocente(Docente newVersionDocente) throws Exception {
 
     }
 
     @Override
-    public void removeDocente(Docente toRemove) {
+    public void removeDocente(Docente toRemove) throws Exception {
 
     }
 
@@ -88,18 +88,18 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void editProposta(Proposta newVersionProposta) {
+    public void editProposta(Proposta newVersionProposta) throws Exception {
 
     }
 
     @Override
-    public void removeProposta(Proposta toRemove) {
+    public void removeProposta(Proposta toRemove) throws Exception {
 
     }
 
     //======GESTAO CANDIDATURAS===========================
     @Override
-    public void addCandidatura(Candidaturas newCandidatura){}
+    public void addCandidatura(Candidaturas newCandidatura) throws Exception {}
 
     @Override
     public ArrayList<Aluno> getAlunosComAutoproposta() {
@@ -176,4 +176,10 @@ public class StateAdapter implements IState {
 
     @Override
     public void lock() throws Exception { }
+
+    @Override
+    public void checkIfLocked(boolean isLocked) throws Exception {
+        if( isLocked )
+            throw new Exception("Esta fase foi bloqueada. Nao e possivel realizar alteracoes.");
+    }
 }

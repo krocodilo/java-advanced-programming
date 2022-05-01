@@ -25,7 +25,7 @@ public class PhaseTwoUI {
         this.fsm = fsm;
     }
 
-    public void gestaoCandidaturas() {
+    public void gestaoCandidaturas() throws Exception {
 
         printMenu("Gestao de Candidaturas",
                 "1 - Adicionar",
@@ -35,14 +35,10 @@ public class PhaseTwoUI {
                 "0 - Voltar");
         switch (readOption(null, 0, 6)) {
             case 1 -> {
-                try{
-                    ArrayList<Candidaturas> candidaturas = FileUtils.readCandidaturasFromCSV(
-                            prompt("Ficheiro de candidaturas")
-                    );
-                    fsm.addCandidaturas(candidaturas);
-                } catch (Exception e) {
-                    System.out.println( e.getMessage() );
-                }
+                ArrayList<Candidaturas> candidaturas = FileUtils.readCandidaturasFromCSV(
+                        prompt("Ficheiro de candidaturas")
+                );
+                fsm.addCandidaturas(candidaturas);
             }
             case 2 ->{
                 showList( fsm.getCandidaturas() );

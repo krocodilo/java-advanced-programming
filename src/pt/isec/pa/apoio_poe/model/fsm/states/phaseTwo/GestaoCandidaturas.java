@@ -16,7 +16,10 @@ public class GestaoCandidaturas extends StateAdapter {
     }
 
     @Override
-    public void addCandidatura(Candidaturas newCandidatura) {
+    public void addCandidatura(Candidaturas newCandidatura) throws Exception {
+
+        checkIfLocked();
+
         if( data.getCandidaturas().contains( newCandidatura ) )
             return;
         data.getCandidaturas().add( newCandidatura );
@@ -30,5 +33,9 @@ public class GestaoCandidaturas extends StateAdapter {
     @Override
     public State getState() {
         return State.GESTAO_CANDIDATURAS;
+    }
+
+    public void checkIfLocked() throws Exception {
+        super.checkIfLocked( data.phaseTwoLocked );
     }
 }

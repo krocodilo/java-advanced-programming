@@ -25,7 +25,7 @@ public class PhaseOne extends StateAdapter {
 
     @Override
     public boolean isLocked() {
-        return data.phaseOneClosed;
+        return data.phaseOneLocked;
     }
 
     @Override
@@ -37,6 +37,6 @@ public class PhaseOne extends StateAdapter {
             throw new Exception("Nao existem propostas suficientes!");
 
 
-        data.phaseOneClosed = true;
+        data.phaseOneLocked = true;
     }
 }

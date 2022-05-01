@@ -16,7 +16,9 @@ public class GestaoDocentes extends StateAdapter {
 
     @Override
     public void addDocente(Docente newDocente) throws Exception {
-        //TODO : restrições - no construtor ?
+
+        checkIfLocked();
+
         if( data.getDocentes().contains( newDocente ) )
             throw new Exception("Docente ja existe: " + newDocente.toString());
 
@@ -27,13 +29,16 @@ public class GestaoDocentes extends StateAdapter {
     }
 
     @Override
-    public void editDocente(Docente newVersionDocente) {
+    public void editDocente(Docente newVersionDocente) throws Exception {
         //TODO : meta2
+        checkIfLocked();
     }
 
     @Override
-    public void removeDocente(Docente toRemove) {
+    public void removeDocente(Docente toRemove) throws Exception {
         //TODO : meta2
+        checkIfLocked();
+
         data.getDocentes().remove( toRemove );
     }
 
@@ -47,4 +52,7 @@ public class GestaoDocentes extends StateAdapter {
         return State.GESTAO_DOCENTES;
     }
 
+    public void checkIfLocked() throws Exception {
+        super.checkIfLocked( data.phaseOneLocked );
+    }
 }

@@ -20,7 +20,9 @@ public class GestaoPropostas extends StateAdapter {
 
     @Override
     public void addProposta(Proposta newProposta) throws Exception {
-        //TODO : restrições
+
+        checkIfLocked();
+
         if( data.getPropostas().contains(newProposta) ) // compares with .equals()
             throw new Exception("Proposta ja existe: " + newProposta.toString());
 
@@ -60,13 +62,17 @@ public class GestaoPropostas extends StateAdapter {
     }
 
     @Override
-    public void editProposta(Proposta newVersionProposta) {
+    public void editProposta(Proposta newVersionProposta) throws Exception {
         //TODO : meta2
+        checkIfLocked();
+
     }
 
     @Override
-    public void removeProposta(Proposta toRemove) {
+    public void removeProposta(Proposta toRemove) throws Exception {
         //TODO : meta2
+        checkIfLocked();
+
         data.getPropostas().remove( toRemove );
     }
 
@@ -78,5 +84,9 @@ public class GestaoPropostas extends StateAdapter {
     @Override
     public State getState() {
         return State.GESTAO_PROPOSTAS;
+    }
+
+    public void checkIfLocked() throws Exception {
+        super.checkIfLocked( data.phaseOneLocked );
     }
 }

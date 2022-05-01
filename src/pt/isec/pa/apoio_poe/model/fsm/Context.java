@@ -44,11 +44,11 @@ public class Context {
         return data.getAlunos();
     }
 
-    public void editAluno(Aluno newVersionAluno) {
+    public void editAluno(Aluno newVersionAluno) throws Exception {
         state.editAluno(newVersionAluno);
     }
 
-    public void removeAluno(Aluno toRemove) {
+    public void removeAluno(Aluno toRemove) throws Exception {
         state.removeAluno(toRemove);
     }
 
@@ -74,11 +74,11 @@ public class Context {
         return data.getDocentes();
     }
 
-    public void editDocente(Docente newVersionDocente) {
+    public void editDocente(Docente newVersionDocente) throws Exception {
         state.editDocente(newVersionDocente);
     }
     
-    public void removeDocente(Docente toRemove) {
+    public void removeDocente(Docente toRemove) throws Exception {
         state.removeDocente(toRemove);
     }
 
@@ -109,11 +109,11 @@ public class Context {
 
     //=====GESTAO CANDIDATURAS==========================
 
-    public void addCandidatura(Candidaturas newCandidatura){
+    public void addCandidatura(Candidaturas newCandidatura) throws Exception {
         state.addCandidatura(newCandidatura);
     }
 
-    public void addCandidaturas(ArrayList<Candidaturas> candidaturas){
+    public void addCandidaturas(ArrayList<Candidaturas> candidaturas) throws Exception {
         for(Candidaturas c : candidaturas)
             addCandidatura(c);
     }

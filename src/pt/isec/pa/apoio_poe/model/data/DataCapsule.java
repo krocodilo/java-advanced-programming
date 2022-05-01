@@ -32,10 +32,10 @@ public class DataCapsule implements Serializable {
     public int numAlunosRAS = 0;
     public int numAlunosSI = 0;
 
-    public boolean phaseOneClosed = false;
-    public boolean phaseTwoClosed = false;
-    public boolean phaseThreeClosed = false;
-    public boolean phaseFourClosed = false;
+    public boolean phaseOneLocked = false;
+    public boolean phaseTwoLocked = false;
+    public boolean phaseThreeLocked = false;
+    public boolean phaseFourLocked = false;
 
     // For when saving and reading this data from a file
     private State lastState = State.PHASE_ONE;  // default state

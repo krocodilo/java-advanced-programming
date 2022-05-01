@@ -20,7 +20,7 @@ public class PhaseOneUI {
         this.fsm = fsm;
     }
 
-    public void gestaoAlunos() {
+    public void gestaoAlunos() throws Exception {
 
         while (true) {
             printMenu("Gestao de Alunos",
@@ -41,14 +41,10 @@ public class PhaseOneUI {
                             readBoolean("Pode estagiar")
                     );
                     fsm.addAluno(tmp);*/
-                    try{
-                        ArrayList<Aluno> alunos = FileUtils.readAlunosFromCSV(
-                                prompt("Ficheiro de alunos")
-                        );
-                        System.out.println( fsm.addAlunos( alunos )  );
-                    } catch (Exception e) {
-                        System.out.println( e.getMessage() );
-                    }
+                    ArrayList<Aluno> alunos = FileUtils.readAlunosFromCSV(
+                            prompt("Ficheiro de alunos")
+                    );
+                    System.out.println( fsm.addAlunos( alunos )  );
                 }
                 case 2 ->
                     showList( fsm.getAlunos() );
@@ -68,7 +64,7 @@ public class PhaseOneUI {
         }
     }
 
-    public void gestaoDocentes() {
+    public void gestaoDocentes() throws Exception {
 
         while (true) {
             printMenu("Gestao de Docentes",
@@ -84,14 +80,10 @@ public class PhaseOneUI {
                             prompt("E-mail")
                     );
                     fsm.addDocente( tmp );*/
-                    try{
-                        ArrayList<Docente> docentes = FileUtils.readDocentesFromCSV(
-                                prompt("Ficheiro de docentes")
-                        );
-                        System.out.println( fsm.addDocentes( docentes ) );
-                    } catch (Exception e) {
-                        System.out.println( e.getMessage() );
-                    }
+                    ArrayList<Docente> docentes = FileUtils.readDocentesFromCSV(
+                            prompt("Ficheiro de docentes")
+                    );
+                    System.out.println( fsm.addDocentes( docentes ) );
                 }
                 case 2 ->
                     showList(fsm.getDocentes());
@@ -112,7 +104,7 @@ public class PhaseOneUI {
     }
 
 
-    public void gestaoPropostas() {
+    public void gestaoPropostas() throws Exception {
 
         while (true) {
             printMenu("Gestao de Propostas",
@@ -123,14 +115,10 @@ public class PhaseOneUI {
                     "0 - Voltar");
             switch (readOption(null, 0, 4)) {
                 case 1 -> {
-                    try{
-                        ArrayList<Proposta> propostas = FileUtils.readPropostasFromCSV(
-                                prompt("Ficheiro de propostas")
-                        );
-                        fsm.addPropostas( propostas );
-                    } catch (Exception e) {
-                        System.out.println( e.getMessage() );
-                    }
+                    ArrayList<Proposta> propostas = FileUtils.readPropostasFromCSV(
+                            prompt("Ficheiro de propostas")
+                    );
+                    fsm.addPropostas( propostas );
                 }
                 case 2 ->
                         showList( fsm.getPropostas() );
