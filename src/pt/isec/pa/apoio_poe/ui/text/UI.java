@@ -48,8 +48,10 @@ public class UI {
                 "3 - Gestao de propostas\n",
                 "4 - Fechar Fase",
                 "5 - Fase Seguinte\n",
+                "6 - Gravar Estado Atual",
+                "7 - Carregar\n",
                 "0 - Sair");
-        switch (readOption(null, 0, 5)) {
+        switch (readOption(null, 0, 7)) {
             case 1 -> fsm.goToState( GESTAO_ALUNOS );
             case 2 -> fsm.goToState( GESTAO_DOCENTES );
             case 3 -> fsm.goToState( GESTAO_PROPOSTAS );
@@ -57,10 +59,26 @@ public class UI {
                 try {
                     fsm.lockCurrentState();
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                 }
             }
             case 5 -> fsm.nextState();
+            case 6 -> {
+                try {
+                    fsm.saveStateToDisk( prompt("Nome do ficheiro onde gravar o estado atual da aplicacao") );
+                    System.out.println("\nDados gravados com sucesso.");
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+            }
+            case 7 -> {
+                try {
+                    fsm.loadStateFromDisk( prompt("Nome do ficheiro onde os dados foram guardados") );
+                    System.out.println("\nDados carregados com sucesso.");
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+            }
             case 0 -> exit = true;
         }
     }
@@ -82,7 +100,7 @@ public class UI {
                 try {
                     fsm.lockCurrentState();
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                 }
             }
             case 5 -> fsm.previousState();
@@ -117,7 +135,7 @@ public class UI {
                 try {
                     fsm.lockCurrentState();
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                 }
             }
             case 6 -> fsm.previousState();

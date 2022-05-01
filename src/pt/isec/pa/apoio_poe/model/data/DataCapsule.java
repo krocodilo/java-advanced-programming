@@ -4,6 +4,7 @@ import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
+import pt.isec.pa.apoio_poe.model.fsm.State;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,6 +33,9 @@ public class DataCapsule implements Serializable {
     public boolean phaseTwoClosed = false;
     public boolean phaseThreeClosed = false;
     public boolean phaseFourClosed = false;
+
+    // For when saving and reading this data from a file
+    private State lastState = null;
 
     public DataCapsule() {
     }
@@ -146,5 +150,13 @@ public class DataCapsule implements Serializable {
             if( a.getId() == idAluno )
                 return a;
         return null;
+    }
+
+    public State getLastState() {
+        return lastState;
+    }
+
+    public void setLastState(State lastState) {
+        this.lastState = lastState;
     }
 }

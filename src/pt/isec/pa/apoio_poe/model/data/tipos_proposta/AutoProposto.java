@@ -3,9 +3,10 @@ package pt.isec.pa.apoio_poe.model.data.tipos_proposta;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AutoProposto extends Proposta {
+public class AutoProposto extends Proposta implements Serializable {
     // T3
 
     private Aluno aluno;

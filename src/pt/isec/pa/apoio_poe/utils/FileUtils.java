@@ -1,12 +1,9 @@
 package pt.isec.pa.apoio_poe.utils;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Candidaturas;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
-import pt.isec.pa.apoio_poe.model.data.Docente;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -171,5 +168,45 @@ public class FileUtils {
 
     private static BufferedWriter openFileWriting(String filename) throws IOException {
         return new BufferedWriter( new FileWriter( filename ) );
+    }
+
+    public static DataCapsule loadDataFromDisk(String filename) throws Exception {
+        DataCapsule data;
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream( new FileInputStream(filename) );
+
+            data = (DataCapsule) in.readUnshared();
+
+        } catch (FileNotFoundException e) {
+            throw new Exception("Unable to open file '" + filename + "'.");
+        } catch (Exception e) {
+            throw new Exception("Error reading data.");
+        } finally {
+            if(in != null)
+                try {
+                    in.close();
+                } catch (IOException ignore) { }
+        }
+        return data;
+    }
+
+    public static void saveDataToDisk(String filename, DataCapsule data) throws Exception {
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream( new FileOutputStream(filename) );
+
+            out.writeUnshared( data );
+
+        } catch (FileNotFoundException e) {
+            throw new Exception("Unable to open file '" + filename + "'.");
+        } catch (IOException e) {
+            throw new Exception("Error saving data.");
+        } finally {
+            if(out != null)
+                try {
+                    out.close();
+                } catch (IOException ignore) { }
+        }
     }
 }

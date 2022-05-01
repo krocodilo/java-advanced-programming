@@ -1,19 +1,17 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.*;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
+import pt.isec.pa.apoio_poe.utils.FileUtils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Context {
 
     private IState state;
-    private final DataCapsule data;
+    private DataCapsule data;
 
     public Context() {
         data = new DataCapsule();
@@ -177,5 +175,15 @@ public class Context {
 
     public void lockCurrentState() throws Exception {
         state.lock();
+    }
+
+    public void saveStateToDisk(String filename) throws Exception {
+        data.setLastState( getState() );
+        FileUtils.saveDataToDisk( filename, data );
+    }
+
+    public void loadStateFromDisk(String filename) throws Exception {
+        data = FileUtils.loadDataFromDisk( filename );
+        goToState( data.getLastState() );
     }
 }

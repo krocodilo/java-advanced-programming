@@ -2,9 +2,10 @@ package pt.isec.pa.apoio_poe.model.data.tipos_proposta;
 
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Estagio extends Proposta {
+public class Estagio extends Proposta implements Serializable {
     // T1
 
     private String entidade;
