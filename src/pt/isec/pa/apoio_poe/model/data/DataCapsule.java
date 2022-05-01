@@ -7,6 +7,7 @@ import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +24,8 @@ public class DataCapsule implements Serializable {
     private final ArrayList<AutoProposto> autoPropostos = new ArrayList<>();
 
     private final ArrayList<Candidaturas> candidaturas = new ArrayList<>();
+
+    private final HashMap<Aluno,Proposta> atribuicoesAlunos = new HashMap<>();
 
     public int numAlunosDA = 0;
     public int numAlunosRAS = 0;
@@ -62,6 +65,10 @@ public class DataCapsule implements Serializable {
 
     public ArrayList<Candidaturas> getCandidaturas() {
         return candidaturas;
+    }
+
+    public HashMap<Aluno, Proposta> getAtribuicoesAlunos() {
+        return atribuicoesAlunos;
     }
 
     public boolean emailExists(String email) {
@@ -141,10 +148,35 @@ public class DataCapsule implements Serializable {
         return props;
     }
 
+    public ArrayList<Aluno> getAtribuicoesAlunosLista(){
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        for( Aluno a : alunos ){
+            if( atribuicoesAlunos.containsKey(a))
+                alunos.add(a);
+        }
+        return alunos;
+    }
+
+    public ArrayList<Aluno> getSemAtribuicoesAlunosLista(){
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        for( Aluno a : alunos ){
+            if( ! atribuicoesAlunos.containsKey(a))
+                alunos.add(a);
+        }
+        return alunos;
+    }
+
     public Aluno findAluno(long idAluno) {
         for( Aluno a : alunos )
             if( a.getId() == idAluno )
                 return a;
+        return null;
+    }
+
+    public Proposta findProposta(String idProposta) {
+        for( Proposta p : propostas )
+            if( p.getId() == idProposta )
+                return p;
         return null;
     }
 }

@@ -15,6 +15,7 @@ public class Proposta implements Serializable {
     private final String id;
     private String titulo;
     private long idAluno;
+    private ArrayList<Aluno> alunosCandidatos = new ArrayList<>();
 
     public Proposta(String id, String titulo, long idAluno) {
         this.id = id;
@@ -22,8 +23,30 @@ public class Proposta implements Serializable {
         this.idAluno = idAluno;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public long getIdAluno() {
         return idAluno;
+    }
+
+    public ArrayList<Aluno> getAlunosCandidatos() {
+        return alunosCandidatos;
+    }
+
+    public Aluno getMelhorCandidato(){
+        Aluno aluno = null;
+        double melhorClassificacao = 0;
+
+        for (Aluno a : alunosCandidatos){
+            if(a.getClassificacao() > melhorClassificacao) {
+                melhorClassificacao = a.getClassificacao();
+                aluno = a;
+            }
+        }
+
+        return aluno;
     }
 
     public TipoProposta getType() {

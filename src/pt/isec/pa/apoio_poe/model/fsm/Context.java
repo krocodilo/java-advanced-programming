@@ -158,6 +158,32 @@ public class Context {
     }
 
 
+    // ATRIBUICAO PROPOSTAS
+
+    public ArrayList<Aluno> getAlunosComPropostaAtribuida() {
+        return state.getAlunosComPropostaAtribuida();
+    }
+
+    public ArrayList<Aluno> getAlunosSemPropostaAtribuida() {
+        return state.getAlunosSemPropostaAtribuida();
+    }
+
+    public ArrayList<Proposta> getPropostasDisponiveis() {
+        return state.getPropostasDisponiveis();
+    }
+
+    public ArrayList<Proposta> getPropostasAtribuidas() {
+        return state.getPropostasAtribuidas();
+    }
+
+    public void AtribuicaoAutomaticaAutoPropostas(){
+        state.AtribuicaoAutomaticaAutoPropostas();
+    }
+
+    public void AtribuicaoAutomaticaPropostas(){
+        state.AtribuicaoAutomaticaPropostas();
+    }
+
 
     public void nextState() {
         state = state.getNextState();

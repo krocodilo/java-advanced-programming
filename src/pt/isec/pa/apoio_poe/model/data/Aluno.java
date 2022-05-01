@@ -39,6 +39,10 @@ public class Aluno implements Serializable {
         return email;
     }
 
+    public double getClassificacao() {
+        return classificacao;
+    }
+
     public static Aluno parseAlunoCSV(String str) throws Exception {
 
         ArrayList<String> values = FileUtils.splitLineCSV( str );

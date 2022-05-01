@@ -130,6 +130,34 @@ public class StateAdapter implements IState {
         return null;
     }
 
+
+    //ATRIBUICAO PROPOSTAS
+    @Override
+    public ArrayList<Aluno> getAlunosComPropostaAtribuida() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Aluno> getAlunosSemPropostaAtribuida() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Proposta> getPropostasDisponiveis() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Proposta> getPropostasAtribuidas() {
+        return null;
+    }
+
+    @Override
+    public void AtribuicaoAutomaticaAutoPropostas(){}
+
+    @Override
+    public void AtribuicaoAutomaticaPropostas(){}
+
     @Override
     public State getState() {
         return null;
