@@ -45,6 +45,14 @@ public interface IState {
     Set<Proposta> getPropostasComCandidaturas();
     ArrayList<Proposta> getPropostasSemCandidaturas();
 
+    //ATRIBUICAO PROPOSTAS
+    ArrayList<Aluno> getAlunosComPropostaAtribuida();
+    ArrayList<Aluno> getAlunosSemPropostaAtribuida();
+    ArrayList<Proposta> getPropostasDisponiveis();
+    ArrayList<Proposta> getPropostasAtribuidas();
+    void AtribuicaoAutomaticaAutoPropostas();
+    void AtribuicaoAutomaticaPropostas();
+
 
     State getState();
     boolean isLocked();
