@@ -174,12 +174,12 @@ public class Context {
         return state.getPropostasAtribuidas();
     }
 
-    public void AtribuicaoAutomaticaAutoPropostas(){
-        state.AtribuicaoAutomaticaAutoPropostas();
+    public void atribuicaoAutomaticaAutoPropostas(){
+        state.atribuicaoAutomaticaAutoPropostas();
     }
 
-    public void AtribuicaoAutomaticaPropostas(){
-        state.AtribuicaoAutomaticaPropostas();
+    public void atribuicaoAutomaticaPropostas(){
+        state.atribuicaoAutomaticaPropostas();
     }
 
 

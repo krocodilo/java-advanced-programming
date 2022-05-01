@@ -50,8 +50,8 @@ public interface IState {
     ArrayList<Aluno> getAlunosSemPropostaAtribuida();
     ArrayList<Proposta> getPropostasDisponiveis();
     ArrayList<Proposta> getPropostasAtribuidas();
-    void AtribuicaoAutomaticaAutoPropostas();
-    void AtribuicaoAutomaticaPropostas();
+    void atribuicaoAutomaticaAutoPropostas();
+    void atribuicaoAutomaticaPropostas();
 
 
     State getState();

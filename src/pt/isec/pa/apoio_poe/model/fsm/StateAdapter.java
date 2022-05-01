@@ -159,10 +159,10 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void AtribuicaoAutomaticaAutoPropostas(){}
+    public void atribuicaoAutomaticaAutoPropostas(){}
 
     @Override
-    public void AtribuicaoAutomaticaPropostas(){}
+    public void atribuicaoAutomaticaPropostas(){}
 
     @Override
     public State getState() {

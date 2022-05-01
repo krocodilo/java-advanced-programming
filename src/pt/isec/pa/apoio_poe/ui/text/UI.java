@@ -47,9 +47,9 @@ public class UI {
     private void phaseOne() throws Exception {
 
         printMenu("Fase 1: Configuracao",
-                "1 - Gestao de Alunos",
-                "2 - Gestao de Docentes",
-                "3 - Gestao de propostas\n",
+                "1 - Gestao de Alunos...",
+                "2 - Gestao de Docentes...",
+                "3 - Gestao de propostas...\n",
                 "4 - Fechar Fase",
                 "5 - Fase Seguinte\n",
                 "6 - Gravar Estado Atual",
@@ -69,7 +69,7 @@ public class UI {
 
     private void phaseTwo( PhaseTwoUI ui ) throws Exception {
         printMenu("Fase 2: Opcoes de Candidatura",
-                "1 - Gestao de Candidaturas",
+                "1 - Gestao de Candidaturas...",
                 "2 - Consultar listas de alunos",
                 "3 - Consultar listas de propostas\n",
                 "4 - Fechar Fase",
@@ -94,14 +94,15 @@ public class UI {
     private void phaseThree() throws Exception {
 
         System.out.println("\n-> Atribuicao automatica de autopropostas ou propostas de " +
-                "docentes com aluno associado...");
-        //TODO
-        System.out.println("\n-> Atribuicao automatica de propostas...");
-        //TODO
+                "docentes com aluno associado.");
+        fsm.atribuicaoAutomaticaAutoPropostas();
+
+        System.out.println("\n-> Atribuicao automatica de propostas.");
+        fsm.atribuicaoAutomaticaPropostas();
 
         printMenu("Fase 3: Atribuicao de Propostas",
-                "1 - Atribuicao de propostas",
-                "2 - Remocao de atribuicoes",
+                "1 - Atribuicao de propostas...",
+                "2 - Remocao de atribuicoes...",
                 "3 - Consultar listas de alunos",
                 "4 - Consultar listas de propostas\n",
                 "5 - Fechar Fase",
@@ -120,6 +121,26 @@ public class UI {
             case 7 -> fsm.nextState();
             case 8 -> saveStateToDisk();
             case 9 -> loadStateFromDisk();
+            case 0 -> exit = true;
+        }
+    }
+
+    private void phaseFour() throws Exception {
+        printMenu("Fase 4: Atribuicao de Propostas",
+                "1 - ",
+                "4 - Fechar Fase",
+                "5 - Fase Anterior",
+                "6 - Fase Seguinte\n",
+                "7 - Gravar Estado Atual",
+                "8 - Carregar\n",
+                "0 - Sair");
+        switch (readOption(null, 0, -1)) {
+            case 1 -> fsm.goToState( GESTAO_CANDIDATURAS );
+            case 4 -> fsm.lockCurrentState();
+            case 5 -> fsm.previousState();
+            case 6 -> fsm.nextState();
+            case 7 -> saveStateToDisk();
+            case 8 -> loadStateFromDisk();
             case 0 -> exit = true;
         }
     }
