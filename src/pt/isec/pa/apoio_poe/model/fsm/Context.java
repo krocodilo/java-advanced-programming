@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.*;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
 
@@ -12,11 +13,11 @@ import java.util.Set;
 public class Context {
 
     private IState state;
-    private DataCapsule data;
+    private final DataCapsule data;
 
     public Context() {
         data = new DataCapsule();
-        state = new PhaseOne(data);
+        state = new PhaseOne(this, data);
     }
 
     public void goToState(State s){
@@ -44,6 +45,10 @@ public class Context {
 
     public void removeAluno(Aluno toRemove) {
         state.removeAluno(toRemove);
+    }
+
+    public Aluno findAluno(long idAluno) {
+        return state.findAluno( idAluno );
     }
 
 
@@ -104,34 +109,36 @@ public class Context {
         return data.getCandidaturas();
     }
 
-    public ArrayList<Aluno> getAlunosAutoproposta(){
-        ArrayList<Aluno> autopropostos = new ArrayList<>();
-        for(Proposta p : data.getPropostas()){
-            if(p.getType() == TipoProposta.AUTOPROPOSTO){
-                for(Aluno a : data.getAlunos()){
-                    if(p.getIdAluno() == a.getId())
-                        autopropostos.add(a);
-                }
-            }
-        }
-        return autopropostos;
+
+    //============================================================
+
+    public ArrayList<Aluno> getAlunosComAutoproposta() {
+        return state.getAlunosComAutoproposta();
     }
+
 
     public ArrayList<Aluno> getAlunosComCandidatura(){
-        ArrayList<Aluno> comCandidatura = new ArrayList<>();
-        for(Candidaturas c : data.getCandidaturas()){
-            for(Aluno a : data.getAlunos()){
-                if(c.getIdAluno() == a.getId())
-                    comCandidatura.add(a);
-            }
-        }
-        return comCandidatura;
+        return state.getAlunosComCandidatura();
     }
 
+    public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura){
+        // Recebe a lista de alunos com candidatura, para ser mais facil
+        return state.getAlunosSemCandidatura( comCandidatura );
+    }
 
-    /*public ArrayList<Aluno> getAlunosSemCandidatura(){
+//    public ArrayList<Aluno> getAlunosAutoproposta(){
+//        ArrayList<Aluno> autopropostos = new ArrayList<>();
+//        for(Proposta p : data.getPropostas()){
+//            if(p.getType() == TipoProposta.AUTOPROPOSTO){
+//                for(Aluno a : data.getAlunos()){
+//                    if(p.getIdAluno() == a.getId())
+//                        autopropostos.add(a);
+//                }
+//            }
+//        }
+//        return autopropostos;
+//    }
 
-    }*/
 
     public ArrayList<Proposta> getAutopropostasAlunos(){
         ArrayList<Proposta> autopropostas = new ArrayList<>();
@@ -186,7 +193,7 @@ public class Context {
         return state.isLocked();
     }
 
-    public void lockCurrentState() {
+    public void lockCurrentState() throws Exception {
         state.lock();
     }
 }

@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.data.tipos_proposta;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 import java.util.List;
@@ -7,7 +8,8 @@ import java.util.List;
 public class AutoProposto extends Proposta {
     // T3
 
-    private long idAluno;
+    private Aluno aluno;
+    private final long idAluno;
 
     public AutoProposto(String id, String titulo, long idAluno) {
         super(id, titulo);

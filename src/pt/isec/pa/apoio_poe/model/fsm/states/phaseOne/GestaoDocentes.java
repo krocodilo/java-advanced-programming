@@ -3,14 +3,15 @@ package pt.isec.pa.apoio_poe.model.fsm.states.phaseOne;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Docente;
+import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
 
 public class GestaoDocentes extends StateAdapter {
 
-    public GestaoDocentes(DataCapsule data) {
-        super(data);
+    public GestaoDocentes(Context context, DataCapsule data) {
+        super(context, data);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class GestaoDocentes extends StateAdapter {
 
     @Override
     public IState getPreviousState() {
-        return new PhaseOne(data);
+        return new PhaseOne(context, data);
     }
 
     @Override

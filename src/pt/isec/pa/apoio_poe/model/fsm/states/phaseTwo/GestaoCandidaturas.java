@@ -2,6 +2,7 @@ package pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo;
 
 import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
+import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 
 public class GestaoCandidaturas extends StateAdapter {
 
-    public GestaoCandidaturas(DataCapsule data) {
-        super(data);
+    public GestaoCandidaturas(Context context, DataCapsule data) {
+        super(context, data);
     }
 
     @Override
@@ -23,7 +24,7 @@ public class GestaoCandidaturas extends StateAdapter {
 
     @Override
     public IState getPreviousState() {
-        return new PhaseTwo(data);
+        return new PhaseTwo(context, data);
     }
 
     @Override

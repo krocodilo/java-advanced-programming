@@ -15,7 +15,6 @@ public class Proposta implements Serializable {
     private String id;
     private String titulo;
 
-
     public Proposta(String id, String titulo) {
         this.id = id;
         this.titulo = titulo;

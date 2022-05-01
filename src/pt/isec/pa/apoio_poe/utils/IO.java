@@ -113,9 +113,18 @@ public class IO {
 
         String template = " [%d] - %s\n";
 
+        System.out.println();
+
         for(int i = 0; i < list.size(); i++)
             System.out.printf( template, i, list.get(i).toString() );
         System.out.println("\nPress ENTER to continue...");
         sin.nextLine();
+    }
+
+    public static <E> E selectOneFrom(List<E> list) {
+        showList( list );
+        return list.get(
+                readOption("Select the index from the list: ", 0, list.size())
+        );
     }
 }

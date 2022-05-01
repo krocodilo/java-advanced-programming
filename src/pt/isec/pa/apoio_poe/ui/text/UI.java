@@ -3,9 +3,10 @@ package pt.isec.pa.apoio_poe.ui.text;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 
+import java.util.List;
+
 import static pt.isec.pa.apoio_poe.model.fsm.State.*;
-import static pt.isec.pa.apoio_poe.utils.IO.printMenu;
-import static pt.isec.pa.apoio_poe.utils.IO.readOption;
+import static pt.isec.pa.apoio_poe.utils.IO.*;
 
 public class UI {
 
@@ -27,7 +28,7 @@ public class UI {
 
             switch (state){
                 case PHASE_ONE -> phaseOne();
-                case PHASE_TWO -> phaseTwo();
+                case PHASE_TWO -> phaseTwo( two );
                 case PHASE_THREE -> phaseThree();
                 //case PHASE_FOUR -> false;
                 //case PHASE_FIVE -> false;
@@ -43,7 +44,7 @@ public class UI {
 
     private void phaseOne() {
 
-        printMenu("Configuracao",
+        printMenu("Fase 1: Configuracao",
                 "1 - Gestao de Alunos",
                 "2 - Gestao de Docentes",
                 "3 - Gestao de propostas\n",
@@ -54,22 +55,40 @@ public class UI {
             case 1 -> fsm.goToState( GESTAO_ALUNOS );
             case 2 -> fsm.goToState( GESTAO_DOCENTES );
             case 3 -> fsm.goToState( GESTAO_PROPOSTAS );
-            case 4 -> fsm.lockCurrentState();
+            case 4 -> {
+                try {
+                    fsm.lockCurrentState();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
             case 5 -> fsm.nextState();
             case 0 -> exit = true;
         }
     }
 
-    private void phaseTwo() {
-        printMenu("Configuracao",
-                "1 - Gestao de Candidaturas\n",
-                "2 - Fechar Fase",
-                "3 - Fase Seguinte\n",
+    private void phaseTwo( PhaseTwoUI ui ) {
+        printMenu("Fase 2: Opcoes de Candidatura",
+                "1 - Gestao de Candidaturas",
+                "2 - Consultar listas de alunos",
+                "3 - Consultar listas de propostas\n",
+                "4 - Fechar Fase",
+                "5 - Fase Anterior",
+                "6 - Fase Seguinte\n",
                 "0 - Sair");
-        switch (readOption(null, 0, 3)) {
+        switch (readOption(null, 0, 6)) {
             case 1 -> fsm.goToState( GESTAO_CANDIDATURAS );
-            case 2 -> fsm.lockCurrentState();
-            case 3 -> fsm.nextState();
+            case 2 -> ui.showAlunosFiltered();
+            case 3 -> ui.showPropostasFiltered();
+            case 4 -> {
+                try {
+                    fsm.lockCurrentState();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            case 5 -> fsm.previousState();
+            case 6 -> fsm.nextState();
             case 0 -> exit = true;
         }
 

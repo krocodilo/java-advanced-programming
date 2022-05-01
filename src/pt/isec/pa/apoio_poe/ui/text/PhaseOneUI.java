@@ -76,7 +76,7 @@ public class PhaseOneUI {
                     "2 - Consultar",
                     "3 - Editar",
                     "4 - Eliminar\n",
-                    "\n0 - Voltar");
+                    "0 - Voltar");
             switch (readOption(null, 0, 4)) {
                 case 1 -> {
                     /*Docente tmp = new Docente(
@@ -148,12 +148,5 @@ public class PhaseOneUI {
                 }
             }
         }
-    }
-
-    private <E> E selectOneFrom(List<E> list) {
-        showList( list );
-        return list.get(
-                readOption("Select the index from the list: ", 0, list.size())
-        );
     }
 }

@@ -4,15 +4,18 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
+import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
 
 public class GestaoPropostas extends StateAdapter {
 
-    public GestaoPropostas(DataCapsule data) {
-        super(data);
+    public GestaoPropostas(Context context, DataCapsule data) {
+        super(context, data);
     }
 
     @Override
@@ -38,7 +41,15 @@ public class GestaoPropostas extends StateAdapter {
                 if(p.getType() == TipoProposta.AUTOPROPOSTO)
                     if( ((AutoProposto) p).getIdAluno() == tmp.getIdAluno() )
                         throw new Exception("Student has already submitted a Proposal: " + tmp);
+
+            data.getAutoPropostos().add( (AutoProposto) newProposta );
         }
+        else if( newProposta.getType() == TipoProposta.ESTAGIO )
+            data.getEstagios().add( (Estagio) newProposta );
+        else
+            data.getProjetos().add( (Projeto) newProposta );
+
+        // TODO: remove this after checking its nt necessary:
         data.getPropostas().add( newProposta );
     }
 
@@ -55,7 +66,7 @@ public class GestaoPropostas extends StateAdapter {
 
     @Override
     public IState getPreviousState() {
-        return new PhaseOne(data);
+        return new PhaseOne(context, data);
     }
 
     @Override

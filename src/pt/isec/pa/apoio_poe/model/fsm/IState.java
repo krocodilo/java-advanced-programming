@@ -12,6 +12,7 @@ public interface IState {
     //Common
     IState getNextState();
     IState getPreviousState();
+    Aluno findAluno(long idAluno);
 
     // Fase 1
     IState goToState(State state);
@@ -36,10 +37,12 @@ public interface IState {
 
     // GESTAO CANDIDATURAS
     void addCandidatura(Candidaturas newCandidatura);
-
+    ArrayList<Aluno> getAlunosComAutoproposta();
+    ArrayList<Aluno> getAlunosComCandidatura();
+    ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura);
 
 
     State getState();
     boolean isLocked();
-    void lock();
+    void lock() throws Exception;
 }

@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm.states.phaseOne;
 
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
+import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
@@ -8,10 +9,8 @@ import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.PhaseTwo;
 
 public class PhaseOne extends StateAdapter {
 
-    private boolean isLocked = false;
-
-    public PhaseOne(DataCapsule data) {
-        super(data);
+    public PhaseOne(Context context, DataCapsule data) {
+        super(context, data);
     }
 
     @Override
@@ -21,25 +20,23 @@ public class PhaseOne extends StateAdapter {
 
     @Override
     public IState getNextState() {
-        //TODO : PHASE2 só se nº alunos > propostas
-            //TODO -> isto acho que é so quando se fecha a fase
-        if(data.getAlunos().size() > data.getPropostas().size())
-            return new PhaseTwo(data);
-        return this;
+        return new PhaseTwo(context, data);
     }
 
     @Override
     public boolean isLocked() {
-        return isLocked;
+        return data.phaseOneClosed;
     }
 
     @Override
-    public void lock() {
+    public void lock() throws Exception {
 
 
         //TODO verificacoes
+        if(data.getAlunos().size() > data.getPropostas().size())
+            throw new Exception("Nao existem propostas suficientes!");
 
 
-        isLocked = true;
+        data.phaseOneClosed = true;
     }
 }

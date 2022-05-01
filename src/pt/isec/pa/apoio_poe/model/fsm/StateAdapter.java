@@ -8,9 +8,11 @@ import java.util.ArrayList;
 
 public class StateAdapter implements IState {
 
+    protected Context context;
     protected DataCapsule data;
 
-    protected StateAdapter(DataCapsule data) {
+    protected StateAdapter(Context context, DataCapsule data) {
+        this.context = context;
         this.data = data;
     }
 
@@ -24,12 +26,21 @@ public class StateAdapter implements IState {
         return this;
     }
 
+    @Override
+    public Aluno findAluno(long idAluno) {
+        for( Aluno a : data.getAlunos() )
+            if( a.getId() == idAluno )
+                return a;
+        return null;
+    }
+
+    @Override
     public IState goToState(State state) {
         return switch (state) {
-            case GESTAO_ALUNOS -> new GestaoAlunos(data);
-            case GESTAO_DOCENTES -> new GestaoDocentes(data);
-            case GESTAO_PROPOSTAS -> new GestaoPropostas(data);
-            case GESTAO_CANDIDATURAS -> new GestaoCandidaturas(data);
+            case GESTAO_ALUNOS -> new GestaoAlunos(context, data);
+            case GESTAO_DOCENTES -> new GestaoDocentes(context, data);
+            case GESTAO_PROPOSTAS -> new GestaoPropostas(context, data);
+            case GESTAO_CANDIDATURAS -> new GestaoCandidaturas(context, data);
             default -> this;
         };
     }
@@ -91,6 +102,20 @@ public class StateAdapter implements IState {
     @Override
     public void addCandidatura(Candidaturas newCandidatura){}
 
+    @Override
+    public ArrayList<Aluno> getAlunosComAutoproposta() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Aluno> getAlunosComCandidatura() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura) {
+        return null;
+    }
 
     @Override
     public State getState() {
@@ -103,5 +128,5 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public void lock() { }
+    public void lock() throws Exception { }
 }
