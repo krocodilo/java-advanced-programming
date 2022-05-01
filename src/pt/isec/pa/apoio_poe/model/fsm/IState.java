@@ -13,7 +13,6 @@ public interface IState {
     //Common
     IState getNextState();
     IState getPreviousState();
-    Aluno findAluno(long idAluno);
 
     // Fase 1
     IState goToState(State state);

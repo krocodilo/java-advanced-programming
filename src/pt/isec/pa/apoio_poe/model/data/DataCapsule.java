@@ -3,9 +3,12 @@ package pt.isec.pa.apoio_poe.model.data;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DataCapsule implements Serializable {
 
@@ -59,5 +62,77 @@ public class DataCapsule implements Serializable {
 
     public ArrayList<Candidaturas> getCandidaturas() {
         return candidaturas;
+    }
+
+    public ArrayList<Aluno> getAlunosComAutoproposta() {
+        ArrayList<Aluno> autopropostos = new ArrayList<>();
+
+        for(AutoProposto prop : autoPropostos){
+            Aluno a = findAluno( prop.getIdAluno() );
+            if( a != null )
+                autopropostos.add( a );
+        }
+
+        return autopropostos;
+    }
+
+    public ArrayList<Aluno> getAlunosComCandidatura(){
+        ArrayList<Aluno> comCandidatura = new ArrayList<>();
+        for(Candidaturas c : candidaturas){
+            Aluno a = findAluno( c.getIdAluno() );
+            if( a != null )
+                comCandidatura.add( a );
+        }
+        return comCandidatura;
+    }
+
+    public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura, ArrayList<Aluno> comAutoproposta){
+        // Recebe a lista de alunos com candidatura e com autoproposta, para ser mais facil
+
+        ArrayList<Aluno> semCandidatura = new ArrayList<>();
+        for(Aluno a : alunos)
+            if( ! comCandidatura.contains( a ) && ! comAutoproposta.contains(a))
+                semCandidatura.add( a );
+        return semCandidatura;
+    }
+
+    public ArrayList<Proposta> getAutopropostasAlunos() {
+        ArrayList<Proposta> autopropostas = new ArrayList<>();
+        for(Proposta p : propostas)
+            if(p.getType() == TipoProposta.AUTOPROPOSTO)
+                autopropostas.add(p);
+        return autopropostas;
+    }
+
+    public ArrayList<Proposta> getPropostasDocentes() {
+        ArrayList<Proposta> pdocentes = new ArrayList<>();
+        for(Proposta p : propostas)
+            if(p.getType() == TipoProposta.PROJETO)
+                pdocentes.add(p);
+        return pdocentes;
+    }
+
+    public Set<Proposta> getPropostasComCandidaturas() {
+        Set<Proposta> pcandidatura = new HashSet<>();
+        for (Candidaturas c : candidaturas)
+            for(Proposta p : propostas)
+                if( c.getHashCodePropostas().contains(p.hashCode()) )
+                    pcandidatura.add(p);
+        return pcandidatura;
+    }
+
+    public ArrayList<Proposta> getPropostasSemCandidaturas() {
+        ArrayList<Proposta> props = new ArrayList<>();
+        for (Proposta p : getPropostasComCandidaturas())
+            if( ! propostas.contains(p) )
+                props.add( p );
+        return props;
+    }
+
+    public Aluno findAluno(long idAluno) {
+        for( Aluno a : alunos )
+            if( a.getId() == idAluno )
+                return a;
+        return null;
     }
 }

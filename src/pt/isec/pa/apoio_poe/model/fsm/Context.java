@@ -47,10 +47,6 @@ public class Context {
         state.removeAluno(toRemove);
     }
 
-    public Aluno findAluno(long idAluno) {
-        return state.findAluno( idAluno );
-    }
-
 
     //======GESTAO DOCENTES===========================
     public void addDocente(Docente newDocente) {

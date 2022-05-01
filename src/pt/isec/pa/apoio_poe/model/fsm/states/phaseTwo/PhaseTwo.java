@@ -27,74 +27,39 @@ public class PhaseTwo extends StateAdapter {
 
     @Override
     public ArrayList<Aluno> getAlunosComAutoproposta() {
-        ArrayList<Aluno> autopropostos = new ArrayList<>();
-
-        for(AutoProposto prop : data.getAutoPropostos()){
-            Aluno a = findAluno( prop.getIdAluno() );
-            if( a != null )
-                autopropostos.add( a );
-        }
-
-        return autopropostos;
+        return data.getAlunosComAutoproposta();
     }
 
     @Override
     public ArrayList<Aluno> getAlunosComCandidatura(){
-        ArrayList<Aluno> comCandidatura = new ArrayList<>();
-        for(Candidaturas c : data.getCandidaturas()){
-            Aluno a = findAluno( c.getIdAluno() );
-            if( a != null )
-                comCandidatura.add( a );
-        }
-        return comCandidatura;
+        return data.getAlunosComCandidatura();
     }
 
     @Override
     public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura, ArrayList<Aluno> comAutoproposta){
         // Recebe a lista de alunos com candidatura e com autoproposta, para ser mais facil
 
-        ArrayList<Aluno> semCandidatura = new ArrayList<>();
-        for(Aluno a : data.getAlunos())
-            if( ! comCandidatura.contains( a ) && ! comAutoproposta.contains(a))
-                semCandidatura.add( a );
-        return semCandidatura;
+        return data.getAlunosSemCandidatura(comCandidatura,comAutoproposta);
     }
 
     @Override
     public ArrayList<Proposta> getAutopropostasAlunos() {
-        ArrayList<Proposta> autopropostas = new ArrayList<>();
-        for(Proposta p : data.getPropostas())
-            if(p.getType() == TipoProposta.AUTOPROPOSTO)
-                autopropostas.add(p);
-        return autopropostas;
+        return data.getAutopropostasAlunos();
     }
 
     @Override
     public ArrayList<Proposta> getPropostasDocentes() {
-        ArrayList<Proposta> pdocentes = new ArrayList<>();
-        for(Proposta p : data.getPropostas())
-            if(p.getType() == TipoProposta.PROJETO)
-                pdocentes.add(p);
-        return pdocentes;
+        return data.getPropostasDocentes();
     }
 
     @Override
     public Set<Proposta> getPropostasComCandidaturas() {
-        Set<Proposta> pcandidatura = new HashSet<>();
-        for (Candidaturas c : data.getCandidaturas())
-            for(Proposta p : data.getPropostas())
-                if( c.getHashCodePropostas().contains(p.hashCode()) )
-                    pcandidatura.add(p);
-        return pcandidatura;
+        return data.getPropostasComCandidaturas();
     }
 
     @Override
     public ArrayList<Proposta> getPropostasSemCandidaturas() {
-        ArrayList<Proposta> props = new ArrayList<>();
-        for (Proposta p : getPropostasComCandidaturas())
-            if( ! data.getPropostas().contains(p) )
-                props.add( p );
-        return props;
+        return data.getPropostasSemCandidaturas();
     }
 
 

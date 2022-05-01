@@ -28,14 +28,6 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public Aluno findAluno(long idAluno) {
-        for( Aluno a : data.getAlunos() )
-            if( a.getId() == idAluno )
-                return a;
-        return null;
-    }
-
-    @Override
     public IState goToState(State state) {
         return switch (state) {
             case GESTAO_ALUNOS -> new GestaoAlunos(context, data);
