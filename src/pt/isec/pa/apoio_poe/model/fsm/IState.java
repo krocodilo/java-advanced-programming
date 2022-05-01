@@ -6,6 +6,7 @@ import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public interface IState {
 
@@ -39,7 +40,11 @@ public interface IState {
     void addCandidatura(Candidaturas newCandidatura);
     ArrayList<Aluno> getAlunosComAutoproposta();
     ArrayList<Aluno> getAlunosComCandidatura();
-    ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura);
+    ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura,ArrayList<Aluno> comAutoproposta);
+    ArrayList<Proposta> getAutopropostasAlunos();
+    ArrayList<Proposta> getPropostasDocentes();
+    Set<Proposta> getPropostasComCandidaturas();
+    ArrayList<Proposta> getPropostasSemCandidaturas();
 
 
     State getState();

@@ -60,7 +60,8 @@ public class PhaseTwoUI {
     public void showAlunosFiltered() {
 
         System.out.println("\n\n\t\t Alunos Com Autoproposta:");
-        showList( fsm.getAlunosComAutoproposta() );
+        ArrayList<Aluno> alunosAutoproposta = fsm.getAlunosComAutoproposta();
+        showList( alunosAutoproposta);
 
         System.out.println("\n\n\t Alunos Com Candidatura Registada:");
         ArrayList<Aluno> alunosComCandidatura = fsm.getAlunosComCandidatura();
@@ -68,7 +69,7 @@ public class PhaseTwoUI {
 
         System.out.println("\n\n\t\t Alunos Sem Candidatura Registada:");
         showList(
-                fsm.getAlunosSemCandidatura( alunosComCandidatura )
+                fsm.getAlunosSemCandidatura( alunosComCandidatura , alunosAutoproposta)
         );
     }
 

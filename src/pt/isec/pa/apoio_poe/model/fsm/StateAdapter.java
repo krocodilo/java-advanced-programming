@@ -5,6 +5,7 @@ import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.*;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.GestaoCandidaturas;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class StateAdapter implements IState {
 
@@ -113,7 +114,27 @@ public class StateAdapter implements IState {
     }
 
     @Override
-    public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura) {
+    public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura, ArrayList<Aluno> comAutoproposta) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Proposta> getAutopropostasAlunos() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Proposta> getPropostasDocentes() {
+        return null;
+    }
+
+    @Override
+    public Set<Proposta> getPropostasComCandidaturas() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Proposta> getPropostasSemCandidaturas() {
         return null;
     }
 

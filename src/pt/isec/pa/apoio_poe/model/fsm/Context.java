@@ -94,6 +94,11 @@ public class Context {
 
     }
 
+    public void removeProposta(Proposta toRemove) {
+
+    }
+
+
     //=====GESTAO CANDIDATURAS==========================
 
     public void addCandidatura(Candidaturas newCandidatura){
@@ -121,49 +126,28 @@ public class Context {
         return state.getAlunosComCandidatura();
     }
 
-    public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura){
+    public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura,ArrayList<Aluno> comAutoproposta){
         // Recebe a lista de alunos com candidatura, para ser mais facil
-        return state.getAlunosSemCandidatura( comCandidatura );
+        return state.getAlunosSemCandidatura( comCandidatura, comAutoproposta );
     }
 
     public ArrayList<Proposta> getAutopropostasAlunos(){
-        ArrayList<Proposta> autopropostas = new ArrayList<>();
-        for(Proposta p : data.getPropostas())
-            if(p.getType() == TipoProposta.AUTOPROPOSTO)
-                autopropostas.add(p);
-        return autopropostas;
+        return state.getAutopropostasAlunos();
     }
 
     public ArrayList<Proposta> getPropostasDocentes(){
-        ArrayList<Proposta> pdocentes = new ArrayList<>();
-        for(Proposta p : data.getPropostas())
-            if(p.getType() == TipoProposta.PROJETO)
-                pdocentes.add(p);
-        return pdocentes;
+        return state.getPropostasDocentes();
     }
 
     public Set<Proposta> getPropostasComCandidaturas(){
-        Set<Proposta> pcandidatura = new HashSet<>();
-        for (Candidaturas c : data.getCandidaturas())
-            for(Proposta p : data.getPropostas())
-                if( c.getHashCodePropostas().contains(p.hashCode()) )
-                    pcandidatura.add(p);
-        return pcandidatura;
+        return state.getPropostasComCandidaturas();
     }
 
     public ArrayList<Proposta> getPropostasSemCandidaturas(){
-        ArrayList<Proposta> props = new ArrayList<>();
-        for (Proposta p : getPropostasComCandidaturas())
-            if( ! data.getPropostas().contains(p) )
-                props.add( p );
-        return props;
+        return state.getPropostasSemCandidaturas();
     }
 
 
-    
-    public void removeProposta(Proposta toRemove) {
-
-    }
 
     public void nextState() {
         state = state.getNextState();
