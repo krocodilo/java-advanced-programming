@@ -7,6 +7,7 @@ import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileUtils {
@@ -201,6 +202,7 @@ public class FileUtils {
         } catch (FileNotFoundException e) {
             throw new Exception("Unable to open file '" + filename + "'.");
         } catch (IOException e) {
+            e.printStackTrace();
             throw new Exception("Error saving data.");
         } finally {
             if(out != null)

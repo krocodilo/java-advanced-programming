@@ -11,13 +11,13 @@ public class Candidaturas implements Serializable {
     private static final long SerialVersionUID = 1L;
 
     private long idAluno;
-    private List<String> idsPropostas;
+    private ArrayList<String> idsPropostas;
 
     Proposta proposta;
 
     public Candidaturas(long idAluno, List<String> idsPropostas) {
         this.idAluno = idAluno;
-        this.idsPropostas = idsPropostas;
+        this.idsPropostas = new ArrayList<>( idsPropostas );
     }
 
     public long getIdAluno() {

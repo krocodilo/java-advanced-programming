@@ -38,7 +38,7 @@ public class DataCapsule implements Serializable {
     public boolean phaseFourClosed = false;
 
     // For when saving and reading this data from a file
-    private State lastState = null;
+    private State lastState = State.PHASE_ONE;  // default state
 
     public DataCapsule() {
     }

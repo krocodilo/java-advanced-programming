@@ -2,7 +2,9 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.*;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseThree.PhaseThree;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.GestaoCandidaturas;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.PhaseTwo;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -30,6 +32,10 @@ public class StateAdapter implements IState {
     @Override
     public IState goToState(State state) {
         return switch (state) {
+            case PHASE_ONE -> new PhaseOne(context, data);
+            case PHASE_TWO -> new PhaseTwo(context, data);
+            case PHASE_THREE -> new PhaseThree(context, data);
+            //TODO o q falta
             case GESTAO_ALUNOS -> new GestaoAlunos(context, data);
             case GESTAO_DOCENTES -> new GestaoDocentes(context, data);
             case GESTAO_PROPOSTAS -> new GestaoPropostas(context, data);
