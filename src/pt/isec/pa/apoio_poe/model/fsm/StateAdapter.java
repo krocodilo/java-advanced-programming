@@ -1,7 +1,9 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.*;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseFive.PhaseFive;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseFour.GestaoOrientadores;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseFour.PhaseFour;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.*;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseThree.PhaseThree;
@@ -43,6 +45,7 @@ public class StateAdapter implements IState {
             case GESTAO_DOCENTES -> new GestaoDocentes(context, data);
             case GESTAO_PROPOSTAS -> new GestaoPropostas(context, data);
             case GESTAO_CANDIDATURAS -> new GestaoCandidaturas(context, data);
+            case GESTAO_ORIENTADORES -> new GestaoOrientadores(context, data);
             default -> this;
         };
     }
@@ -178,14 +181,39 @@ public class StateAdapter implements IState {
 
     //PhaseFour
     @Override
-    public void AtribuicaoOrientadoresProponentes(){}
+    public void atribuicaoOrientadoresProponentes(){}
 
     @Override
     public void AtribuicaoOrientadorProposta(Docente d,Proposta p){}
 
     @Override
-    public ArrayList<Docente> ConsultaOrientadores(){ return null; }
+    public ArrayList<Docente> getOrientadores(){ return null; }
 
+    @Override
+    public ArrayList<Aluno> getAlunosComPropostaComOrientador(){
+        return null;
+    }
+
+    @Override
+    public ArrayList<Aluno> getAlunosComPropostaSemOrientador() {
+        return null;
+    }
+
+    @Override
+    public String getEstatisticasOrientadores() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Projeto> getProjetos() {
+        return null;
+    }
+
+    // Phase 5
+    @Override
+    public ArrayList<Aluno> getAlunosSemPropostasComCandidaturas() {
+        return null;
+    }
 
     @Override
     public State getState() {

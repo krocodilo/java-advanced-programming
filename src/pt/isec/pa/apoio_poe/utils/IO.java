@@ -40,36 +40,36 @@ public class IO {
     }
 
     //print the prompt to the  screen and read a long number bigger than zero
-    public static long readLong(String prompt){
-
-        long num;
-        while( true ){
-            try{
-                System.out.print(prompt + ":  ");
-                num = Long.parseLong( sin.nextLine());
-                if(num > 0)
-                    break;
-            } catch (NumberFormatException ignored) { }
-            System.out.println("\nYou have not entered a valid number!");
-        }
-        return num;
-    }
+//    public static long readLong(String prompt){
+//
+//        long num;
+//        while( true ){
+//            try{
+//                System.out.print(prompt + ":  ");
+//                num = Long.parseLong( sin.nextLine());
+//                if(num > 0)
+//                    break;
+//            } catch (NumberFormatException ignored) { }
+//            System.out.println("\nYou have not entered a valid number!");
+//        }
+//        return num;
+//    }
 
     //print the prompt to the  screen and read a long number bigger than zero
-    public static double readDouble(String prompt){
-
-        double num;
-        while( true ){
-            try{
-                System.out.print(prompt + ":  ");
-                num = Double.parseDouble( sin.nextLine() );
-                if(num > 0)
-                    break;
-            } catch (NumberFormatException ignored) { }
-            System.out.println("\nYou have not entered a valid number!");
-        }
-        return num;
-    }
+//    public static double readDouble(String prompt){
+//
+//        double num;
+//        while( true ){
+//            try{
+//                System.out.print(prompt + ":  ");
+//                num = Double.parseDouble( sin.nextLine() );
+//                if(num > 0)
+//                    break;
+//            } catch (NumberFormatException ignored) { }
+//            System.out.println("\nYou have not entered a valid number!");
+//        }
+//        return num;
+//    }
 
     //displays the text and asks for the user to insert a string with length between min and max
     public static String prompt(String text){

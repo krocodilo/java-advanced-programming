@@ -152,21 +152,17 @@ public class DataCapsule implements Serializable {
         return props;
     }
 
-    public ArrayList<Aluno> getAtribuicoesAlunosLista(){
-        ArrayList<Aluno> alunos = new ArrayList<>();
-        for( Aluno a : atribuicoesAlunos.keySet() ){
-            alunos.add(a);
-        }
-        return alunos;
+    public ArrayList<Aluno> getAlunosComPropostaAtribuida(){
+        return new ArrayList<>( atribuicoesAlunos.keySet() );
     }
 
-    public ArrayList<Aluno> getSemAtribuicoesAlunosLista(){
-        ArrayList<Aluno> alunos = new ArrayList<>();
+    public ArrayList<Aluno> getAlunosSemPropostaAtribuidas(){
+        ArrayList<Aluno> stud = new ArrayList<>();
         for( Aluno a : alunos ){
-            if( ! atribuicoesAlunos.containsKey(a))
-                alunos.add(a);
+            if( ! atribuicoesAlunos.containsKey(a) )
+                stud.add(a);
         }
-        return alunos;
+        return stud;
     }
 
     public ArrayList<Proposta> getPropostasDisponiveis(){
@@ -179,11 +175,58 @@ public class DataCapsule implements Serializable {
     }
 
     public ArrayList<Proposta> getPropostasAtribuidas(){
-        ArrayList<Proposta> propostasAtribuidas = new ArrayList<>();
-        for ( Proposta p : atribuicoesAlunos.values()){
-            propostasAtribuidas.add(p);
+        return new ArrayList<>( atribuicoesAlunos.values() );
+    }
+
+    public ArrayList<Aluno> getAlunosSemPropostasComCandidaturas() {
+        HashSet<Aluno> alunos = new HashSet<>();    //does not allow dupplicates
+        ArrayList<Aluno> semProposta = getAlunosSemPropostaAtribuidas();
+        for(Aluno a : getAlunosComCandidatura() )
+            if( semProposta.contains(a) )
+                alunos.add( a );
+        return new ArrayList<>( alunos );
+    }
+
+    public ArrayList<Docente> getOrientadores() {
+        ArrayList<Docente> orientadores = new ArrayList<>();
+        for(Docente d : docentes){
+            if(d.isOrientador())
+                orientadores.add(d);
         }
-        return propostasAtribuidas;
+        return orientadores;
+    }
+
+    public String getEstatisticasOrientadores() {
+        StringBuilder str = new StringBuilder();
+        ArrayList<Docente> orientadores = getOrientadores();
+        ArrayList<Proposta> props = getPropostasAtribuidas();
+        int media = 0, min = props.size(), max = 0;
+        ArrayList<Integer> countArray = new ArrayList<>();
+
+        for(Docente ori : orientadores){
+            int count = 0;
+            for(Proposta p : props){
+                if( ori == p.getOrientador() ){
+                    str.append( ori.getName() ).append(" -> ").append( p.getId() ).append(":  ")
+                            .append( p.getTitulo() ).append("\n");
+                    count++;
+                }
+            }
+            countArray.add( count );
+            media += count;
+            if(count < min)
+                min = count;
+            if(count > max)
+                max = count;
+        }
+        media = media / orientadores.size();
+        str.append("\n").append("\t\tNumero de orientacoes por Docente:");
+        for(int i = 0; i < docentes.size(); i++)
+            str.append( orientadores.get(i).getName() ).append(" -> ").append( countArray.get(i) );
+
+        str.append("\n\n").append("Média: ").append(media)
+                .append("\tMin: ").append(min).append("\tMax: ").append(max);
+        return str.toString();
     }
 
     public Aluno findAluno(long idAluno) {
@@ -195,7 +238,7 @@ public class DataCapsule implements Serializable {
 
     public Proposta findProposta(String idProposta) {
         for( Proposta p : propostas )
-            if( p.getId() == idProposta )
+            if( idProposta.equals( p.getId() ) )
                 return p;
         return null;
     }

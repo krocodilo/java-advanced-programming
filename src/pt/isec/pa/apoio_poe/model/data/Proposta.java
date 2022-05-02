@@ -67,6 +67,10 @@ public class Proposta implements Serializable {
         return "";
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
     @Override
     public int hashCode() {
         return id.hashCode();

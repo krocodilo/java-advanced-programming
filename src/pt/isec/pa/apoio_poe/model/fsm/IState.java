@@ -4,6 +4,7 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -45,7 +46,7 @@ public interface IState {
     Set<Proposta> getPropostasComCandidaturas();
     ArrayList<Proposta> getPropostasSemCandidaturas();
 
-    //ATRIBUICAO PROPOSTAS
+    // Phase 3
     ArrayList<Aluno> getAlunosComPropostaAtribuida();
     ArrayList<Aluno> getAlunosSemPropostaAtribuida();
     ArrayList<Proposta> getPropostasDisponiveis();
@@ -57,10 +58,18 @@ public interface IState {
     void RemoverTodasAtribuicoes();
 
     //PHASE4
-    void AtribuicaoOrientadoresProponentes();
+    void atribuicaoOrientadoresProponentes();
     void AtribuicaoOrientadorProposta(Docente d,Proposta p);
-    ArrayList<Docente> ConsultaOrientadores();
+    ArrayList<Docente> getOrientadores();
+    ArrayList<Aluno> getAlunosComPropostaComOrientador();
+    ArrayList<Aluno> getAlunosComPropostaSemOrientador();
+    String getEstatisticasOrientadores();
 
+    //Gestao Orientadores
+    ArrayList<Projeto> getProjetos();
+
+    //PHASE5
+    ArrayList<Aluno> getAlunosSemPropostasComCandidaturas();
 
     State getState();
     boolean isLocked();

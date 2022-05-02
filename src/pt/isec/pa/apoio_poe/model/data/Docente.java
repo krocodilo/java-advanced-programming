@@ -49,6 +49,10 @@ public class Docente implements Serializable {
         return email;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(getClass() != obj.getClass())

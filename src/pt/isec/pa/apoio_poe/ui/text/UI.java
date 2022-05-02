@@ -22,6 +22,7 @@ public class UI {
         PhaseOneUI one = new PhaseOneUI(fsm);
         PhaseTwoUI two = new PhaseTwoUI(fsm);
         PhaseThreeUI three = new PhaseThreeUI(fsm);
+        PhaseFourUI four = new PhaseFourUI(fsm);
 
         while ( !exit ) {
 
@@ -32,13 +33,13 @@ public class UI {
                     case PHASE_ONE -> phaseOne();
                     case PHASE_TWO -> phaseTwo(two);
                     case PHASE_THREE -> phaseThree(three);
-                    //case PHASE_FOUR -> false;
-                    //case PHASE_FIVE -> false;
+                    case PHASE_FOUR -> phaseFour();
+                    case PHASE_FIVE -> phaseFive();
                     case GESTAO_ALUNOS -> one.gestaoAlunos();
                     case GESTAO_DOCENTES -> one.gestaoDocentes();
                     case GESTAO_PROPOSTAS -> one.gestaoPropostas();
                     case GESTAO_CANDIDATURAS -> two.gestaoCandidaturas();
-                    //case GESTAO_ORIENTADORES -> false;
+                    case GESTAO_ORIENTADORES -> four.gestaoOrientadores();
                 }
             } catch (Exception e){
                 System.err.println("\n" + e.getMessage() + "\n");
@@ -141,21 +142,54 @@ public class UI {
     }
 
     private void phaseFour() throws Exception {
-        printMenu("Fase 4: Atribuicao de Propostas",
-                "1 - ",
-                "4 - Fechar Fase",
-                "5 - Fase Anterior",
-                "6 - Fase Seguinte\n",
+
+        System.out.println("\n-> Associacao automatica dos docentes orientadores...");
+        fsm.atribuicaoOrientadoresProponentes();
+
+        printMenu("Fase 4: Atribuicao de Orientadores",
+                "1 - Gestao de Orientadores...",
+                "2 - Listar Alunos com Proposta e Orientador",
+                "3 - Listar Alunos com Proposta e sem Orientador",
+                "4 - Consultar Estatisticas dos Orientadores\n",
+                "5 - Fechar Fase",
+                "6 - Fase Anterior\n",
                 "7 - Gravar Estado Atual",
                 "8 - Carregar\n",
                 "0 - Sair");
-        switch (readOption(null, 0, -1)) {
-            case 1 -> fsm.goToState( GESTAO_CANDIDATURAS );
-            case 4 -> fsm.lockCurrentState();
-            case 5 -> fsm.previousState();
-            case 6 -> fsm.nextState();
+        switch (readOption(null, 0, 8)) {
+            case 1 -> fsm.goToState(GESTAO_ORIENTADORES);
+            case 2 -> showList( fsm.getAlunosComPropostaComOrientador() );
+            case 3 -> showList( fsm.getAlunosComPropostaSemOrientador() );
+            case 4 -> System.out.println( fsm.getEstatisticasOrientadores() );
+            case 5 -> {
+                fsm.lockCurrentState();
+                fsm.nextState();
+            }
+            case 6 -> fsm.previousState();
             case 7 -> saveStateToDisk();
             case 8 -> loadStateFromDisk();
+            case 0 -> exit = true;
+        }
+    }
+
+    private void phaseFive() throws Exception {
+        printMenu("Fase 5: Consulta",
+                "1 - Estudantes com Propostas Atribuidas",
+                "2 - Estudantes sem proposta e com opcoes de candidatura",
+                "3 - Propostas Disponiveis",
+                "4 - Propostas Atribuidas",
+                "5 - Consultar Estatisticas dos Orientadores\n",
+                "6 - Gravar Estado Atual",
+                "7 - Carregar\n",
+                "0 - Sair");
+        switch (readOption(null, 0, 7)) {
+            case 1 -> showList( fsm.getAlunosComPropostaAtribuida() );
+            case 2 -> showList( fsm.getAlunosSemPropostasComCandidaturas() );
+            case 3 -> showList( fsm.getPropostasDisponiveis() );
+            case 4 -> showList( fsm.getPropostasAtribuidas() );
+            case 5 -> System.out.println( fsm.getEstatisticasOrientadores() );
+            case 6 -> saveStateToDisk();
+            case 7 -> loadStateFromDisk();
             case 0 -> exit = true;
         }
     }

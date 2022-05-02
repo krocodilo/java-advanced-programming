@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.*;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
 import pt.isec.pa.apoio_poe.utils.FileUtils;
 
@@ -29,7 +30,7 @@ public class Context {
     }
 
     public String addAlunos(List<Aluno> alunos) {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         for(Aluno a : alunos) {
             try {
                 addAluno( a );
@@ -44,9 +45,9 @@ public class Context {
         return data.getAlunos();
     }
 
-    public void editAluno(Aluno newVersionAluno) throws Exception {
-        state.editAluno(newVersionAluno);
-    }
+//    public void editAluno(Aluno newVersionAluno) throws Exception {
+//        state.editAluno(newVersionAluno);
+//    }
 
     public void removeAluno(Aluno toRemove) throws Exception {
         state.removeAluno(toRemove);
@@ -74,9 +75,9 @@ public class Context {
         return data.getDocentes();
     }
 
-    public void editDocente(Docente newVersionDocente) throws Exception {
-        state.editDocente(newVersionDocente);
-    }
+//    public void editDocente(Docente newVersionDocente) throws Exception {
+//        state.editDocente(newVersionDocente);
+//    }
     
     public void removeDocente(Docente toRemove) throws Exception {
         state.removeDocente(toRemove);
@@ -98,12 +99,12 @@ public class Context {
     }
 
     
-    public void editProposta(Proposta newVersionProposta) {
+//    public void editProposta(Proposta newVersionProposta) {
+//
+//    }
 
-    }
-
-    public void removeProposta(Proposta toRemove) {
-
+    public void removeProposta(Proposta toRemove) throws Exception {
+        state.removeProposta( toRemove );
     }
 
 
@@ -196,12 +197,32 @@ public class Context {
 
 
     //PHASEFOUR
-    public void AtribuicaoOrientadoresProponentes(){ state.AtribuicaoOrientadoresProponentes(); }
+    public void atribuicaoOrientadoresProponentes(){ state.atribuicaoOrientadoresProponentes(); }
 
-    public void AtribuicaoOrientadorProposta(Docente d,Proposta p){ state.AtribuicaoOrientadorProposta(d,p);}
+    public void atribuicaoOrientadorProposta(Docente d,Proposta p){ state.AtribuicaoOrientadorProposta(d,p);}
 
-    public ArrayList<Docente> ConsultaOrientadores(){ return state.ConsultaOrientadores(); }
+    public ArrayList<Docente> getOrientadores(){ return state.getOrientadores(); }
 
+    public ArrayList<Aluno> getAlunosComPropostaComOrientador() {
+        return state.getAlunosComPropostaComOrientador();
+    }
+
+    public ArrayList<Aluno> getAlunosComPropostaSemOrientador() {
+        return state.getAlunosComPropostaSemOrientador();
+    }
+
+    public String getEstatisticasOrientadores() {
+        return state.getEstatisticasOrientadores();
+    }
+
+    public ArrayList<Projeto> getProjetos() {
+        return state.getProjetos();
+    }
+
+    //Phase 5
+    public ArrayList<Aluno> getAlunosSemPropostasComCandidaturas() {
+        return state.getAlunosSemPropostasComCandidaturas();
+    }
 
     public void nextState() {
         state = state.getNextState();
@@ -213,10 +234,6 @@ public class Context {
 
     public State getState(){
         return state.getState();
-    }
-
-    public boolean isLocked() {
-        return state.isLocked();
     }
 
     public boolean phaseTwoLocked(){

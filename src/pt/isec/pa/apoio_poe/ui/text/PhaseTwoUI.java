@@ -3,17 +3,12 @@ package pt.isec.pa.apoio_poe.ui.text;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.utils.FileUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static pt.isec.pa.apoio_poe.utils.IO.*;
 
@@ -40,15 +35,9 @@ public class PhaseTwoUI {
                 );
                 fsm.addCandidaturas(candidaturas);
             }
-            case 2 ->{
-                showList( fsm.getCandidaturas() );
-            }
-            case 3 -> {
-                System.out.println("Not implemented yet!");
-            }
-            case 4 -> {
-                System.out.println("Not implemented yet!!");
-            }
+            case 2 -> showList( fsm.getCandidaturas() );
+            case 3 -> System.out.println("Not implemented yet!");
+            case 4 -> System.out.println("Not implemented yet!!");
             case 0 -> fsm.previousState();
         }
     }

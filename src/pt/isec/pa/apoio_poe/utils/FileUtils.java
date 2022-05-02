@@ -7,7 +7,6 @@ import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FileUtils {
@@ -157,19 +156,19 @@ public class FileUtils {
         return new BufferedReader( new FileReader( filename ) );
     }
 
-    public static void writeLinesFile(String filename, List<String> lines) throws Exception {
-
-        try ( BufferedWriter out = openFileWriting(filename) ) {
-            for(String line : lines)
-                out.write(line + "\n");
-        } catch (FileNotFoundException e) {
-            throw new Exception("Unable to open file '" + filename + "'.");
-        }
-    }
-
-    private static BufferedWriter openFileWriting(String filename) throws IOException {
-        return new BufferedWriter( new FileWriter( filename ) );
-    }
+//    public static void writeLinesFile(String filename, List<String> lines) throws Exception {
+//
+//        try ( BufferedWriter out = openFileWriting(filename) ) {
+//            for(String line : lines)
+//                out.write(line + "\n");
+//        } catch (FileNotFoundException e) {
+//            throw new Exception("Unable to open file '" + filename + "'.");
+//        }
+//    }
+//
+//    private static BufferedWriter openFileWriting(String filename) throws IOException {
+//        return new BufferedWriter( new FileWriter( filename ) );
+//    }
 
     public static DataCapsule loadDataFromDisk(String filename) throws Exception {
         DataCapsule data;
