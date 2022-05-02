@@ -26,6 +26,11 @@ public class GestaoCandidaturas extends StateAdapter {
     }
 
     @Override
+    public ArrayList<Candidaturas> getCandidaturas() {
+        return data.getCandidaturas();
+    }
+
+    @Override
     public IState getPreviousState() {
         return new PhaseTwo(context, data);
     }

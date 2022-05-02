@@ -1,4 +1,4 @@
-package pt.isec.pa.apoio_poe.model.fsm.states.phaseThree;
+package pt.isec.pa.apoio_poe.model.fsm.states;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Candidaturas;

@@ -2,11 +2,11 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
-import pt.isec.pa.apoio_poe.model.fsm.states.phaseFive.PhaseFive;
+import pt.isec.pa.apoio_poe.model.fsm.states.PhaseFive;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseFour.GestaoOrientadores;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseFour.PhaseFour;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.*;
-import pt.isec.pa.apoio_poe.model.fsm.states.phaseThree.PhaseThree;
+import pt.isec.pa.apoio_poe.model.fsm.states.PhaseThree;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.GestaoCandidaturas;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.PhaseTwo;
 
@@ -106,6 +106,11 @@ public class StateAdapter implements IState {
     //======GESTAO CANDIDATURAS===========================
     @Override
     public void addCandidatura(Candidaturas newCandidatura) throws Exception {}
+
+    @Override
+    public ArrayList<Candidaturas> getCandidaturas() {
+        return null;
+    }
 
     @Override
     public ArrayList<Aluno> getAlunosComAutoproposta() {

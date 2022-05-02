@@ -8,7 +8,7 @@ import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
-import pt.isec.pa.apoio_poe.model.fsm.states.phaseThree.PhaseThree;
+import pt.isec.pa.apoio_poe.model.fsm.states.PhaseThree;
 
 import java.util.ArrayList;
 import java.util.Set;

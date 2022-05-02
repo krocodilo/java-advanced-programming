@@ -38,6 +38,7 @@ public interface IState {
 
     // GESTAO CANDIDATURAS
     void addCandidatura(Candidaturas newCandidatura) throws Exception;
+    ArrayList<Candidaturas> getCandidaturas();
     ArrayList<Aluno> getAlunosComAutoproposta();
     ArrayList<Aluno> getAlunosComCandidatura();
     ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura,ArrayList<Aluno> comAutoproposta);

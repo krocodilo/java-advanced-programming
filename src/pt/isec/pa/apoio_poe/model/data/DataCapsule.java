@@ -88,15 +88,14 @@ public class DataCapsule implements Serializable {
     }
 
     public ArrayList<Aluno> getAlunosComAutoproposta() {
-        ArrayList<Aluno> autopropostos = new ArrayList<>();
+        ArrayList<Aluno> alunoAuto = new ArrayList<>();
 
         for(AutoProposto prop : autoPropostos){
             Aluno a = findAluno( prop.getIdAluno() );
             if( a != null )
-                autopropostos.add( a );
+                alunoAuto.add( a );
         }
-
-        return autopropostos;
+        return alunoAuto;
     }
 
     public ArrayList<Aluno> getAlunosComCandidatura(){

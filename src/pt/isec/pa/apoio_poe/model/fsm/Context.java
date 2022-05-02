@@ -120,7 +120,7 @@ public class Context {
     }
 
     public ArrayList<Candidaturas> getCandidaturas() {
-        return data.getCandidaturas();
+        return state.getCandidaturas();
     }
 
 
