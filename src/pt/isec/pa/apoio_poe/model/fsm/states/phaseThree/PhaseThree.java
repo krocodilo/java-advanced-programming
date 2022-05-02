@@ -5,10 +5,12 @@ import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.AutoProposto;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.model.fsm.StateAdapter;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseFour.PhaseFour;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.PhaseTwo;
 
 import java.util.ArrayList;
@@ -42,7 +44,25 @@ public class PhaseThree extends StateAdapter {
         for(Proposta p : data.getPropostas()){
             data.getAtribuicoesAlunos().put(p.getMelhorCandidato(),p);
         }
+    }
 
+    @Override
+    public void AtribuicaoManual(Aluno aluno, Proposta proposta){
+        if(! data.getAtribuicoesAlunos().containsKey(aluno))
+            data.getAtribuicoesAlunos().put(aluno,proposta);
+    }
+
+    @Override
+    public void RemoverAtribuicao(Aluno aluno){
+        if( data.getAtribuicoesAlunos().get(aluno).getType() == TipoProposta.AUTOPROPOSTO)
+            return;
+        data.getAtribuicoesAlunos().remove(aluno);
+    }
+
+    @Override
+    public void RemoverTodasAtribuicoes(){
+        for( Aluno a : data.getAtribuicoesAlunos().keySet() )
+            RemoverAtribuicao(a);
     }
 
     @Override
@@ -93,8 +113,7 @@ public class PhaseThree extends StateAdapter {
 
     @Override
     public IState getNextState() {
-        //TODO : return PHASE4
-        return this;
+        return new PhaseFour(context, data);
     }
 
     @Override

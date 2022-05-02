@@ -211,6 +211,10 @@ public class Context {
         return state.isLocked();
     }
 
+    public boolean phaseTwoLocked(){
+        return data.phaseTwoLocked;
+    }
+
     public void lockCurrentState() throws Exception {
         state.lock();
     }

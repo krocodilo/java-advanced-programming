@@ -1,5 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.text;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 
@@ -19,6 +21,7 @@ public class UI {
 
         PhaseOneUI one = new PhaseOneUI(fsm);
         PhaseTwoUI two = new PhaseTwoUI(fsm);
+        PhaseThreeUI three = new PhaseThreeUI(fsm);
 
         while ( !exit ) {
 
@@ -28,14 +31,13 @@ public class UI {
                 switch (state) {
                     case PHASE_ONE -> phaseOne();
                     case PHASE_TWO -> phaseTwo(two);
-                    case PHASE_THREE -> phaseThree();
+                    case PHASE_THREE -> phaseThree(three);
                     //case PHASE_FOUR -> false;
                     //case PHASE_FIVE -> false;
                     case GESTAO_ALUNOS -> one.gestaoAlunos();
                     case GESTAO_DOCENTES -> one.gestaoDocentes();
                     case GESTAO_PROPOSTAS -> one.gestaoPropostas();
                     case GESTAO_CANDIDATURAS -> two.gestaoCandidaturas();
-                    //case ATRIBUICAO_PROPOSTAS -> false;
                     //case GESTAO_ORIENTADORES -> false;
                 }
             } catch (Exception e){
@@ -91,17 +93,21 @@ public class UI {
         }
     }
 
-    private void phaseThree() throws Exception {
+    private void phaseThree(PhaseThreeUI ui) throws Exception {
 
         System.out.println("\n-> Atribuicao automatica de autopropostas ou propostas de " +
                 "docentes com aluno associado.");
         fsm.atribuicaoAutomaticaAutoPropostas();
 
-        System.out.println("\n-> Atribuicao automatica de propostas.");
-        fsm.atribuicaoAutomaticaPropostas();
+        //TODO nao deixa fazer nenhuma atribuicao se fase anterior nao bloqueada
+
+        if( fsm.phaseTwoLocked() ) {
+            System.out.println("\n-> Atribuicao automatica de propostas.");
+            fsm.atribuicaoAutomaticaPropostas();
+        }
 
         printMenu("Fase 3: Atribuicao de Propostas",
-                "1 - Atribuicao de propostas...",
+                "1 - Atribuicao de propostas",
                 "2 - Remocao de atribuicoes...",
                 "3 - Consultar listas de alunos",
                 "4 - Consultar listas de propostas\n",
@@ -112,11 +118,20 @@ public class UI {
                 "9 - Carregar\n",
                 "0 - Sair");
         switch (readOption(null, 0, 9)) {
-            case 1 -> System.out.println("not implemented");
-            case 2 -> System.out.println("not implemented ");
-            case 3 -> System.out.println("not implemented  ");
-            case 4 -> System.out.println("not implemented   ");
-            case 5 -> fsm.lockCurrentState();
+            case 1 -> {
+                if( ! fsm.phaseTwoLocked() )
+                    throw new Exception("A fase anterior tem de estar bloqueada para fazer atribuicoes.");
+                Aluno a = selectOneFrom( fsm.getAlunosSemPropostaAtribuida() );
+                Proposta p = selectOneFrom( fsm.getPropostasDisponiveis() );
+                fsm.AtribuicaoManual( a, p );
+            }
+            case 2 -> ui.removerAtribuicoes();
+            case 3 -> ui.showAlunosFiltered();
+            case 4 -> ui.showPropostasFiltered();
+            case 5 -> {
+                fsm.lockCurrentState();
+                fsm.nextState();
+            }
             case 6 -> fsm.previousState();
             case 7 -> fsm.nextState();
             case 8 -> saveStateToDisk();

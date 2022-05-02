@@ -1,6 +1,8 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.*;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseFive.PhaseFive;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseFour.PhaseFour;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.*;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseThree.PhaseThree;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo.GestaoCandidaturas;
@@ -35,7 +37,8 @@ public class StateAdapter implements IState {
             case PHASE_ONE -> new PhaseOne(context, data);
             case PHASE_TWO -> new PhaseTwo(context, data);
             case PHASE_THREE -> new PhaseThree(context, data);
-            //TODO o q falta
+            case PHASE_FOUR -> new PhaseFour(context, data);
+            case PHASE_FIVE -> new PhaseFive(context, data);
             case GESTAO_ALUNOS -> new GestaoAlunos(context, data);
             case GESTAO_DOCENTES -> new GestaoDocentes(context, data);
             case GESTAO_PROPOSTAS -> new GestaoPropostas(context, data);

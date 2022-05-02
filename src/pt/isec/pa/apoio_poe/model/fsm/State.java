@@ -16,9 +16,6 @@ public enum State {
     // Fase 2
     GESTAO_CANDIDATURAS,
 
-    // Fase 3
-    ATRIBUICAO_PROPOSTAS,
-
     // Fase 4
     GESTAO_ORIENTADORES,
 
