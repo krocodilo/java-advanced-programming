@@ -1,13 +1,8 @@
 package pt.isec.pa.apoio_poe.ui.text;
 
-import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.Docente;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
-import pt.isec.pa.apoio_poe.utils.FileUtils;
-
-import java.util.ArrayList;
 
 import static pt.isec.pa.apoio_poe.utils.IO.*;
 import static pt.isec.pa.apoio_poe.utils.IO.showList;
@@ -34,15 +29,9 @@ public class PhaseFourUI {
                 Projeto p = selectOneFrom( fsm.getProjetos() );
                 fsm.atribuicaoOrientadorProposta( ori, p );
             }
-            case 2 ->{
-                showList( fsm.getOrientadores() );
-            }
-            case 3 -> {
-                System.out.println("Not implemented yet!");
-            }
-            case 4 -> {
-                System.out.println("Not implemented yet!!");
-            }
+            case 2 -> showList( fsm.getOrientadores() );
+            case 3 -> System.out.println("Not implemented yet!");
+            case 4 -> System.out.println("Not implemented yet!!");
             case 0 -> fsm.previousState();
         }
     }

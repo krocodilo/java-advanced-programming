@@ -6,9 +6,7 @@ import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.utils.FileUtils;
 
-import javax.print.Doc;
 import java.util.ArrayList;
-import java.util.List;
 
 import static pt.isec.pa.apoio_poe.utils.IO.*;
 
@@ -49,7 +47,7 @@ public class PhaseOneUI {
                 case 2 ->
                     showList( fsm.getAlunos() );
                 case 3 -> {
-                    Aluno selected = selectOneFrom( fsm.getAlunos() );
+//                    Aluno selected = selectOneFrom( fsm.getAlunos() );
                 }
                 case 4 -> {
                     Aluno selected = selectOneFrom( fsm.getAlunos() );
@@ -88,7 +86,7 @@ public class PhaseOneUI {
                 case 2 ->
                     showList(fsm.getDocentes());
                 case 3 -> {
-                    Docente selected = selectOneFrom( fsm.getDocentes() );
+//                    Docente selected = selectOneFrom( fsm.getDocentes() );
                 }
                 case 4 -> {
                     Docente selected = selectOneFrom( fsm.getDocentes() );
@@ -123,7 +121,7 @@ public class PhaseOneUI {
                 case 2 ->
                         showList( fsm.getPropostas() );
                 case 3 -> {
-                    Proposta selected = selectOneFrom( fsm.getPropostas() );
+//                    Proposta selected = selectOneFrom( fsm.getPropostas() );
                 }
                 case 4 -> {
                     Proposta selected = selectOneFrom( fsm.getPropostas() );
