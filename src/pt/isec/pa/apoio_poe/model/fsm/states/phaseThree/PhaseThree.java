@@ -77,14 +77,12 @@ public class PhaseThree extends StateAdapter {
 
     @Override
     public ArrayList<Proposta> getPropostasDisponiveis() {
-        //TODO
-        return data.getPropostasDocentes();
+        return data.getPropostasDisponiveis();
     }
 
     @Override
     public ArrayList<Proposta> getPropostasAtribuidas() {
-        //TODO
-        return data.getPropostasDocentes();
+        return data.getPropostasAtribuidas();
     }
 
 
