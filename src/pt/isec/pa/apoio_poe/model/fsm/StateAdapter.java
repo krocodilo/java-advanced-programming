@@ -176,6 +176,17 @@ public class StateAdapter implements IState {
     @Override
     public void RemoverTodasAtribuicoes(){}
 
+    //PhaseFour
+    @Override
+    public void AtribuicaoOrientadoresProponentes(){}
+
+    @Override
+    public void AtribuicaoOrientadorProposta(Docente d,Proposta p){}
+
+    @Override
+    public ArrayList<Docente> ConsultaOrientadores(){ return null; }
+
+
     @Override
     public State getState() {
         return null;

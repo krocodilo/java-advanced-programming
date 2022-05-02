@@ -195,6 +195,14 @@ public class Context {
     }
 
 
+    //PHASEFOUR
+    public void AtribuicaoOrientadoresProponentes(){ state.AtribuicaoOrientadoresProponentes(); }
+
+    public void AtribuicaoOrientadorProposta(Docente d,Proposta p){ state.AtribuicaoOrientadorProposta(d,p);}
+
+    public ArrayList<Docente> ConsultaOrientadores(){ return state.ConsultaOrientadores(); }
+
+
     public void nextState() {
         state = state.getNextState();
     }

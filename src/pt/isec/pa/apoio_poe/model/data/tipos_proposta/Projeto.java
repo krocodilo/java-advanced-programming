@@ -23,6 +23,10 @@ public class Projeto extends Proposta implements Serializable {
         this.ramosDestino = ramosDestino;
     }
 
+    public String getEmailDocente() {
+        return emailDocente;
+    }
+
     @Override
     public TipoProposta getType() {
         return TipoProposta.PROJETO;

@@ -11,6 +11,7 @@ public class Docente implements Serializable {
 
     private final String email;
     private String name;
+
     private boolean orientador;
     private boolean proponenteProjeto;
 
@@ -35,6 +36,13 @@ public class Docente implements Serializable {
         } catch (NumberFormatException e){
             throw new Exception("Error in values");
         }
+    }
+    public boolean isOrientador() {
+        return orientador;
+    }
+
+    public void setOrientador(boolean orientador) {
+        this.orientador = orientador;
     }
 
     public String getEmail() {

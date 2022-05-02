@@ -16,6 +16,7 @@ public class Proposta implements Serializable {
     private String titulo;
     private long idAluno;
     private ArrayList<Aluno> alunosCandidatos = new ArrayList<>();
+    private Docente orientador = null;
 
     public Proposta(String id, String titulo, long idAluno) {
         this.id = id;
@@ -30,6 +31,15 @@ public class Proposta implements Serializable {
     public long getIdAluno() {
         return idAluno;
     }
+
+    public Docente getOrientador() {
+        return orientador;
+    }
+
+    public void setOrientador(Docente orientador) {
+        this.orientador = orientador;
+    }
+
 
     public ArrayList<Aluno> getAlunosCandidatos() {
         return alunosCandidatos;

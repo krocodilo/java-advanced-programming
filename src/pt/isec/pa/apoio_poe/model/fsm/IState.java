@@ -56,6 +56,11 @@ public interface IState {
     void RemoverAtribuicao(Aluno aluno);
     void RemoverTodasAtribuicoes();
 
+    //PHASE4
+    void AtribuicaoOrientadoresProponentes();
+    void AtribuicaoOrientadorProposta(Docente d,Proposta p);
+    ArrayList<Docente> ConsultaOrientadores();
+
 
     State getState();
     boolean isLocked();
