@@ -21,14 +21,14 @@ public class AtribuicaoPropostas extends StateAdapter {
     }
 
     @Override
-    public void AtribuicaoAutomaticaAutoPropostas(){
+    public void atribuicaoAutomaticaAutoPropostas(){
         for(AutoProposto p : data.getAutoPropostos()){
             data.getAtribuicoesAlunos().put(data.findAluno(p.getIdAluno()),p);
         }
     }
 
     @Override
-    public void AtribuicaoAutomaticaPropostas(){
+    public void atribuicaoAutomaticaPropostas(){
 
         // adiciona os alunos candidatos ao array nas propostas
         for(Candidaturas c : data.getCandidaturas()){
