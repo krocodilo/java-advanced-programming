@@ -4,8 +4,8 @@ import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 
-import static pt.isec.pa.apoio_poe.utils.IO.*;
-import static pt.isec.pa.apoio_poe.utils.IO.showList;
+import static pt.isec.pa.apoio_poe.ui.utils.IO.*;
+import static pt.isec.pa.apoio_poe.ui.utils.IO.showList;
 
 public class PhaseFourUI {
 

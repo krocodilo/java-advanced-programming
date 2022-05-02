@@ -1,6 +1,6 @@
 package pt.isec.pa.apoio_poe.model.data;
 
-import pt.isec.pa.apoio_poe.utils.FileUtils;
+import pt.isec.pa.apoio_poe.ui.utils.FileUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package pt.isec.pa.apoio_poe.utils;
+package pt.isec.pa.apoio_poe.ui.utils;
 
 import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;

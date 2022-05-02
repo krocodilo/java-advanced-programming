@@ -3,7 +3,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
-import pt.isec.pa.apoio_poe.utils.FileUtils;
+import pt.isec.pa.apoio_poe.ui.utils.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;

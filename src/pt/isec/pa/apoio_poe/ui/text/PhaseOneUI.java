@@ -4,11 +4,11 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
-import pt.isec.pa.apoio_poe.utils.FileUtils;
+import pt.isec.pa.apoio_poe.ui.utils.FileUtils;
 
 import java.util.ArrayList;
 
-import static pt.isec.pa.apoio_poe.utils.IO.*;
+import static pt.isec.pa.apoio_poe.ui.utils.IO.*;
 
 public class PhaseOneUI {
 

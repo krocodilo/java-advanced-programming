@@ -1,12 +1,9 @@
 package pt.isec.pa.apoio_poe.model.data;
 
-import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
-import pt.isec.pa.apoio_poe.utils.FileUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Proposta implements Serializable {
 

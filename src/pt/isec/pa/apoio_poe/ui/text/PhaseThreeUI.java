@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import static pt.isec.pa.apoio_poe.utils.IO.*;
+import static pt.isec.pa.apoio_poe.ui.utils.IO.*;
 
 public class PhaseThreeUI {
 

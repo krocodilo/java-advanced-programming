@@ -1,4 +1,4 @@
-package pt.isec.pa.apoio_poe.utils;
+package pt.isec.pa.apoio_poe.ui.utils;
 
 import java.util.*;
 
@@ -112,13 +112,11 @@ public class IO {
     public static <E> void showList(List<E> list){
 
         String template = " [%d] - %s\n";
-
         System.out.println();
 
         for(int i = 0; i < list.size(); i++)
             System.out.printf( template, i, list.get(i).toString() );
-        System.out.println("\nPress ENTER to continue...");
-        sin.nextLine();
+        waitForUser();
     }
 
     public static <E> E selectOneFrom(List<E> list) {
@@ -126,5 +124,10 @@ public class IO {
         return list.get(
                 readOption("Select the index from the list: ", 0, list.size())
         );
+    }
+
+    public static void waitForUser() {
+        System.out.print("\nPrima ENTER para prosseguir...");
+        sin.nextLine();
     }
 }

@@ -6,7 +6,7 @@ import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 
 import static pt.isec.pa.apoio_poe.model.fsm.State.*;
-import static pt.isec.pa.apoio_poe.utils.IO.*;
+import static pt.isec.pa.apoio_poe.ui.utils.IO.*;
 
 public class UI {
 
@@ -43,6 +43,7 @@ public class UI {
                 }
             } catch (Exception e){
                 System.err.println("\n" + e.getMessage() + "\n");
+                waitForUser();
             }
         }
     }
@@ -100,12 +101,12 @@ public class UI {
                 "docentes com aluno associado.");
         fsm.atribuicaoAutomaticaAutoPropostas();
 
-        //TODO nao deixa fazer nenhuma atribuicao se fase anterior nao bloqueada
-
         if( fsm.phaseTwoLocked() ) {
             System.out.println("\n-> Atribuicao automatica de propostas.");
             fsm.atribuicaoAutomaticaPropostas();
-        }
+        } else
+            System.out.println("\n-> Nao se realizou a atribuicao automatica de propostas," +
+                            " pois fase dois nao esta fechada.");
 
         printMenu("Fase 3: Atribuicao de Propostas",
                 "1 - Atribuicao de propostas",
