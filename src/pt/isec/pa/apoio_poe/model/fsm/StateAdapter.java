@@ -23,16 +23,27 @@ public class StateAdapter implements IState {
         this.data = data;
     }
 
+    /**
+     * @return The next State (IState object), if it has one
+     */
     @Override
     public IState getNextState() {
         return this;
     }
 
+    /**
+     * @return The previous State (IState object), if it has one
+     */
     @Override
     public IState getPreviousState() {
         return this;
     }
 
+    /**
+     *
+     * @param state The state to go to
+     * @return The target IState object
+     */
     @Override
     public IState goToState(State state) {
         return switch (state) {
@@ -220,19 +231,34 @@ public class StateAdapter implements IState {
         return null;
     }
 
+    /**
+     * @return Current state
+     */
     @Override
     public State getState() {
         return null;
     }
 
+    /**
+     * @return True if the current phase is locked
+     */
     @Override
     public boolean isLocked() {
         return false;
     }
 
+    /**
+     * Tries to lock the current phase
+     * @throws Exception If unable to lock
+     */
     @Override
     public void lock() throws Exception { }
 
+    /**
+     * @param isLocked Boolean (saved in DataCapsule object) that indicates if
+     *                 it's phase is locked.
+     * @throws Exception If the phase is locked
+     */
     @Override
     public void checkIfLocked(boolean isLocked) throws Exception {
         if( isLocked )
