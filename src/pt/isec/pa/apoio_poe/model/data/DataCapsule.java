@@ -43,38 +43,66 @@ public class DataCapsule implements Serializable {
     public DataCapsule() {
     }
 
+    /**
+     * @return List of all Aluno objects
+     */
     public ArrayList<Aluno> getAlunos() {
         return alunos;
     }
 
+    /**
+     * @return List of all Docente objects
+     */
     public ArrayList<Docente> getDocentes() {
         return docentes;
     }
 
+    /**
+     * @return List of all Proposta objects
+     */
     public ArrayList<Proposta> getPropostas() {
         return propostas;
     }
 
+    /**
+     * @return List of all Estagio objects
+     */
     public ArrayList<Estagio> getEstagios() {
         return estagios;
     }
 
+    /**
+     * @return List of all Projetos objects
+     */
     public ArrayList<Projeto> getProjetos() {
         return projetos;
     }
 
+    /**
+     * @return List of all Autoproposta objects
+     */
     public ArrayList<AutoProposto> getAutoPropostos() {
         return autoPropostos;
     }
 
+    /**
+     * @return List of all Candidatura objects
+     */
     public ArrayList<Candidaturas> getCandidaturas() {
         return candidaturas;
     }
 
+    /**
+     * @return List of all Aluno objects and their respective Posposta objects
+     */
     public HashMap<Aluno, Proposta> getAtribuicoesAlunos() {
         return atribuicoesAlunos;
     }
 
+    /**
+     * @param email The email address to look for
+     * @return True if there's either an Aluno or Docente with the same email address
+     */
     public boolean emailExists(String email) {
         // verifica se existe aluno ou docente com este endereço de email
 
@@ -87,6 +115,9 @@ public class DataCapsule implements Serializable {
         return false;
     }
 
+    /**
+     * @return Lista de todos os Alunos com Autoproposta
+     */
     public ArrayList<Aluno> getAlunosComAutoproposta() {
         ArrayList<Aluno> alunoAuto = new ArrayList<>();
 
@@ -98,6 +129,9 @@ public class DataCapsule implements Serializable {
         return alunoAuto;
     }
 
+    /**
+     * @return Lista de todos os Alunos com candidatura
+     */
     public ArrayList<Aluno> getAlunosComCandidatura(){
         ArrayList<Aluno> comCandidatura = new ArrayList<>();
         for(Candidaturas c : candidaturas){
@@ -108,6 +142,9 @@ public class DataCapsule implements Serializable {
         return comCandidatura;
     }
 
+    /**
+     * @return Lista de todos os Alunos sem candidatura
+     */
     public ArrayList<Aluno> getAlunosSemCandidatura(ArrayList<Aluno> comCandidatura, ArrayList<Aluno> comAutoproposta){
         // Recebe a lista de alunos com candidatura e com autoproposta, para ser mais facil
 
@@ -118,6 +155,9 @@ public class DataCapsule implements Serializable {
         return semCandidatura;
     }
 
+    /**
+     * @return Lista de todas as Autopropostas
+     */
     public ArrayList<Proposta> getAutopropostasAlunos() {
         ArrayList<Proposta> autopropostas = new ArrayList<>();
         for(Proposta p : propostas)
@@ -126,6 +166,9 @@ public class DataCapsule implements Serializable {
         return autopropostas;
     }
 
+    /**
+     * @return Lista de todas as propostas atribuidas pelos docentes (ou seja, os projetos)
+     */
     public ArrayList<Proposta> getPropostasDocentes() {
         ArrayList<Proposta> pdocentes = new ArrayList<>();
         for(Proposta p : propostas)
@@ -134,6 +177,9 @@ public class DataCapsule implements Serializable {
         return pdocentes;
     }
 
+    /**
+     * @return Lista de todas as Propostas com Candidaturas
+     */
     public Set<Proposta> getPropostasComCandidaturas() {
         Set<Proposta> pcandidatura = new HashSet<>();
         for (Candidaturas c : candidaturas)
@@ -143,6 +189,9 @@ public class DataCapsule implements Serializable {
         return pcandidatura;
     }
 
+    /**
+     * @return Lista de todas as Propostas sem Candidatura
+     */
     public ArrayList<Proposta> getPropostasSemCandidaturas() {
         ArrayList<Proposta> props = new ArrayList<>();
         for (Proposta p : getPropostasComCandidaturas())
@@ -151,10 +200,16 @@ public class DataCapsule implements Serializable {
         return props;
     }
 
+    /**
+     * @return Lista de todos os Alunos com Proposta atribuida
+     */
     public ArrayList<Aluno> getAlunosComPropostaAtribuida(){
         return new ArrayList<>( atribuicoesAlunos.keySet() );
     }
 
+    /**
+     * @return Lista de todos os Alunos sem Proposta atribuída
+     */
     public ArrayList<Aluno> getAlunosSemPropostaAtribuidas(){
         ArrayList<Aluno> stud = new ArrayList<>();
         for( Aluno a : alunos ){
@@ -164,6 +219,9 @@ public class DataCapsule implements Serializable {
         return stud;
     }
 
+    /**
+     * @return Lista de todas as Propostas disponíveis (ainda nao atribuidas)
+     */
     public ArrayList<Proposta> getPropostasDisponiveis(){
         ArrayList<Proposta> propostasDisponiveis = new ArrayList<>();
         for ( Proposta p : propostas){
@@ -173,10 +231,16 @@ public class DataCapsule implements Serializable {
         return propostasDisponiveis;
     }
 
+    /**
+     * @return Lista de todas as Propostas ja atribuidas
+     */
     public ArrayList<Proposta> getPropostasAtribuidas(){
         return new ArrayList<>( atribuicoesAlunos.values() );
     }
 
+    /**
+     * @return Lista de todos os Alunos com Candidaturas e sem Proposta atribuida
+     */
     public ArrayList<Aluno> getAlunosSemPropostasComCandidaturas() {
         HashSet<Aluno> alunos = new HashSet<>();    //does not allow dupplicates
         ArrayList<Aluno> semProposta = getAlunosSemPropostaAtribuidas();
@@ -186,6 +250,9 @@ public class DataCapsule implements Serializable {
         return new ArrayList<>( alunos );
     }
 
+    /**
+     * @return Lista de todos os Docentes orientadores
+     */
     public ArrayList<Docente> getOrientadores() {
         ArrayList<Docente> orientadores = new ArrayList<>();
         for(Docente d : docentes){
@@ -195,6 +262,9 @@ public class DataCapsule implements Serializable {
         return orientadores;
     }
 
+    /**
+     * @return String multi-linha de estatísticas sobre os Docentes orientadores
+     */
     public String getEstatisticasOrientadores() {
         StringBuilder str = new StringBuilder();
         ArrayList<Docente> orientadores = getOrientadores();
@@ -228,6 +298,10 @@ public class DataCapsule implements Serializable {
         return str.toString();
     }
 
+    /**
+     * @param idAluno ID do aluno a procurar
+     * @return Objeto Aluno com aquele ID, ou null caso nao exista
+     */
     public Aluno findAluno(long idAluno) {
         for( Aluno a : alunos )
             if( a.getId() == idAluno )
@@ -235,6 +309,10 @@ public class DataCapsule implements Serializable {
         return null;
     }
 
+    /**
+     * @param idProposta ID da proposta a procurar
+     * @return Objeto Proposta com aquele ID, ou null caso nao exista
+     */
     public Proposta findProposta(String idProposta) {
         for( Proposta p : propostas )
             if( idProposta.equals( p.getId() ) )
@@ -242,11 +320,22 @@ public class DataCapsule implements Serializable {
         return null;
     }
 
+    /**
+     * Guarda nesta capsula o estado atual da aplicacao para que seja possivel
+     * identificar o estado em que a aplicacao se encontrava quando estes dados
+     * forem gravados no disco
+     * @param lastState Estado atual da aplicacao
+     */
+    public void setLastState(State lastState) {
+        this.lastState = lastState;
+    }
+
+    /**
+     * Devolve o estado em qye a aplicacao estava quando estes dados foram gravados no disco
+     * @return O ultimo estado em que a aplicacao se encontrava
+     */
     public State getLastState() {
         return lastState;
     }
 
-    public void setLastState(State lastState) {
-        this.lastState = lastState;
-    }
 }

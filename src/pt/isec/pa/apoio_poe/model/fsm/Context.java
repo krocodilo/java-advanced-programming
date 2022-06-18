@@ -19,16 +19,26 @@ public class Context {
         state = new PhaseOne(this, data);
     }
 
+    /**
+     * @param s The state to go to
+     */
     public void goToState(State s){
         state = state.goToState( s );
     }
 
 
     //======GESTAO ALUNOS===========================
+    /**
+     * @param newAluno The new Aluno object
+     */
     public void addAluno(Aluno newAluno) throws Exception {
         state.addAluno(newAluno);
     }
 
+    /**
+     * @param alunos List of Aluno objects
+     * @return String of error messages. If none found, the string will be empty
+     */
     public String addAlunos(List<Aluno> alunos) {
         StringBuilder sb = new StringBuilder();
         for(Aluno a : alunos) {
@@ -41,6 +51,9 @@ public class Context {
         return sb.toString();
     }
 
+    /**
+     * @return List of all Aluno objects
+     */
     public ArrayList<Aluno> getAlunos() {
         return data.getAlunos();
     }
@@ -49,16 +62,26 @@ public class Context {
 //        state.editAluno(newVersionAluno);
 //    }
 
+    /**
+     * @param toRemove The Aluno object to remove from memory
+     */
     public void removeAluno(Aluno toRemove) throws Exception {
         state.removeAluno(toRemove);
     }
 
 
     //======GESTAO DOCENTES===========================
+    /**
+     * @param newDocente The new Docente object to be added
+     */
     public void addDocente(Docente newDocente) throws Exception {
         state.addDocente(newDocente);
     }
 
+    /**
+     * @param docentes List of Docente objects to be added
+     * @return String of errors found, if any
+     */
     public String addDocentes(List<Docente> docentes) {
         StringBuilder sb = new StringBuilder();
         for(Docente d : docentes) {
@@ -70,7 +93,10 @@ public class Context {
         }
         return sb.toString();
     }
-    
+
+    /**
+     * @return List of all Docente objects
+     */
     public ArrayList<Docente> getDocentes() {
         return data.getDocentes();
     }
@@ -78,22 +104,34 @@ public class Context {
 //    public void editDocente(Docente newVersionDocente) throws Exception {
 //        state.editDocente(newVersionDocente);
 //    }
-    
+
+    /**
+     * @param toRemove Docente object to be removed
+     */
     public void removeDocente(Docente toRemove) throws Exception {
         state.removeDocente(toRemove);
     }
 
 
     //======GESTAO PROPOSTAS===========================
+    /**
+     * @param p The Proposta object to be added
+     */
     public void addProposta(Proposta p) throws Exception {
         state.addProposta( p );
     }
 
+    /**
+     * @param propostas List of Proposta objects to be added
+     */
     public void addPropostas(ArrayList<Proposta> propostas) throws Exception {
         for(Proposta p : propostas)
             addProposta( p );
     }
 
+    /**
+     * @return List of all Proposta objects
+     */
     public ArrayList<Proposta> getPropostas() {
         return data.getPropostas();
     }
@@ -103,22 +141,33 @@ public class Context {
 //
 //    }
 
+    /**
+     * @param toRemove The Proposta object to be removed
+     */
     public void removeProposta(Proposta toRemove) throws Exception {
         state.removeProposta( toRemove );
     }
 
 
     //=====GESTAO CANDIDATURAS==========================
-
+    /**
+     * @param newCandidatura The new Candidatura object to be added
+     */
     public void addCandidatura(Candidaturas newCandidatura) throws Exception {
         state.addCandidatura(newCandidatura);
     }
 
+    /**
+     * @param candidaturas List of Candidatura objects to be added
+     */
     public void addCandidaturas(ArrayList<Candidaturas> candidaturas) throws Exception {
         for(Candidaturas c : candidaturas)
             addCandidatura(c);
     }
 
+    /**
+     * @return List of all Candidatura objects
+     */
     public ArrayList<Candidaturas> getCandidaturas() {
         return state.getCandidaturas();
     }
@@ -240,15 +289,26 @@ public class Context {
         return data.phaseTwoLocked;
     }
 
+    /**
+     * Tries to lock the current state. If not possible, throws an exception
+     */
     public void lockCurrentState() throws Exception {
         state.lock();
     }
 
+    /**
+     * Tries to save all the data to a binary file. If not possible, throws an exception
+     * @param filename Name of the file to save data in
+     */
     public void saveStateToDisk(String filename) throws Exception {
         data.setLastState( getState() );
         FileUtils.saveDataToDisk( filename, data );
     }
 
+    /**
+     * Tries to load data from a file. If not possible, throws an exception
+     * @param filename Name of file to load data from
+     */
     public void loadStateFromDisk(String filename) throws Exception {
         data = FileUtils.loadDataFromDisk( filename );
         goToState( data.getLastState() );
