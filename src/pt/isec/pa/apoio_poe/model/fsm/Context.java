@@ -127,9 +127,16 @@ public class Context {
     /**
      * @param propostas List of Proposta objects to be added
      */
-    public void addPropostas(ArrayList<Proposta> propostas) throws Exception {
-        for(Proposta p : propostas)
-            addProposta( p );
+    public String addPropostas(ArrayList<Proposta> propostas) throws Exception {
+        StringBuilder sb = new StringBuilder();
+        for(Proposta p : propostas) {
+            try {
+                addProposta( p );
+            } catch (Exception e) {
+                sb.append(e.getMessage()).append("\n");
+            }
+        }
+        return sb.toString();
     }
 
     /**

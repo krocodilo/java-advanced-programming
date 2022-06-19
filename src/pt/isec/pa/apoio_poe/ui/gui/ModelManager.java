@@ -1,10 +1,10 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.State;
-import pt.isec.pa.apoio_poe.ui.utils.FileUtils;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -46,16 +46,6 @@ public class ModelManager {
         pcs.firePropertyChange(PROP_STATE,null,context.getState());
     }
 
-    public void changeMessage(String msg) {
-//        context.changeMessage(msg);
-        pcs.firePropertyChange(PROP_DATA,null,null);
-    }
-
-    public void changeNumber(int nr) {
-//        context.changeNumber(nr);
-        pcs.firePropertyChange(PROP_DATA,null,null);
-    }
-
     public String addAlunos(List<Aluno> alunos) {
         String ret = context.addAlunos(alunos);
         pcs.firePropertyChange(PROP_DATA,null,null);
@@ -68,10 +58,37 @@ public class ModelManager {
 
     public void removeAluno(Aluno toRemove) throws Exception {
         context.removeAluno(toRemove);
+        pcs.firePropertyChange(PROP_DATA,null,null);
+    }
+
+    public String addDocentes(List<Docente> docentes) {
+        String ret = context.addDocentes(docentes);
+        pcs.firePropertyChange(PROP_DATA,null,null);
+        return ret;
+    }
+
+    public ArrayList<Docente> getDocentes() {
+        return context.getDocentes();
+    }
+
+    public void removeDocente(Docente toRemove) throws Exception {
+        context.removeDocente(toRemove);
+        pcs.firePropertyChange(PROP_DATA,null,null);
+    }
+
+    public String addPropostas(ArrayList<Proposta> propostas) throws Exception {
+        String ret = context.addPropostas(propostas);
+        pcs.firePropertyChange(PROP_DATA,null,null);
+        return ret;
     }
 
     public ArrayList<Proposta> getPropostas() {
         return context.getPropostas();
+    }
+
+    public void removeProposta(Proposta toRemove) throws Exception {
+        context.removeProposta( toRemove );
+        pcs.firePropertyChange(PROP_DATA,null,null);
     }
 
     public void lockCurrentState() throws Exception {

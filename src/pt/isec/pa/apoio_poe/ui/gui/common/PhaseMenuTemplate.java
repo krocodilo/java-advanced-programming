@@ -46,6 +46,8 @@ public class PhaseMenuTemplate extends BorderPane {
     protected void loadData() {
         FileChooser fc = new FileChooser();
         fc.setTitle("Escolha o ficheiro dos dados a carregar");
+        fc.setInitialDirectory( new File(System.getProperty("user.dir")) );
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Data File", "*.dat"));
 
         File f = fc.showOpenDialog( this.getScene().getWindow() );
         if( f == null )
@@ -61,8 +63,10 @@ public class PhaseMenuTemplate extends BorderPane {
     protected void saveData() {
         FileChooser fc = new FileChooser();
         fc.setTitle("Escolha um ficheiro onde gravar os dados");
+        fc.setInitialDirectory( new File(System.getProperty("user.dir")) );
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Data File", "*.dat"));
 
-        File f = fc.showOpenDialog( this.getScene().getWindow() );
+        File f = fc.showSaveDialog( this.getScene().getWindow() );
         if( f == null )
             return;     //Caso nao seja selecionado nenhum ficheiro
 

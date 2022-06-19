@@ -9,26 +9,25 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.ui.gui.ModelManager;
 import pt.isec.pa.apoio_poe.ui.utils.FileUtils;
 
 import java.io.File;
 
-public class GestaoAlunosGUI extends BorderPane {
+public class GestaoPropostasGUI extends BorderPane {
     ModelManager model;
     Button btnEdit;
     Button btnDelete;
     Button btnLoadFile;
     Button btnPrevious;
-    Text txtAlunosCount;
+    Text txtPropostaCount;
     Text txtWarning;
     boolean warningWasShown = false;
-    ListView<Aluno> list;
-//    TableView<List<String>> table;
+    ListView<Proposta> list;
 
-    public GestaoAlunosGUI(ModelManager model) {
+    public GestaoPropostasGUI(ModelManager model) {
         this.model = model;
         createViews();
         registerHandlers();
@@ -38,30 +37,19 @@ public class GestaoAlunosGUI extends BorderPane {
     private void createViews() {
 
         list = new ListView<>();
-        list.getItems().addAll( model.getAlunos() );
+        list.getItems().addAll( model.getPropostas() );
 
-        txtAlunosCount = new Text("Numero de Alunos: " + model.getAlunos().size());
-        txtAlunosCount.setVisible(true);
+        txtPropostaCount = new Text("Numero de Propostas: " + model.getPropostas().size());
+        txtPropostaCount.setVisible(true);
         btnEdit = new Button("Editar");
         btnDelete = new Button("Eliminar");
         btnDelete.setStyle("-fx-background-color: red; -fx-text-fill: white");
         txtWarning = new Text(); txtWarning.setVisible(false);
         txtWarning.setFill(Color.RED);
-        HBox below = new HBox(txtAlunosCount, btnEdit, btnDelete);
+        HBox below = new HBox(txtPropostaCount, btnEdit, btnDelete);
         below.setSpacing(10);
         below.setAlignment(Pos.CENTER);
 
-//        table = new TableView<>();
-//        table.getColumns().addAll(
-//                new TableColumn("ID"),
-//                new TableColumn("Nome"),
-//                new TableColumn("E-mail"),
-//                new TableColumn("Curso"),
-//                new TableColumn("Ramo"),
-//                new TableColumn("????"),
-//                new TableColumn("DEW?D")
-//        );
-//        buildTable();
 
         btnLoadFile = new Button("Carregar Ficheiro");
         btnPrevious = new Button("Voltar");
@@ -80,21 +68,22 @@ public class GestaoAlunosGUI extends BorderPane {
         btnDelete.setOnAction(actionEvent -> {
             try {
                 if( list.getSelectionModel().getSelectedItem() != null ){
-                    model.removeAluno( list.getSelectionModel().getSelectedItem() );
+                    model.removeProposta( list.getSelectionModel().getSelectedItem() );
+                    update();
                 } else
-                    throw new Exception("Nenhum aluno foi selecionado!");
+                    throw new Exception("Nenhum doccente foi selecionado!");
             } catch (Exception e) {
                 txtWarning.setText(e.getMessage());
-                //update();
+                update();
             }
         });
     }
 
     private void update() {
-        this.setVisible(model != null && model.getState() == State.GESTAO_ALUNOS);
+        this.setVisible(model != null && model.getState() == State.GESTAO_PROPOSTAS);
         list.getItems().clear();
-        list.getItems().addAll( model.getAlunos() );
-        txtAlunosCount.setText("Numero de Alunos: " + model.getAlunos().size());
+        list.getItems().addAll( model.getPropostas() );
+        txtPropostaCount.setText("Numero de Propostas: " + model.getPropostas().size());
         if( !txtWarning.isVisible() && !txtWarning.getText().isBlank()){
             txtWarning.setVisible(true);
             warningWasShown = true;
@@ -107,7 +96,7 @@ public class GestaoAlunosGUI extends BorderPane {
 
     private void importFromFile(){
         FileChooser fc = new FileChooser();
-        fc.setTitle("Escolha o ficheiro dos alunos");
+        fc.setTitle("Escolha o ficheiro das propostas");
         fc.setInitialDirectory( new File(System.getProperty("user.dir")) );
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", "*.csv"));
 
@@ -115,8 +104,8 @@ public class GestaoAlunosGUI extends BorderPane {
         if( f == null )
             return;     //Caso nao seja selecionado nenhum ficheiro
         try {
-            String ret = model.addAlunos(
-                    FileUtils.readAlunosFromCSV( f.getAbsolutePath() )
+            String ret = model.addPropostas(
+                    FileUtils.readPropostasFromCSV( f.getAbsolutePath() )
             );
             if (!ret.isEmpty())
                 throw new Exception(ret);
@@ -125,17 +114,4 @@ public class GestaoAlunosGUI extends BorderPane {
             update();
         }
     }
-
-//    private void buildTable(){
-//
-//        table.getItems().clear();
-//
-////        ObservableList<List<String>> lst = FXCollections.observableArrayList();
-//        for(Aluno a : model.getAlunos()){
-////            lst.add( List.of(a.toString().split(" ")) );
-//            table.getItems().add( List.of(a.toString().split(" ")) );
-//        }
-//
-////        table.setItems(lst);
-//    }
 }
