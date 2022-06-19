@@ -189,7 +189,6 @@ public class Context {
         return state.getAlunosComAutoproposta();
     }
 
-
     public ArrayList<Aluno> getAlunosComCandidatura(){
         return state.getAlunosComCandidatura();
     }

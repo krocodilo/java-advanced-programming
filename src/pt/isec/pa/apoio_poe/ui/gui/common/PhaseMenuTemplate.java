@@ -82,9 +82,10 @@ public class PhaseMenuTemplate extends BorderPane {
             txtWarning.setVisible(true);
             warningWasShown = true;
         }
-        else if(txtWarning.isVisible() && warningWasShown ){
+        else if(txtWarning.isVisible() && warningWasShown){
             txtWarning.setText("");
             txtWarning.setVisible(false);
+            warningWasShown = false;
         }
     }
 }

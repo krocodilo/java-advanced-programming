@@ -91,6 +91,28 @@ public class ModelManager {
         pcs.firePropertyChange(PROP_DATA,null,null);
     }
 
+    public ArrayList<Aluno> getAlunosComAutoproposta() {
+        return context.getAlunosComAutoproposta();
+    }
+
+    public ArrayList<Aluno> getAlunosComCandidatura(){
+        return context.getAlunosComCandidatura();
+    }
+
+    public ArrayList<Aluno> getAlunosSemCandidatura(){
+        return context.getAlunosSemCandidatura(
+                getAlunosComCandidatura(), getAlunosComAutoproposta()
+        );
+    }
+
+    public ArrayList<Aluno> getAlunosComPropostaAtribuida() {
+        return context.getAlunosComPropostaAtribuida();
+    }
+
+    public ArrayList<Aluno> getAlunosSemPropostaAtribuida() {
+        return context.getAlunosSemPropostaAtribuida();
+    }
+
     public void lockCurrentState() throws Exception {
         context.lockCurrentState();
     }

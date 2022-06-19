@@ -91,6 +91,7 @@ public class GestaoDocentesGUI extends BorderPane {
         else if(txtWarning.isVisible() && warningWasShown ){
             txtWarning.setText("");
             txtWarning.setVisible(false);
+            warningWasShown = false;
         }
     }
 
