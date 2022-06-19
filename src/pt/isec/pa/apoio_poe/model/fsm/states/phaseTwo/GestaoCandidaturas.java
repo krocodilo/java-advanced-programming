@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm.states.phaseTwo;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
@@ -16,13 +17,21 @@ public class GestaoCandidaturas extends StateAdapter {
     }
 
     @Override
-    public void addCandidatura(Candidaturas newCandidatura) throws Exception {
+    public void addCandidatura(Candidaturas newCandidatura) throws Exception{
 
         checkIfLocked();
 
         if( data.getCandidaturas().contains( newCandidatura ) )
-            return;
+            throw new Exception("Candidatura ja existe: " + newCandidatura.toString());
+
         data.getCandidaturas().add( newCandidatura );
+    }
+
+    @Override
+    public void removeCandidatura(Candidaturas toRemove) throws Exception {
+        checkIfLocked();
+
+        data.getCandidaturas().remove( toRemove );
     }
 
     @Override

@@ -25,7 +25,7 @@ public class RootPane extends BorderPane {
         StackPane stackPane = new StackPane(
                 new PhaseOneGUI(model), new GestaoAlunosGUI(model), new GestaoDocentesGUI(model),
                         new GestaoPropostasGUI(model),
-                new PhaseTwoGUI(model),
+                new PhaseTwoGUI(model), new GestaoCandidaturasGUI(model),
                 new PhaseThreeGUI(model)
         );
         this.setCenter(stackPane);

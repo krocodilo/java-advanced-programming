@@ -170,9 +170,20 @@ public class Context {
     /**
      * @param candidaturas List of Candidatura objects to be added
      */
-    public void addCandidaturas(ArrayList<Candidaturas> candidaturas) throws Exception {
-        for(Candidaturas c : candidaturas)
-            addCandidatura(c);
+    public String addCandidaturas(ArrayList<Candidaturas> candidaturas) {
+        StringBuilder sb = new StringBuilder();
+        for(Candidaturas c : candidaturas) {
+            try {
+                addCandidatura( c );
+            } catch (Exception e) {
+                sb.append(e.getMessage()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    public void removeCandidatura(Candidaturas toRemove) throws Exception {
+        state.removeCandidatura( toRemove );
     }
 
     /**

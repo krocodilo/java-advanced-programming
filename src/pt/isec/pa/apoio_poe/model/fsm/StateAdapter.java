@@ -119,6 +119,9 @@ public class StateAdapter implements IState {
     public void addCandidatura(Candidaturas newCandidatura) throws Exception {}
 
     @Override
+    public void removeCandidatura(Candidaturas toRemove) throws Exception {}
+
+    @Override
     public ArrayList<Candidaturas> getCandidaturas() {
         return null;
     }

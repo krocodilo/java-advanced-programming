@@ -3,6 +3,7 @@ package pt.isec.pa.apoio_poe.ui.gui.phaseTwo;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -19,6 +20,9 @@ public class PhaseTwoGUI extends PhaseMenuTemplate {
     Button btnConsultaAlunos;
     Button btnConsultaPropostas;
     ListView<Object> list;
+
+    ChoiceBox<String> choiceBoxAlunos;
+    ChoiceBox<String> choiceBoxPropostas;
 
     public PhaseTwoGUI(ModelManager model) {
         super(model);
@@ -37,20 +41,39 @@ public class PhaseTwoGUI extends PhaseMenuTemplate {
         btnConsultaAlunos = new Button("Consulta Alunos");
         btnConsultaPropostas = new Button("Consulta Propostas");
 
-        VBox vbox = new VBox(title, btnGestaoCandidaturas, btnConsultaAlunos, btnConsultaPropostas);
-        vbox.setSpacing(10);
-        vbox.setPadding(new Insets(10));
-        vbox.setAlignment(Pos.CENTER);
-        this.setLeft( vbox );
+        choiceBoxAlunos = new ChoiceBox<>();
+        choiceBoxPropostas = new ChoiceBox<>();
+
+        choiceBoxAlunos.getItems().addAll("Alunos Autoproposta","Alunos c/ candidatura","Alunos s/ candidatura");
+        choiceBoxPropostas.getItems().addAll("Autopropostas Alunos","Propostas Docentes","Propostas c/ candidatura", "Propostas s/ candidatura");
+
+        VBox vbox1 = new VBox(title, btnGestaoCandidaturas);
+        vbox1.setSpacing(50);
+        vbox1.setPadding(new Insets(20));
+        vbox1.setAlignment(Pos.CENTER);
+
+        VBox vbox2 = new VBox(choiceBoxAlunos,btnConsultaAlunos,choiceBoxPropostas,btnConsultaPropostas);
+        vbox2.setSpacing(10);
+        vbox2.setPadding(new Insets(40,20,20,20));
+        vbox2.setAlignment(Pos.CENTER);
+
+        VBox vbox3 = new VBox(btnSaveData, btnLoadData);
+        vbox3.setSpacing(10);
+        vbox3.setPadding(new Insets(40,20,20,20));
+        vbox3.setAlignment(Pos.CENTER);
+
+        VBox form=new VBox();
+        form.getChildren().add(vbox1);
+        form.getChildren().add(vbox2);
+        form.getChildren().add(vbox3);
+        this.setLeft(form);
 
         list = new ListView<>();
         VBox vboxl = new VBox(list);
         vboxl.setSpacing(10);
-        vbox.setPadding(new Insets(10));
+        vboxl.setPadding(new Insets(10));
         vboxl.setAlignment(Pos.CENTER);
         this.setCenter( vboxl );
-
-        //TODO -> add button btnSaveData and btnLoadData (already set up in parent)
 
         HBox hbox = new HBox(btnCloseState, btnPrevious, btnNext);
         hbox.setAlignment(Pos.CENTER);
@@ -64,14 +87,40 @@ public class PhaseTwoGUI extends PhaseMenuTemplate {
         btnGestaoCandidaturas.setOnAction( actionEvent -> model.goToState(State.GESTAO_CANDIDATURAS) );
 
         btnConsultaAlunos.setOnAction( actionEvent -> {
-                    list.getItems().clear();
-                    list.getItems().addAll(model.getAlunos());
+            String choice = choiceBoxAlunos.getValue();
+                    if(choice.equals("Alunos Autoproposta")){
+                        list.getItems().clear();
+                        list.getItems().addAll(model.getAlunosComAutoproposta());
+                    }
+            else if(choice.equals("Alunos c/ candidatura")){
+                list.getItems().clear();
+                list.getItems().addAll(model.getAlunosComCandidatura());
+            }
+            else if(choice.equals("Alunos s/ candidatura")){
+                list.getItems().clear();
+                list.getItems().addAll(model.getAlunosSemCandidatura());
+            }
         });
 
 
         btnConsultaPropostas.setOnAction( actionEvent -> {
-            list.getItems().clear();
-            list.getItems().addAll(model.getPropostas());
+            String choice = choiceBoxPropostas.getValue();
+            if(choice.equals("Autopropostas Alunos")){
+                list.getItems().clear();
+                list.getItems().addAll(model.getAutopropostasAlunos());
+            }
+            else if(choice.equals("Propostas Docentes")){
+                list.getItems().clear();
+                list.getItems().addAll(model.getPropostasDocentes());
+            }
+            else if(choice.equals("Propostas c/ candidatura")){
+                list.getItems().clear();
+                list.getItems().addAll(model.getPropostasComCandidaturas());
+            }
+            else if(choice.equals("Propostas s/ candidatura")){
+                list.getItems().clear();
+                list.getItems().addAll(model.getPropostasSemCandidaturas());
+            }
         });
     }
 
