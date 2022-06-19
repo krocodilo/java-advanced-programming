@@ -3,6 +3,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.fsm.states.phaseOne.PhaseOne;
+import pt.isec.pa.apoio_poe.model.memento.PoECareTaker;
 import pt.isec.pa.apoio_poe.ui.utils.FileUtils;
 
 import java.util.ArrayList;
@@ -13,10 +14,12 @@ public class Context {
 
     private IState state;
     private DataCapsule data;
+    private final PoECareTaker careTaker;
 
     public Context() {
         data = new DataCapsule();
         state = new PhaseOne(this, data);
+        careTaker = new PoECareTaker(data);
     }
 
     /**
@@ -233,6 +236,7 @@ public class Context {
     }
 
     public void AtribuicaoManual(Aluno aluno, Proposta proposta){
+        careTaker.save();
         state.AtribuicaoManual(aluno,proposta);
     }
 
@@ -312,5 +316,18 @@ public class Context {
     public void loadStateFromDisk(String filename) throws Exception {
         data = FileUtils.loadDataFromDisk( filename );
         goToState( data.getLastState() );
+    }
+
+    public boolean hasUndo() {
+        return (careTaker.hasUndo());
+    }
+    public boolean hasRedo() {
+        return (careTaker.hasRedo());
+    }
+    public void undo() {
+        careTaker.undo();
+    }
+    public void redo() {
+        careTaker.redo();
     }
 }

@@ -5,6 +5,9 @@ import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Estagio;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.data.tipos_proposta.TipoProposta;
 import pt.isec.pa.apoio_poe.model.fsm.State;
+import pt.isec.pa.apoio_poe.model.memento.IMemento;
+import pt.isec.pa.apoio_poe.model.memento.IOriginator;
+import pt.isec.pa.apoio_poe.model.memento.PoEMemento;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,21 +15,21 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DataCapsule implements Serializable {
+public class DataCapsule implements Serializable, IOriginator {
 
     private static final long SerialVersionUID = 1L;
 
     private final ArrayList<Aluno> alunos = new ArrayList<>();
-    private final ArrayList<Docente> docentes = new ArrayList<>();
+    private ArrayList<Docente> docentes = new ArrayList<>();
 
-    private final ArrayList<Proposta> propostas = new ArrayList<>();
-    private final ArrayList<Estagio> estagios = new ArrayList<>();
-    private final ArrayList<Projeto> projetos = new ArrayList<>();
-    private final ArrayList<AutoProposto> autoPropostos = new ArrayList<>();
+    private ArrayList<Proposta> propostas = new ArrayList<>();
+    private ArrayList<Estagio> estagios = new ArrayList<>();
+    private ArrayList<Projeto> projetos = new ArrayList<>();
+    private ArrayList<AutoProposto> autoPropostos = new ArrayList<>();
 
     private final ArrayList<Candidaturas> candidaturas = new ArrayList<>();
 
-    private final HashMap<Aluno,Proposta> atribuicoesAlunos = new HashMap<>();
+    private HashMap<Aluno,Proposta> atribuicoesAlunos = new HashMap<>();
 
     public int numAlunosDA = 0;
     public int numAlunosRAS = 0;
@@ -338,4 +341,22 @@ public class DataCapsule implements Serializable {
         return lastState;
     }
 
+
+    @Override
+    public IMemento save() {
+        return new PoEMemento(this);
+    }
+
+    @Override
+    public void restore(IMemento memento) {
+        Object obj = memento.getSnapshot();
+        if (obj instanceof DataCapsule m) {
+            this.atribuicoesAlunos = m.atribuicoesAlunos;
+            this.docentes = m.docentes;
+            this.propostas = m.propostas;
+            this.estagios = m.estagios;
+            this.projetos = m.projetos;
+            this.autoPropostos = m.autoPropostos;
+        }
+    }
 }
