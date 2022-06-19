@@ -4,25 +4,25 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.ui.gui.ModelManager;
+import pt.isec.pa.apoio_poe.ui.gui.common.PhaseMenuTemplate;
 
-public class phaseThreeGUI extends BorderPane {
-    ModelManager model;
+public class phaseThreeGUI extends PhaseMenuTemplate {
+
     Button btnAtribuicaoPropostas;
     Button btnRemocaoAtribuicoes;
     Button btnConsultaAlunos;
     Button btnConsultaPropostas;
-    Button btnCloseState;
-    Button btnNext;
-    Button btnPrevious;
     ListView<Object> list;
 
     public phaseThreeGUI(ModelManager model) {
-        this.model = model;
+        super(model);
         createViews();
         registerHandlers();
         update();
@@ -30,21 +30,24 @@ public class phaseThreeGUI extends BorderPane {
 
     private void createViews() {
 
+        //TODO -> add this title text
+        Text title = new Text("Fase 3");
+        title.setFont( Font.font("Arial", FontWeight.BOLD, 35) );
+
         btnAtribuicaoPropostas = new Button("Atribuição Propostas");
         btnRemocaoAtribuicoes = new Button("Remoção Atribuições");
         btnConsultaAlunos = new Button("Consultar Alunos");
         btnConsultaPropostas = new Button("Consultar Propostas");
-        btnCloseState = new Button("Fechar Fase");
-        btnNext = new Button("Fase Seguinte");
-        btnPrevious = new Button("Fase Anterior");
 
-        VBox vbox = new VBox(btnAtribuicaoPropostas, btnRemocaoAtribuicoes, btnConsultaAlunos, btnConsultaPropostas);
+        VBox vbox = new VBox(title, btnAtribuicaoPropostas, btnRemocaoAtribuicoes, btnConsultaAlunos, btnConsultaPropostas);
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(10));
         vbox.setAlignment(Pos.CENTER);
         this.setCenter( vbox );
 
-        HBox hbox = new HBox(btnCloseState, btnNext, btnPrevious);
+        //TODO -> add button btnSaveData and btnLoadData (already set up in parent)
+
+        HBox hbox = new HBox(btnCloseState, btnPrevious, btnNext);
         hbox.setAlignment(Pos.CENTER);
         hbox.setSpacing(20);
         hbox.setPadding(new Insets(10));
@@ -69,16 +72,6 @@ public class phaseThreeGUI extends BorderPane {
         btnConsultaPropostas.setOnAction( actionEvent -> {
 
         });
-
-        btnCloseState.setOnAction( actionEvent -> {
-            try {
-                model.lockCurrentState();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        btnNext.setOnAction( actionEvent -> model.next() );
-        btnPrevious.setOnAction( actionEvent -> model.previous() );
     }
 
     private void update() {

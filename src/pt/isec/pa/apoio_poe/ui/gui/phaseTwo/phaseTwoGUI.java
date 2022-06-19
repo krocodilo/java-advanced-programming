@@ -30,14 +30,14 @@ public class phaseTwoGUI extends PhaseMenuTemplate {
     private void createViews() {
 
         //TODO -> add this title text
-        Text title = new Text("Fase 1");
-        title.setFont( Font.font("de", FontWeight.BOLD, 35) );
+        Text title = new Text("Fase 2");
+        title.setFont( Font.font("Arial", FontWeight.BOLD, 35) );
 
         btnGestaoCandidaturas = new Button("Gestao Candidaturas");
         btnConsultaAlunos = new Button("Consulta Alunos");
         btnConsultaPropostas = new Button("Consulta Propostas");
 
-        VBox vbox = new VBox(btnGestaoCandidaturas, btnConsultaAlunos, btnConsultaPropostas);
+        VBox vbox = new VBox(title, btnGestaoCandidaturas, btnConsultaAlunos, btnConsultaPropostas);
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(10));
         vbox.setAlignment(Pos.CENTER);
