@@ -111,7 +111,8 @@ public class GestaoAlunosGUI extends BorderPane {
     private void importFromFile(){
         FileChooser fc = new FileChooser();
         fc.setTitle("Escolha o ficheiro dos alunos");
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", "*csv"));
+        fc.setInitialDirectory( new File(System.getProperty("user.dir")) );
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", "*.csv"));
 
         File f = fc.showOpenDialog( this.getScene().getWindow() );
         if( f == null )
