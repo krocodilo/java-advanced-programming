@@ -39,7 +39,9 @@ public class GestaoCandidaturasGUI extends BorderPane {
     private void createViews() {
 
         list = new ListView<>();
-        list.getItems().addAll( model.getCandidaturas());
+        list.getItems().addAll(
+                model.getCandidaturas()
+        );
 
         txtCandidaturasCount = new Text("Numero de Candidaturas: " + model.getCandidaturas().size());
         txtCandidaturasCount.setVisible(true);

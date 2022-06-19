@@ -7,6 +7,7 @@ import pt.isec.pa.apoio_poe.ui.gui.phaseOne.GestaoPropostasGUI;
 import pt.isec.pa.apoio_poe.ui.gui.phaseThree.PhaseThreeGUI;
 import pt.isec.pa.apoio_poe.ui.gui.phaseOne.GestaoAlunosGUI;
 import pt.isec.pa.apoio_poe.ui.gui.phaseOne.PhaseOneGUI;
+import pt.isec.pa.apoio_poe.ui.gui.phaseTwo.GestaoCandidaturasGUI;
 import pt.isec.pa.apoio_poe.ui.gui.phaseTwo.PhaseTwoGUI;
 
 public class RootPane extends BorderPane {
