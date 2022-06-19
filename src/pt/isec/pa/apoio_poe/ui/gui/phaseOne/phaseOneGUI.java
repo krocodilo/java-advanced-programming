@@ -1,7 +1,9 @@
 package pt.isec.pa.apoio_poe.ui.gui.phaseOne;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -15,10 +17,6 @@ public class phaseOneGUI extends PhaseMenuTemplate {
     Button btnGestaoAlunos;
     Button btnGestaoDocentes;
     Button btnGestaoPropostas;
-//    Button btnCloseState;
-//    Button btnNext;
-//    Button btnSaveData;
-//    Button btnLoadData;
 
     public phaseOneGUI(ModelManager model) {
         super(model);
@@ -30,21 +28,23 @@ public class phaseOneGUI extends PhaseMenuTemplate {
     private void createViews() {
 
         Text title = new Text("Fase 1");
-        title.setFont( Font.font("de", FontWeight.BOLD, 35) );
+        title.setFont( Font.font("Arial", FontWeight.BOLD, 35) );
 
         btnGestaoAlunos = new Button("Gestao Alunos");
         btnGestaoDocentes = new Button("Gestão Docentes");
         btnGestaoPropostas = new Button("Gestão Propostas");
-//        btnCloseState = new Button("Fechar Fase");
-//        btnNext = new Button("Fase Seguinte");
-//        btnSaveData = new Button("Gravar Estado Atual");
-//        btnLoadData = new Button("Carregar Estado Anterior");
 
         VBox vbox = new VBox(title, btnGestaoAlunos, btnGestaoDocentes, btnGestaoPropostas,
-                btnCloseState, btnSaveData, btnLoadData, btnNext, txtWarning);
+                btnSaveData, btnLoadData, txtWarning);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
         this.setCenter( vbox );
+
+        HBox hbox = new HBox(btnCloseState, btnNext);
+        hbox.setAlignment(Pos.CENTER);
+        hbox.setSpacing(20);
+        hbox.setPadding(new Insets(10));
+        this.setBottom(hbox);
     }
 
     private void registerHandlers() {
@@ -52,15 +52,6 @@ public class phaseOneGUI extends PhaseMenuTemplate {
         btnGestaoAlunos.setOnAction( actionEvent -> model.goToState(State.GESTAO_ALUNOS) );
         btnGestaoDocentes.setOnAction( actionEvent -> model.goToState(State.GESTAO_DOCENTES) );
         btnGestaoPropostas.setOnAction( actionEvent -> model.goToState(State.GESTAO_PROPOSTAS) );
-//        btnCloseState.setOnAction( actionEvent -> {
-//            try {
-//                model.lockCurrentState();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        });
-//        btnNext.setOnAction( actionEvent -> model.next() );
-////        btnSaveData.setOnAction( actionEvent -> );
     }
 
     private void update() {

@@ -4,30 +4,24 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.ui.gui.ModelManager;
+import pt.isec.pa.apoio_poe.ui.gui.common.PhaseMenuTemplate;
 
-public class phaseTwoGUI extends BorderPane {
+public class phaseTwoGUI extends PhaseMenuTemplate {
 
-    ModelManager model;
     Button btnGestaoCandidaturas;
-
     Button btnConsultaAlunos;
-
     Button btnConsultaPropostas;
-    Button btnCloseState;
-    Button btnNext;
-    Button btnPrevious;
     ListView<Object> list;
 
     public phaseTwoGUI(ModelManager model) {
-        this.model = model;
+        super(model);
         createViews();
         registerHandlers();
         update();
@@ -35,12 +29,13 @@ public class phaseTwoGUI extends BorderPane {
 
     private void createViews() {
 
+        //TODO -> add this title text
+        Text title = new Text("Fase 1");
+        title.setFont( Font.font("de", FontWeight.BOLD, 35) );
+
         btnGestaoCandidaturas = new Button("Gestao Candidaturas");
         btnConsultaAlunos = new Button("Consulta Alunos");
         btnConsultaPropostas = new Button("Consulta Propostas");
-        btnCloseState = new Button("Fechar Fase");
-        btnNext = new Button("Fase Seguinte");
-        btnPrevious = new Button("Fase Anterior");
 
         VBox vbox = new VBox(btnGestaoCandidaturas, btnConsultaAlunos, btnConsultaPropostas);
         vbox.setSpacing(10);
@@ -55,7 +50,9 @@ public class phaseTwoGUI extends BorderPane {
         vboxl.setAlignment(Pos.CENTER);
         this.setCenter( vboxl );
 
-        HBox hbox = new HBox(btnCloseState, btnNext, btnPrevious);
+        //TODO -> add button btnSaveData and btnLoadData (already set up in parent)
+
+        HBox hbox = new HBox(btnCloseState, btnPrevious, btnNext);
         hbox.setAlignment(Pos.CENTER);
         hbox.setSpacing(20);
         hbox.setPadding(new Insets(10));
@@ -76,16 +73,6 @@ public class phaseTwoGUI extends BorderPane {
             list.getItems().clear();
             list.getItems().addAll(model.getPropostas());
         });
-
-        btnCloseState.setOnAction( actionEvent -> {
-            try {
-                model.lockCurrentState();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        btnNext.setOnAction( actionEvent -> model.next() );
-        btnPrevious.setOnAction( actionEvent -> model.previous() );
     }
 
     private void update() {

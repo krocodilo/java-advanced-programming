@@ -14,8 +14,8 @@ public class PhaseMenuTemplate extends BorderPane {
 
     protected ModelManager model;
     protected Button btnCloseState = new Button("Fechar Fase");
-    protected Button btnPrevious = new Button("Fase Anterior");
-    protected Button btnNext = new Button("Fase Seguinte");
+    protected Button btnPrevious = new Button("<< Fase Anterior");
+    protected Button btnNext = new Button("Fase Seguinte >>");
     protected Button btnSaveData = new Button("Gravar Estado Atual");
     protected Button btnLoadData = new Button("Carregar Estado Anterior");
     protected Text txtWarning = new Text("");
