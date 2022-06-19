@@ -1,4 +1,4 @@
-package pt.isec.pa.apoio_poe.ui.gui.PhaseThree;
+package pt.isec.pa.apoio_poe.ui.gui.phaseThree;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,7 +13,7 @@ import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.ui.gui.ModelManager;
 import pt.isec.pa.apoio_poe.ui.gui.common.PhaseMenuTemplate;
 
-public class phaseThreeGUI extends PhaseMenuTemplate {
+public class PhaseThreeGUI extends PhaseMenuTemplate {
 
     Button btnAtribuicaoPropostas;
     Button btnRemocaoAtribuicoes;
@@ -21,7 +21,7 @@ public class phaseThreeGUI extends PhaseMenuTemplate {
     Button btnConsultaPropostas;
     ListView<Object> list;
 
-    public phaseThreeGUI(ModelManager model) {
+    public PhaseThreeGUI(ModelManager model) {
         super(model);
         createViews();
         registerHandlers();

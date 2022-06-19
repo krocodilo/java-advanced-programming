@@ -16,7 +16,7 @@ import pt.isec.pa.apoio_poe.ui.utils.FileUtils;
 
 import java.io.File;
 
-public class gestaoAlunosGUI extends BorderPane {
+public class GestaoAlunosGUI extends BorderPane {
     ModelManager model;
     Button btnEdit;
     Button btnDelete;
@@ -28,7 +28,7 @@ public class gestaoAlunosGUI extends BorderPane {
     ListView<Aluno> list;
 //    TableView<List<String>> table;
 
-    public gestaoAlunosGUI(ModelManager model) {
+    public GestaoAlunosGUI(ModelManager model) {
         this.model = model;
         createViews();
         registerHandlers();

@@ -13,12 +13,12 @@ import pt.isec.pa.apoio_poe.ui.gui.ModelManager;
 import pt.isec.pa.apoio_poe.ui.gui.common.PhaseMenuTemplate;
 
 
-public class phaseOneGUI extends PhaseMenuTemplate {
+public class PhaseOneGUI extends PhaseMenuTemplate {
     Button btnGestaoAlunos;
     Button btnGestaoDocentes;
     Button btnGestaoPropostas;
 
-    public phaseOneGUI(ModelManager model) {
+    public PhaseOneGUI(ModelManager model) {
         super(model);
         createViews();
         registerHandlers();
