@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 
@@ -62,6 +63,10 @@ public class ModelManager {
 
     public ArrayList<Aluno> getAlunos() {
         return context.getAlunos();
+    }
+
+    public ArrayList<Proposta> getPropostas() {
+        return context.getPropostas();
     }
 
     public void lockCurrentState() throws Exception {
