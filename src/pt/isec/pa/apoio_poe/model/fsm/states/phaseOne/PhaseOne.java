@@ -30,13 +30,12 @@ public class PhaseOne extends StateAdapter {
 
     /**
      * Tries to lock phase one.
-     * @throws Exception If the number of Alunos is superior to the number of Propostas
+     * @throws Exception If the number of Alunos is superior to the number of Propostas, or if the number of Alunos is zero
      */
     @Override
     public void lock() throws Exception {
-
-
-        //TODO verificacoes
+        if(data.getAlunos().size() < 1)
+            throw new Exception("Nao existem alunos!");
         if(data.getAlunos().size() > data.getPropostas().size())
             throw new Exception("Nao existem propostas suficientes!");
 

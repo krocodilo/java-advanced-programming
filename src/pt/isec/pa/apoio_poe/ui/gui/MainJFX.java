@@ -20,7 +20,7 @@ public class MainJFX extends Application {
     @Override
     public void start(Stage stage) {
         RootPane root = new RootPane(model);
-        Scene scene = new Scene(root,600,400);
+        Scene scene = new Scene(root,1000,600);
         stage.setTitle("Apoio PoE");
         stage.setResizable(false);
         stage.setScene(scene);
