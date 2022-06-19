@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        if(!gui)
+        if(gui)
             Application.launch(MainJFX.class, args);
         else {
             Context fsm = new Context();

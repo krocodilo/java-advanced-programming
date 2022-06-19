@@ -4,8 +4,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.ui.gui.ModelManager;
+import pt.isec.pa.apoio_poe.ui.utils.FileUtils;
+
+import java.io.File;
 
 public class phaseOneGUI extends BorderPane {
     ModelManager model;

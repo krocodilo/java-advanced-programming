@@ -28,6 +28,10 @@ public class PhaseOne extends StateAdapter {
         return data.phaseOneLocked;
     }
 
+    /**
+     * Tries to lock phase one.
+     * @throws Exception If the number of Alunos is superior to the number of Propostas
+     */
     @Override
     public void lock() throws Exception {
 

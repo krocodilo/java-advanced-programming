@@ -1,10 +1,13 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModelManager {
     public static final String PROP_STATE = "state";
@@ -51,12 +54,14 @@ public class ModelManager {
         pcs.firePropertyChange(PROP_DATA,null,null);
     }
 
-    public int getNumber() {
-        return 0;//context.getNumber();
+    public String addAlunos(List<Aluno> alunos) {
+        String ret = context.addAlunos(alunos);
+        pcs.firePropertyChange(PROP_DATA,null,null);
+        return ret;
     }
 
-    public String getMessage() {
-        return "";//context.getMessage();
+    public ArrayList<Aluno> getAlunos() {
+        return context.getAlunos();
     }
 
     public void lockCurrentState() throws Exception {

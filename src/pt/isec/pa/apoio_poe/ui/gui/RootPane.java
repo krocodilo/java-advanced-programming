@@ -17,7 +17,7 @@ public class RootPane extends BorderPane {
     }
 
     private void createViews() {
-        this.setStyle("-fx-background-color: #333333;");
+        this.setStyle("-fx-background-color: #FFFFFF;");
         StackPane stackPane = new StackPane(
                 new phaseOneGUI(model), new gestaoAlunosGUI(model)
         );
