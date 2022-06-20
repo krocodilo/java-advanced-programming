@@ -25,6 +25,10 @@ public class GestaoOrientadores extends StateAdapter {
             d.setOrientador(true);
         }
     }
+    @Override
+    public void removeOrientador(Docente toRemove){
+        data.getOrientadores().remove( toRemove );
+    }
 
     @Override
     public ArrayList<Projeto> getProjetos() {

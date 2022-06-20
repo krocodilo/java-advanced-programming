@@ -209,6 +209,9 @@ public class StateAdapter implements IState {
     public ArrayList<Docente> getOrientadores(){ return null; }
 
     @Override
+    public void removeOrientador(Docente toRemove) {}
+
+    @Override
     public ArrayList<Aluno> getAlunosComPropostaComOrientador(){
         return null;
     }

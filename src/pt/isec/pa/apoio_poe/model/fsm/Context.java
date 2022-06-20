@@ -273,6 +273,8 @@ public class Context {
 
     public ArrayList<Docente> getOrientadores(){ return state.getOrientadores(); }
 
+    public void removeOrientador(Docente toRemove){ state.removeOrientador(toRemove);}
+
     public ArrayList<Aluno> getAlunosComPropostaComOrientador() {
         return state.getAlunosComPropostaComOrientador();
     }

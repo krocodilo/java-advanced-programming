@@ -155,6 +155,26 @@ public class ModelManager {
         context.removeCandidatura(candidaturas);
     }
 
+    public ArrayList<Aluno> getAlunosComPropostaComOrientador(){
+        return context.getAlunosComPropostaComOrientador();
+    }
+
+    public ArrayList<Aluno> getAlunosComPropostaSemOrientador(){
+        return context.getAlunosComPropostaSemOrientador();
+    }
+
+    public String getEstatisticasOrientadores(){
+        return context.getEstatisticasOrientadores();
+    }
+
+    public ArrayList<Docente> getOrientadores(){
+        return context.getOrientadores();
+    }
+
+    public void removeOrientador(Docente toRemove){
+        context.removeOrientador(toRemove);
+    }
+
     public void lockCurrentState() throws Exception {
         context.lockCurrentState();
     }
