@@ -7,13 +7,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.ui.gui.ModelManager;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 public class ConsultarListasPropostas extends BorderPane {
     ModelManager model;
