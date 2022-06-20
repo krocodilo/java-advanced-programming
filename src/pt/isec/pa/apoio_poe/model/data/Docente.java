@@ -56,7 +56,7 @@ public class Docente implements Serializable {
     @Override
     public boolean equals(Object obj) {
 //        if(getClass() != obj.getClass())  // ListView throws an exception when selecting items if we verify this way
-        if(! (obj instanceof Aluno))
+        if(! (obj instanceof Docente))
             return false;
         return this.hashCode() == obj.hashCode();
     }

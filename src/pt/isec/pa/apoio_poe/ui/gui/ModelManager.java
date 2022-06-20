@@ -128,6 +128,21 @@ public class ModelManager {
         return context.getPropostasComCandidaturas();
     }
 
+    public ArrayList<Proposta> getPropostasDisponiveis() {
+        return context.getPropostasDisponiveis();
+    }
+
+    public ArrayList<Proposta> getPropostasAtribuidas() {
+        return context.getPropostasAtribuidas();
+    }
+
+    public void atribuicaoAutomaticaAutoPropostas(){
+        context.atribuicaoAutomaticaAutoPropostas();
+    }
+    public void atribuicaoAutomaticaPropostas(){
+        context.atribuicaoAutomaticaPropostas();
+    }
+
     public ArrayList<Candidaturas> getCandidaturas(){
         return context.getCandidaturas();
     }
@@ -142,6 +157,10 @@ public class ModelManager {
 
     public void lockCurrentState() throws Exception {
         context.lockCurrentState();
+    }
+
+    public boolean phaseTwoLocked(){
+        return context.phaseTwoLocked();
     }
 
     public void saveStateToDisk(String filename) throws Exception {

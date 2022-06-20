@@ -53,7 +53,8 @@ public class Candidaturas implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(getClass() != obj.getClass())
+//        if(getClass() != obj.getClass())  // ListView throws an exception when selecting items if we verify this way
+        if(! (obj instanceof Candidaturas))
             return false;
         return this.hashCode() == obj.hashCode();
     }

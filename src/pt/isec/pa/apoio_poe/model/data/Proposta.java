@@ -76,7 +76,7 @@ public class Proposta implements Serializable {
     @Override
     public boolean equals(Object obj) {
 //        if(getClass() != obj.getClass())  // ListView throws an exception when selecting items if we verify this way
-        if(! (obj instanceof Aluno))
+        if(! (obj instanceof Proposta))
             return false;
         return this.hashCode() == obj.hashCode();
     }

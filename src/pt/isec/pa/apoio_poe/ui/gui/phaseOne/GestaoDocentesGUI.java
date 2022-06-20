@@ -69,12 +69,10 @@ public class GestaoDocentesGUI extends BorderPane {
             try {
                 if( list.getSelectionModel().getSelectedItem() != null ){
                     model.removeDocente( list.getSelectionModel().getSelectedItem() );
-                    update();
                 } else
                     throw new Exception("Nenhum doccente foi selecionado!");
             } catch (Exception e) {
                 txtWarning.setText(e.getMessage());
-                update();
             }
         });
     }

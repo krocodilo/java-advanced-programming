@@ -190,7 +190,7 @@ public class Context {
      * @return List of all Candidatura objects
      */
     public ArrayList<Candidaturas> getCandidaturas() {
-        return state.getCandidaturas();
+        return data.getCandidaturas();
     }
 
 

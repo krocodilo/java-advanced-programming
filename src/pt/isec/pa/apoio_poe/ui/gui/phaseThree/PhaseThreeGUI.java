@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -24,6 +25,7 @@ public class PhaseThreeGUI extends PhaseMenuTemplate {
     Button btnConsultaAlunos;
     Button btnConsultaPropostas;
     ListView<Object> list;
+    boolean atribuicaoAutomaticaAconteceu = false;
 
     public PhaseThreeGUI(ModelManager model) {
         super(model);
@@ -42,21 +44,12 @@ public class PhaseThreeGUI extends PhaseMenuTemplate {
         btnConsultaAlunos = new Button("Consultar Alunos");
         btnConsultaPropostas = new Button("Consultar Propostas");
 
-        VBox vbox = new VBox(title, btnAtribuicaoPropostas, btnRemocaoAtribuicoes, btnConsultaAlunos, btnConsultaPropostas);
+        VBox vbox = new VBox(title, btnAtribuicaoPropostas, btnRemocaoAtribuicoes,
+                btnConsultaAlunos, btnConsultaPropostas, btnSaveData, btnLoadData, txtWarning);
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(10));
         vbox.setAlignment(Pos.CENTER);
         this.setCenter( vbox );
-
-
-
-
-
-        //TODO -> add button btnSaveData and btnLoadData (already set up in parent)
-
-
-
-
 
         HBox hbox = new HBox(btnCloseState, btnPrevious, btnNext);
         hbox.setAlignment(Pos.CENTER);
@@ -76,25 +69,53 @@ public class PhaseThreeGUI extends PhaseMenuTemplate {
 
         } );
 
-        btnConsultaAlunos.setOnAction( actionEvent -> {
-            Stage window = new Stage();
-            window.initModality(Modality.WINDOW_MODAL);
-            window.initOwner( this.getScene().getWindow() );
-            window.setTitle("Consultar Listas de Alunos");
+        btnConsultaAlunos.setOnAction( actionEvent -> openWindowConsultarAlunos() );
 
-            Scene scene = new Scene(new ConsultaListasAlunos(model), 1000, 600);
-            window.setScene(
-                    scene
-            );
-            window.show();
-        });
-
-        btnConsultaPropostas.setOnAction( actionEvent -> {
-
-        });
+        btnConsultaPropostas.setOnAction( actionEvent -> openWindowConsultarPropostas() );
     }
 
     private void update() {
         this.setVisible(model != null && model.getState() == State.PHASE_THREE);
+
+        if(! (model.getState() == State.PHASE_THREE) )
+            atribuicaoAutomaticaAconteceu = false;
+        else if(!atribuicaoAutomaticaAconteceu) {
+            model.atribuicaoAutomaticaAutoPropostas();
+            String extraInfo = "";
+            if (model.phaseTwoLocked()) {
+                extraInfo = "\n-> Atribuicao automatica de propostas.";
+                model.atribuicaoAutomaticaPropostas();
+            } else
+                extraInfo = "\n-> Nao se realizou a atribuicao automatica de propostas," +
+                        " pois fase dois nao esta fechada.";
+
+            txtWarning.setFill(Color.GREEN);
+            txtWarning.setText("-> Occoreu atribuicao automatica de autopropostas ou propostas de " +
+                    "docentes com aluno associado." + extraInfo);
+            txtWarning.setVisible(true);
+            atribuicaoAutomaticaAconteceu = true;
+        }
+    }
+
+    private void openWindowConsultarAlunos(){
+        Stage window = new Stage();
+        window.initModality( Modality.WINDOW_MODAL );
+        window.initOwner( this.getScene().getWindow() );
+        window.setTitle("Consultar Listas de Alunos");
+        window.setScene(
+                new Scene( new ConsultaListasAlunos(model), 950, 550 )
+        );
+        window.show();
+    }
+
+    private void openWindowConsultarPropostas(){
+        Stage window = new Stage();
+        window.initModality( Modality.WINDOW_MODAL );
+        window.initOwner( this.getScene().getWindow() );
+        window.setTitle("Consultar Listas de Propostas");
+        window.setScene(
+                new Scene( new ConsultarListasPropostas(model), 950, 550 )
+        );
+        window.show();
     }
 }

@@ -85,7 +85,6 @@ public class GestaoAlunosGUI extends BorderPane {
                     throw new Exception("Nenhum aluno foi selecionado!");
             } catch (Exception e) {
                 txtWarning.setText(e.getMessage());
-                //update();
             }
         });
     }

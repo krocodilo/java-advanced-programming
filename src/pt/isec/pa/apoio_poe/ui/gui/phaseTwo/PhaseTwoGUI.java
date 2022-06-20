@@ -33,7 +33,6 @@ public class PhaseTwoGUI extends PhaseMenuTemplate {
 
     private void createViews() {
 
-        //TODO -> add this title text
         Text title = new Text("Fase 2");
         title.setFont( Font.font("Arial", FontWeight.BOLD, 35) );
 

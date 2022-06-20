@@ -8,7 +8,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.fsm.State;
 import pt.isec.pa.apoio_poe.ui.gui.ModelManager;
 
 public class ConsultaListasAlunos extends BorderPane {
@@ -28,22 +27,22 @@ public class ConsultaListasAlunos extends BorderPane {
     private void createViews() {
 
         Text title1 = new Text("Alunos Com Autoproposta:");
-        title1.setFont( Font.font("Arial", FontWeight.BOLD, 20) );
+        title1.setFont( Font.font("Arial", FontWeight.BOLD, 15) );
         alunosComAutoproposta = new ListView<>();
         alunosComAutoproposta.getItems().addAll( model.getAlunosComAutoproposta() );
 
         Text title2 = new Text("Alunos Com Candidatura Registada:");
-        title2.setFont( Font.font("Arial", FontWeight.BOLD, 20) );
+        title2.setFont( Font.font("Arial", FontWeight.BOLD, 15) );
         alunosComCandidatura = new ListView<>();
         alunosComCandidatura.getItems().addAll( model.getAlunosComCandidatura() );
 
         Text title3 = new Text("Alunos Com Proposta Atribuida:");
-        title3.setFont( Font.font("Arial", FontWeight.BOLD, 20) );
+        title3.setFont( Font.font("Arial", FontWeight.BOLD, 15) );
         alunosComPropostaAtribuida = new ListView<>();
         alunosComPropostaAtribuida.getItems().addAll( model.getAlunosComPropostaAtribuida() );
 
         Text title4 = new Text("Alunos Sem Proposta Atribuida:");
-        title4.setFont( Font.font("Arial", FontWeight.BOLD, 20) );
+        title4.setFont( Font.font("Arial", FontWeight.BOLD, 15) );
         alunosSemPropostaAtribuida = new ListView<>();
         alunosSemPropostaAtribuida.getItems().addAll( model.getAlunosSemPropostaAtribuida() );
 
@@ -59,15 +58,11 @@ public class ConsultaListasAlunos extends BorderPane {
     }
 
     private void registerHandlers() {
-        model.addPropertyChangeListener(ModelManager.PROP_STATE, evt -> update());
-            //todo close
-
         model.addPropertyChangeListener(ModelManager.PROP_DATA, evt -> update() );
+        //Probably not needed
     }
 
     private void update() {
-        //this.setVisible(true);
-
         alunosComAutoproposta.getItems().clear();
         alunosComCandidatura.getItems().clear();
         alunosComPropostaAtribuida.getItems().clear();
