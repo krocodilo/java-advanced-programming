@@ -143,6 +143,16 @@ public class ModelManager {
         context.atribuicaoAutomaticaPropostas();
     }
 
+    public void AtribuicaoManual(Aluno aluno, Proposta proposta){
+        context.AtribuicaoManual(aluno,proposta);
+        pcs.firePropertyChange(PROP_DATA,null,null);
+    }
+
+    public void RemoverAtribuicao(Aluno aluno){
+        context.RemoverAtribuicao(aluno);
+        pcs.firePropertyChange(PROP_DATA,null,null);
+    }
+
     public ArrayList<Candidaturas> getCandidaturas(){
         return context.getCandidaturas();
     }

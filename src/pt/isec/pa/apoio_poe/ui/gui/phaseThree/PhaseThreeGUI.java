@@ -4,9 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -20,11 +18,9 @@ import pt.isec.pa.apoio_poe.ui.gui.common.PhaseMenuTemplate;
 
 public class PhaseThreeGUI extends PhaseMenuTemplate {
 
-    Button btnAtribuicaoPropostas;
-    Button btnRemocaoAtribuicoes;
+    Button btnEditarAtribuicoes;
     Button btnConsultaAlunos;
     Button btnConsultaPropostas;
-    ListView<Object> list;
     boolean atribuicaoAutomaticaAconteceu = false;
 
     public PhaseThreeGUI(ModelManager model) {
@@ -39,13 +35,12 @@ public class PhaseThreeGUI extends PhaseMenuTemplate {
         Text title = new Text("Fase 3");
         title.setFont( Font.font("Arial", FontWeight.BOLD, 35) );
 
-        btnAtribuicaoPropostas = new Button("Atribuição Propostas");
-        btnRemocaoAtribuicoes = new Button("Remoção Atribuições");
+        btnEditarAtribuicoes = new Button("Editar Atribuição Propostas");
         btnConsultaAlunos = new Button("Consultar Alunos");
         btnConsultaPropostas = new Button("Consultar Propostas");
 
-        VBox vbox = new VBox(title, btnAtribuicaoPropostas, btnRemocaoAtribuicoes,
-                btnConsultaAlunos, btnConsultaPropostas, btnSaveData, btnLoadData, txtWarning);
+        VBox vbox = new VBox(title, btnEditarAtribuicoes, btnConsultaAlunos,
+                btnConsultaPropostas, btnSaveData, btnLoadData, txtWarning);
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(10));
         vbox.setAlignment(Pos.CENTER);
@@ -61,13 +56,7 @@ public class PhaseThreeGUI extends PhaseMenuTemplate {
     private void registerHandlers() {
         model.addPropertyChangeListener( ModelManager.PROP_STATE, evt -> update() );
 
-        btnAtribuicaoPropostas.setOnAction( actionEvent -> {
-
-        } );
-
-        btnRemocaoAtribuicoes.setOnAction( actionEvent -> {
-
-        } );
+        btnEditarAtribuicoes.setOnAction(actionEvent -> openWindowAdicionarAtribuicao() );
 
         btnConsultaAlunos.setOnAction( actionEvent -> openWindowConsultarAlunos() );
 
@@ -81,7 +70,7 @@ public class PhaseThreeGUI extends PhaseMenuTemplate {
             atribuicaoAutomaticaAconteceu = false;
         else if(!atribuicaoAutomaticaAconteceu) {
             model.atribuicaoAutomaticaAutoPropostas();
-            String extraInfo = "";
+            String extraInfo;
             if (model.phaseTwoLocked()) {
                 extraInfo = "\n-> Atribuicao automatica de propostas.";
                 model.atribuicaoAutomaticaPropostas();
@@ -95,6 +84,17 @@ public class PhaseThreeGUI extends PhaseMenuTemplate {
             txtWarning.setVisible(true);
             atribuicaoAutomaticaAconteceu = true;
         }
+    }
+
+    private void openWindowAdicionarAtribuicao() {
+        Stage window = new Stage();
+        window.initModality( Modality.WINDOW_MODAL );
+        window.initOwner( this.getScene().getWindow() );
+        window.setTitle("Editar Atribuicoes de Propostas");
+        window.setScene(
+                new Scene( new EditarAtribuicoes(model), 950, 550 )
+        );
+        window.show();
     }
 
     private void openWindowConsultarAlunos(){
