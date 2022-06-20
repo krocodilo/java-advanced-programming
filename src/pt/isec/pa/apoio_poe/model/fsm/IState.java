@@ -62,7 +62,6 @@ public interface IState {
     //PHASE4
     void atribuicaoOrientadoresProponentes();
     void AtribuicaoOrientadorProposta(Docente d,Proposta p);
-    ArrayList<Docente> getOrientadores();
     void removeOrientador(Docente toRemove);
     ArrayList<Aluno> getAlunosComPropostaComOrientador();
     ArrayList<Aluno> getAlunosComPropostaSemOrientador();

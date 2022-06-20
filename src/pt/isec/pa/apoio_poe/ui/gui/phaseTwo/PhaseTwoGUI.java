@@ -68,7 +68,7 @@ public class PhaseTwoGUI extends PhaseMenuTemplate {
         this.setLeft(form);
 
         list = new ListView<>();
-        VBox vboxl = new VBox(list);
+        VBox vboxl = new VBox(list,txtWarning);
         vboxl.setSpacing(10);
         vboxl.setPadding(new Insets(10));
         vboxl.setAlignment(Pos.CENTER);

@@ -2,6 +2,9 @@ package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import pt.isec.pa.apoio_poe.model.fsm.states.phaseFour.PhaseFour;
+import pt.isec.pa.apoio_poe.ui.gui.phaseFour.GestaoOrientadoresGUI;
+import pt.isec.pa.apoio_poe.ui.gui.phaseFour.PhaseFourGUI;
 import pt.isec.pa.apoio_poe.ui.gui.phaseOne.GestaoDocentesGUI;
 import pt.isec.pa.apoio_poe.ui.gui.phaseOne.GestaoPropostasGUI;
 import pt.isec.pa.apoio_poe.ui.gui.phaseThree.PhaseThreeGUI;
@@ -30,7 +33,9 @@ public class RootPane extends BorderPane {
                         new GestaoPropostasGUI(model),
                 new PhaseTwoGUI(model),
                         new GestaoCandidaturasGUI(model),
-                new PhaseThreeGUI(model)
+                new PhaseThreeGUI(model),
+                new PhaseFourGUI(model),
+                        new GestaoOrientadoresGUI(model)
         );
         this.setCenter(stackPane);
     }

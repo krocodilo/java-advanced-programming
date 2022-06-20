@@ -69,9 +69,7 @@ public class PhaseFourGUI extends PhaseMenuTemplate {
     private void registerHandlers() {
         model.addPropertyChangeListener( ModelManager.PROP_STATE, evt -> update() );
 
-        btnGestaoOrientadores.setOnAction( actionEvent -> {
-
-        } );
+        btnGestaoOrientadores.setOnAction( actionEvent -> model.goToState(State.GESTAO_ORIENTADORES) );
 
         btnAlunosPropostaOrientador.setOnAction( actionEvent -> {
             list.getItems().clear();
@@ -95,43 +93,13 @@ public class PhaseFourGUI extends PhaseMenuTemplate {
         if(! (model.getState() == State.PHASE_FOUR) )
             atribuicaoAutomaticaAconteceu = false;
         else if(!atribuicaoAutomaticaAconteceu) {
-            model.atribuicaoAutomaticaAutoPropostas();
-            String extraInfo = "";
-            if (model.phaseTwoLocked()) {
-                extraInfo = "\n-> Atribuicao automatica de propostas.";
-                model.atribuicaoAutomaticaPropostas();
-            } else
-                extraInfo = "\n-> Nao se realizou a atribuicao automatica de propostas," +
-                        " pois fase dois nao esta fechada.";
+            model.atribuicaoOrientadoresProponentes();
 
             txtWarning.setFill(Color.GREEN);
-            txtWarning.setText("-> Occoreu atribuicao automatica de autopropostas ou propostas de " +
-                    "docentes com aluno associado." + extraInfo);
+            txtWarning.setText("-> Occoreu atribuicao automatica de docentes " +
+                    "proponentes de projetos comoo orientador dos mesmos.");
             txtWarning.setVisible(true);
             atribuicaoAutomaticaAconteceu = true;
         }
     }
-
-    private void openWindowConsultarAlunos(){
-        Stage window = new Stage();
-        window.initModality( Modality.WINDOW_MODAL );
-        window.initOwner( this.getScene().getWindow() );
-        window.setTitle("Consultar Listas de Alunos");
-        window.setScene(
-                new Scene( new ConsultaListasAlunos(model), 950, 550 )
-        );
-        window.show();
-    }
-
-    private void openWindowConsultarPropostas(){
-        Stage window = new Stage();
-        window.initModality( Modality.WINDOW_MODAL );
-        window.initOwner( this.getScene().getWindow() );
-        window.setTitle("Consultar Listas de Propostas");
-        window.setScene(
-                new Scene( new ConsultarListasPropostas(model), 950, 550 )
-        );
-        window.show();
-    }
-
 }

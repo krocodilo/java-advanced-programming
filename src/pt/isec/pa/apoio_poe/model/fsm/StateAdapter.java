@@ -206,9 +206,6 @@ public class StateAdapter implements IState {
     public void AtribuicaoOrientadorProposta(Docente d,Proposta p){}
 
     @Override
-    public ArrayList<Docente> getOrientadores(){ return null; }
-
-    @Override
     public void removeOrientador(Docente toRemove) {}
 
     @Override

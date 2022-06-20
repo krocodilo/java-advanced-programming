@@ -271,7 +271,7 @@ public class Context {
 
     public void atribuicaoOrientadorProposta(Docente d,Proposta p){ state.AtribuicaoOrientadorProposta(d,p);}
 
-    public ArrayList<Docente> getOrientadores(){ return state.getOrientadores(); }
+    public ArrayList<Docente> getOrientadores(){ return data.getOrientadores(); }
 
     public void removeOrientador(Docente toRemove){ state.removeOrientador(toRemove);}
 

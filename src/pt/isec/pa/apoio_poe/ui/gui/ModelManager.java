@@ -185,6 +185,10 @@ public class ModelManager {
         context.removeOrientador(toRemove);
     }
 
+    public void atribuicaoOrientadoresProponentes(){
+        context.atribuicaoOrientadoresProponentes();
+    }
+
     public void lockCurrentState() throws Exception {
         context.lockCurrentState();
     }

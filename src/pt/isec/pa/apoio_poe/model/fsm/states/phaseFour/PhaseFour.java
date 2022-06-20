@@ -33,11 +33,6 @@ public class PhaseFour extends StateAdapter{
     }
 
     @Override
-    public ArrayList<Docente> getOrientadores(){
-        return data.getOrientadores();
-    }
-
-    @Override
     public ArrayList<Aluno> getAlunosComPropostaComOrientador() {
         HashSet<Aluno> res = new HashSet<>();
         for(Aluno a : data.getAlunosComPropostaAtribuida())
