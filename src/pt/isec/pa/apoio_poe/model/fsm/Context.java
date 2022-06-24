@@ -269,7 +269,9 @@ public class Context {
     //PHASEFOUR
     public void atribuicaoOrientadoresProponentes(){ state.atribuicaoOrientadoresProponentes(); }
 
-    public void atribuicaoOrientadorProposta(Docente d,Proposta p){ state.AtribuicaoOrientadorProposta(d,p);}
+    public void atribuicaoOrientadorProposta(Docente d,Proposta p){
+        state.AtribuicaoOrientadorProposta(d,p);
+    }
 
     public ArrayList<Docente> getOrientadores(){ return data.getOrientadores(); }
 
@@ -288,7 +290,7 @@ public class Context {
     }
 
     public ArrayList<Projeto> getProjetos() {
-        return state.getProjetos();
+        return data.getProjetos();
     }
 
     //Phase 5

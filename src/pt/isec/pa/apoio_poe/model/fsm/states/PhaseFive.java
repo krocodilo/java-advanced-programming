@@ -2,6 +2,7 @@ package pt.isec.pa.apoio_poe.model.fsm.states;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.DataCapsule;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.IState;
 import pt.isec.pa.apoio_poe.model.fsm.State;
@@ -18,6 +19,21 @@ public class PhaseFive extends StateAdapter {
     @Override
     public ArrayList<Aluno> getAlunosSemPropostasComCandidaturas() {
         return data.getAlunosSemPropostasComCandidaturas();
+    }
+
+    @Override
+    public ArrayList<Aluno> getAlunosComPropostaAtribuida() {
+        return data.getAlunosComPropostaAtribuida();
+    }
+
+    @Override
+    public ArrayList<Proposta> getPropostasDisponiveis() {
+        return data.getPropostasDisponiveis();
+    }
+
+    @Override
+    public ArrayList<Proposta> getPropostasAtribuidas() {
+        return data.getPropostasAtribuidas();
     }
 
     @Override

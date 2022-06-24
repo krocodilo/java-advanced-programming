@@ -4,6 +4,7 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Candidaturas;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.tipos_proposta.Projeto;
 import pt.isec.pa.apoio_poe.model.fsm.Context;
 import pt.isec.pa.apoio_poe.model.fsm.State;
 
@@ -71,6 +72,10 @@ public class ModelManager {
 
     public ArrayList<Docente> getDocentes() {
         return context.getDocentes();
+    }
+
+    public ArrayList<Projeto> getProjetos() {
+        return context.getProjetos();
     }
 
     public void removeDocente(Docente toRemove) throws Exception {
@@ -153,6 +158,10 @@ public class ModelManager {
         pcs.firePropertyChange(PROP_DATA,null,null);
     }
 
+    public ArrayList<Aluno> getAlunosSemPropostasComCandidaturas() {
+        return context.getAlunosSemPropostasComCandidaturas();
+    }
+
     public ArrayList<Candidaturas> getCandidaturas(){
         return context.getCandidaturas();
     }
@@ -171,6 +180,11 @@ public class ModelManager {
 
     public ArrayList<Aluno> getAlunosComPropostaSemOrientador(){
         return context.getAlunosComPropostaSemOrientador();
+    }
+
+    public void atribuicaoOrientadorProposta(Docente d,Proposta p){
+        context.atribuicaoOrientadorProposta(d,p);
+        pcs.firePropertyChange(PROP_DATA,null,null);
     }
 
     public String getEstatisticasOrientadores(){

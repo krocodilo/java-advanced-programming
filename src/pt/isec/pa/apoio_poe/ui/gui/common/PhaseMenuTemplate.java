@@ -37,7 +37,9 @@ public class PhaseMenuTemplate extends BorderPane {
                 txtWarning.setText(e.getMessage());
             }
         });
-        btnNext.setOnAction( actionEvent -> model.next() );
+        btnNext.setOnAction(
+                actionEvent -> model.next()
+        );
         btnPrevious.setOnAction( actionEvent -> model.previous() );
         btnLoadData.setOnAction( actionEvent -> loadData() );
         btnSaveData.setOnAction( actionEvent -> saveData() );
